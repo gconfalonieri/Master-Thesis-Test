@@ -1,0 +1,38 @@
+ID,USER_ID,SEX,AGE,STUDY,EDUCATIONAL_QUALIFICATION,PROFESSION
+1,USER_1,M,28,Bachelor's Degree in Computer Engineering,Master Student in Computer Engineering
+2,USER_2,M,25,Master's Degree in Physics,PhD Student in Artificial Intelligence
+3,USER_3,M,25,Technical High School Diploma,Employee
+4,USER_4,F,25,Artistic High School Diploma,Bachelor Student in Chemistry
+5,USER_5,M,24,Bachelor's Degree in Geology,Master Student in Geology
+6,USER_6,M,24,Bachelor's Degree in Environmental Engineering,Master Student in Environmental Engineering
+7,USER_7,F,25,Master's Degree in Physical Education,Employee
+8,USER_8,F,19,Scientific High School Diploma,Bachelor Student in Energetic Engineering
+9,USER_9,F,25,Vocational High School Diploma,Employee
+10,USER_10,F,20,Vocational High School Diploma,Employee
+11,USER_11,F,24,Bachelor's Degree in Communication Sciences,Master Student in Communication Sciences
+12,USER_12,F,19,Scientific High School Diploma,Bachelor Student in Biomedical Engineering
+13,USER_13,M,25,Linguistic High School Diploma,Employee
+14,USER_14,M,25,Technical High School Diploma,Employee
+15,USER_15,M,23,Technical High School Diploma,Bachelor Student in Cultural Heritage
+16,USER_16,M,22,Scientific High School Diploma,Bachelor Student in Cultural Heritage
+17,USER_17,M,24,Bachelor's Degree in Political Sciences,Unemployed
+18,USER_18,M,23,Technical High School Diploma,Bachelor Student in Computer Engineering
+19,USER_19,M,25,Scientific High School Diploma,Medical Student
+20,USER_20,F,23,Linguistic High School Diploma,Bachelor Student in Languages
+21,USER_21,F,61,Technical High School Diploma,Employee
+22,USER_22,M,28,Bachelor's Degree in Computer Engineering,Master Student in Computer Engineering
+23,USER_23,F,21,Human Sciences High School Diploma,Bachelor Student in Communication Sciences
+24,USER_24,M,22,Bachelor's Degree in Computer Engineering,Master Student in Computer Engineering
+25,USER_25,M,26,Master's Degree in Computer Engineering,PhD Student in Computer Engineering
+26,USER_26,M,29,Master's Degree in Electronic Engineering,PhD Student in Biomedical Engineering
+27,USER_27,M,24,Bachelor's Degree in Computer Engineering,Master Student in Computer Engineering
+28,USER_28,M,27,Technical High School Diploma,Employee
+29,USER_29,F,20,Linguistic High School Diploma,Bachelor Student in Cultural Heritage
+30,USER_30,M,24,Bachelor's Degree in Computer Engineering,Master Student in Computer Engineering
+31,USER_31,F,22,Classical High School Diploma,Bachelor Student in Communication Sciences
+32,USER_32,F,20,Scientific High School Diploma,Bachelor Student in Physical Education
+33,USER_33,M,39,PhD in Computer Engineering,Researcher
+34,USER_34,M,35,PhD in Computer Engineering,Researcher
+35,USER_35,M,21,Technical High School Diploma,Bachelor Student in Nursing
+36,USER_36,M,29,Master in Computer Engineering,PhD Student in Computer Engineering
+37,USER_37,F,55,Master in Mathematics,Employee
