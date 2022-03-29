@@ -4,8 +4,6 @@ import os
 list = os.listdir('eye-tracker')
 number_files = int(len(list) / 2) + 1
 
-index = []
-
 for i in range(1, number_files):
     user_id = 'USER_' + str(i)
     source = 'eye-tracker/User ' + str(i) + '_all_gaze.csv'
@@ -25,6 +23,9 @@ for i in range(1, number_files):
     media_name = []
     user_answer = df_user_answer[user_id]
     correct_answer = []
+
+    for j in range(1, len(user_answer) + 1):
+        index.append(i)
 
     for x in df_eye['MEDIA_NAME']:
         media_name.append(x)
