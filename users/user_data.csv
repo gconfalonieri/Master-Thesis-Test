@@ -36,3 +36,4 @@ ID,USER_ID,SEX,AGE,STUDY,EDUCATIONAL_QUALIFICATION,PROFESSION
 35,USER_35,M,21,Technical High School Diploma,Bachelor Student in Nursing
 36,USER_36,M,29,Master in Computer Engineering,PhD Student in Computer Engineering
 37,USER_37,F,55,Master in Mathematics,Employee
+38,USER_38,M,24,Technical High School Diploma,Employee
