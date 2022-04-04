@@ -37,7 +37,10 @@ ID,USER_ID,SEX,AGE,STUDY,EDUCATIONAL_QUALIFICATION,PROFESSION
 36,USER_36,M,29,Master in Computer Engineering,PhD Student in Computer Engineering
 37,USER_37,F,55,Master in Mathematics,Employee
 38,USER_38,M,24,Technical High School Diploma,Employee
-39,USER_39,M,20,Technical High School Diploma,Bachelor Student in Mechanic Engineering
-40,USER_40,F,22,Technical High School Diploma,Bachelor Student in Mechanic Engineering
+39,USER_39,M,20,Technical High School Diploma,Bachelor Student in Mechanical Engineering
+40,USER_40,F,22,Technical High School Diploma,Bachelor Student in Mechanical Engineering
 41,USER_41,M,21,Classical High School Diploma,Bachelor Student in Communication Sciences
 42,USER_42,F,21,Artistic High School Diploma,Bachelor Student in Communication Sciences
+43,USER_43,M,20,Scientific High School Diploma,Bachelor Student in Mechanical Engineering
+44,USER_44,M,22,Scientific High School Diploma,Bachelor Student in Energetic Engineering
+45,USER_45,F,21,Scientific High School Diploma,Bachelor Student in Communication Sciences
