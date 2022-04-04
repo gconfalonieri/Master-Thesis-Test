@@ -29,6 +29,8 @@ barWidth = 0.25
 br = np.arange(len(list_times))
 
 plt.bar(br, list_times, width = barWidth, edgecolor ='grey', label ='AVERAGE_TIME')
+
+plt.legend()
 plt.savefig('results/img/average_times.png')
 
 df_questions_statistics.to_csv('results/questions_statistics.csv', index=False)
