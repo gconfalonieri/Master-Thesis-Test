@@ -22,8 +22,9 @@ for i in range(1, number_files):
         df_user = pd.read_csv(user_eye)
         times = dict.fromkeys(df_correct_answer['MEDIA_NAME'], 0)
 
-        for j in df_user.index:
-            times[df_user['MEDIA_NAME'][j]] = df_user.iloc[:, 3][j]
+        for j in range(1, 25):
+            df_media = df_user[df_user['MEDIA_NAME'] == ('NewMedia' + str(j))]
+            times[('NewMedia' + str(j))] = df_media.iloc[-1, 3]
 
         df_times_for_question[user_id] = times.values()
 
