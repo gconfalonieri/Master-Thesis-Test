@@ -1,0 +1,7 @@
+#
+# Configuration File
+#
+
+[path]
+solutions_complete_dataset = 'questions/solutions_complete.csv'
+answers_complete_dataset = 'questions/answers_complete.csv'

@@ -1,8 +1,11 @@
 import pandas as pd
 import os
+import toml
 
-df_correct_answer = pd.read_csv('questions/solutions_complete.csv')
-df_user_answers = pd.read_csv('questions/answers_complete.csv')
+config = toml.load('config.toml')
+
+df_correct_answer = pd.read_csv(config['path']['solutions_complete_dataset'])
+df_user_answers = pd.read_csv(config['path']['answers_complete_dataset'])
 
 df_answers_for_question = pd.DataFrame(columns=['ID', 'MEDIA_NAME', 'CORRECT_ANSWER'])
 df_answers_for_question['ID'] = df_user_answers['ID']
