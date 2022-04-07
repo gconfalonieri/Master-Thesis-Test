@@ -45,3 +45,5 @@ ID,USER_ID,SEX,AGE,STUDY,EDUCATIONAL_QUALIFICATION,PROFESSION
 44,USER_44,M,22,Scientific High School Diploma,Bachelor Student in Energetic Engineering
 45,USER_45,F,21,Scientific High School Diploma,Bachelor Student in Communication Sciences
 46,USER_46,F,21,Technical High School Diploma,Bachelor Student in Communication Sciences
+47,USER_47,F,23,Bachelor's Degree in Communication Sciences,Master Student in Communication Sciences
+48,USER_48,F,22,Human Sciences High School Diploma,Bachelor Student in Communication Sciences
