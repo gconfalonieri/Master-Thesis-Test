@@ -2,6 +2,9 @@
 # Configuration File
 #
 
+[general]
+n_testers = 51
+
 [path]
 solutions_complete_dataset = 'datasets/questions/solutions_complete.csv'
 answers_complete_dataset = 'datasets/questions/answers_complete.csv'
