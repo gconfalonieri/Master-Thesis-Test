@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-list = os.listdir('eye-tracker')
+list = os.listdir('datasets/eye-tracker')
 number_files = int(len(list) / 2) + 1
 
 for i in range(1, number_files):
@@ -13,11 +13,11 @@ for i in range(1, number_files):
     df_eye = df_eye.drop_duplicates('MEDIA_NAME', keep='last')
 
     if i == 25 or i == 26 or i == 30:
-        df_correct_answer = pd.read_csv('questions/solutions_reduced.csv')
-        df_user_answer = pd.read_csv('questions/answers_reduced.csv')
+        df_correct_answer = pd.read_csv('datasets/questions/solutions_reduced.csv')
+        df_user_answer = pd.read_csv('datasets/questions/answers_reduced.csv')
     else:
-        df_correct_answer = pd.read_csv('questions/solutions_complete.csv')
-        df_user_answer = pd.read_csv('questions/answers_complete.csv')
+        df_correct_answer = pd.read_csv('datasets/questions/solutions_complete.csv')
+        df_user_answer = pd.read_csv('datasets/questions/answers_complete.csv')
 
     index = []
     media_name = []

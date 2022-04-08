@@ -5,10 +5,10 @@ import os
 
 pd.options.mode.chained_assignment = None
 
-list = os.listdir('eye-tracker')
+list = os.listdir('datasets/eye-tracker')
 number_files = int(len(list) / 2) + 1
 
-df_answers_for_question = pd.read_csv('results/answers_for_question.csv')
+df_answers_for_question = pd.read_csv('datasets/results/answers_for_question.csv')
 
 df_questions_statistics = pd.DataFrame(columns=['ID','MEDIA_NAME','TOTAL','RIGHT','WRONG'])
 df_questions_statistics['ID'] = df_answers_for_question['ID']

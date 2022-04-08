@@ -1,15 +1,15 @@
 import pandas as pd
 import os
 
-df_correct_answer = pd.read_csv('questions/solutions_complete.csv')
-df_user_answers = pd.read_csv('questions/answers_complete.csv')
+df_correct_answer = pd.read_csv('datasets/questions/solutions_complete.csv')
+df_user_answers = pd.read_csv('datasets/questions/answers_complete.csv')
 
 df_times_for_question = pd.DataFrame(columns=['ID', 'MEDIA_NAME' ])
 
 df_times_for_question['ID'] = df_user_answers['ID']
 df_times_for_question['MEDIA_NAME'] = df_correct_answer['MEDIA_NAME']
 
-list = os.listdir('eye-tracker')
+list = os.listdir('datasets/eye-tracker')
 number_files = int(len(list) / 2) + 1
 
 for i in range(1, number_files):

@@ -12,7 +12,7 @@ df_answers_for_question['ID'] = df_user_answers['ID']
 df_answers_for_question['MEDIA_NAME'] = df_correct_answer['MEDIA_NAME']
 df_answers_for_question['CORRECT_ANSWER'] = df_correct_answer['CORRECT_ANSWER']
 
-list = os.listdir('eye-tracker')
+list = os.listdir('datasets/eye-tracker')
 number_files = int(len(list) / 2) + 1
 
 for i in range(1, number_files):

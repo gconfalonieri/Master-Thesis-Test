@@ -5,11 +5,11 @@ import os
 
 pd.options.mode.chained_assignment = None
 
-list = os.listdir('eye-tracker')
+list = os.listdir('datasets/eye-tracker')
 number_files = int(len(list) / 2) + 1
 
-df_times_for_question = pd.read_csv('results/times_for_question.csv')
-df_questions_statistics = pd.read_csv('results/questions_statistics.csv')
+df_times_for_question = pd.read_csv('datasets/results/times_for_question.csv')
+df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
 list_times = []
 
