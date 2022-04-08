@@ -3,5 +3,5 @@
 #
 
 [path]
-solutions_complete_dataset = 'questions/solutions_complete.csv'
-answers_complete_dataset = 'questions/answers_complete.csv'
+solutions_complete_dataset = 'datasets/questions/solutions_complete.csv'
+answers_complete_dataset = 'datasets/questions/answers_complete.csv'
