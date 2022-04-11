@@ -1,4 +1,8 @@
 import os
+import statistics
+from numpy import median, mean
+
+import pandas as pd
 import toml
 
 config = toml.load('config.toml')
@@ -59,3 +63,32 @@ def get_user_answer(target_element, reference_df):
 def get_answer_time(target_element, reference_df):
     df_media = reference_df[reference_df['MEDIA_NAME'] == target_element]
     return df_media.iloc[-1, 3]
+
+
+def initialize_answer_list(df_answers):
+    answer_dict = dict()
+    for x in df_answers['MEDIA_NAME']:
+        answer_dict[x] = list()
+    return answer_dict
+
+
+def get_answer_times_dict(df_complete):
+    answer_dict = statistics.utilities.initialize_answer_list(pd.read_csv('datasets/questions/solutions_complete.csv'))
+    for i in df_complete.index:
+        answer_dict[df_complete['MEDIA_NAME'][i]].append(df_complete['ANSWER_TIME'][i])
+    return answer_dict
+
+
+def get_mean_dict(answer_times_dict):
+    mean_dict = dict()
+    for answer in answer_times_dict:
+        mean_dict[answer] = mean(answer_times_dict[answer])
+    return mean_dict
+
+
+def get_median_dict(answer_times_dict):
+    median_dict = dict()
+    for answer in answer_times_dict:
+        median_dict[answer] = median(answer_times_dict[answer])
+    return median_dict
+
