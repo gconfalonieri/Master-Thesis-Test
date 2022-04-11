@@ -10,5 +10,5 @@ def get_labels_pie_plot(df_label):
         data = [df_label['N_COGNITIVE_EFFORT'][i], df_label['N_NOT_COGNITIVE_EFFORT'][i]]
         plt.figure()
         plt.pie(data, labels=labels)
-        plt.savefig('plots/median_labels/answers/' + df_label['MEDIA_NAME'][i] + '.png')
+        plt.savefig('plots/median_labels/macro_categories/' + df_label['MACRO_CATEGORY'][i] + '.png')
         plt.close()
