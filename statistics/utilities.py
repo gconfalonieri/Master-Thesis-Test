@@ -65,17 +65,22 @@ def get_answer_time(target_element, reference_df):
     return df_media.iloc[-1, 3]
 
 
-def initialize_answer_list(df_answers):
+def initialize_answer_list(df_answers, col_name):
     answer_dict = dict()
-    for x in df_answers['MEDIA_NAME']:
+    for x in df_answers[col_name]:
         answer_dict[x] = list()
     return answer_dict
 
 
-def get_answer_times_dict(df_complete):
-    answer_dict = statistics.utilities.initialize_answer_list(pd.read_csv('datasets/questions/solutions_complete.csv'))
+def get_times_dict(df_complete, col_name):
+    if col_name == 'MEDIA_NAME':
+        df_path = 'datasets/questions/solutions_complete.csv'
+    else:
+        df_path = 'datasets/questions/categories_complete.csv'
+    answer_dict = statistics.utilities.initialize_answer_list(pd.read_csv(df_path), col_name)
     for i in df_complete.index:
-        answer_dict[df_complete['MEDIA_NAME'][i]].append(df_complete['ANSWER_TIME'][i])
+        answer_dict[df_complete[col_name][i]].append(df_complete['ANSWER_TIME'][i])
+    # print(df_complete[col_name][2] + " " + str(answer_dict[df_complete[col_name][2]]) )
     return answer_dict
 
 
@@ -86,26 +91,29 @@ def get_answer_right_or_wrong(answer, solution):
         return False
 
 
-def get_min_right_dict(df_complete):
+def get_min_right_dict(df_complete, col_name):
     min_dict = dict()
     for i in df_complete.index:
-        min_dict[df_complete['MEDIA_NAME'][i]] = df_complete['ANSWER_TIME'][i]
+        min_dict[df_complete[col_name][i]] = df_complete['ANSWER_TIME'][i]
     for i in df_complete.index:
-        if get_answer_right_or_wrong(df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['ANSWER_TIME'][i] <  min_dict[df_complete['MEDIA_NAME'][i]]:
-            min_dict[df_complete['MEDIA_NAME'][i]] = df_complete['ANSWER_TIME'][i]
+        if get_answer_right_or_wrong(df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['ANSWER_TIME'][i] < min_dict[df_complete[col_name][i]]:
+            min_dict[df_complete[col_name][i]] = df_complete['ANSWER_TIME'][i]
+    # print(min_dict)
     return min_dict
 
 
-def get_mean_dict(answer_times_dict):
+def get_mean_dict(times_dict):
     mean_dict = dict()
-    for answer in answer_times_dict:
-        mean_dict[answer] = mean(answer_times_dict[answer])
+    for answer in times_dict:
+        mean_dict[answer] = mean(times_dict[answer])
+        # if answer == 'NewMedia12':
+            # print(answer + " " + str(mean_dict[answer]))
     return mean_dict
 
 
-def get_median_dict(answer_times_dict):
+def get_median_dict(times_dict):
     median_dict = dict()
-    for answer in answer_times_dict:
-        median_dict[answer] = median(answer_times_dict[answer])
+    for answer in times_dict:
+        median_dict[answer] = median(times_dict[answer])
     return median_dict
 
