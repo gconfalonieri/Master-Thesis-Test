@@ -1,6 +1,7 @@
+import statistics
 import pandas as pd
-import os
 
+number_files = statistics.utilities.get_n_testers() + 1
 
 for i in range(1, number_files):
     user_id = 'USER_' + str(i)
