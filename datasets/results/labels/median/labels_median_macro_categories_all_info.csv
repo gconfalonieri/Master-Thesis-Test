@@ -666,7 +666,7 @@ NewMedia2,USER_31,Critical Thinking,Textual,a,a,30.86633,NOT_COGNITIVE_EFFORT
 NewMedia9,USER_31,Diagrammatic Reasoning,Graphical,b,a,94.30023,COGNITIVE_EFFORT
 NewMedia5,USER_31,Deductive Reasoning,Textual,b,b,36.11157,NOT_COGNITIVE_EFFORT
 NewMedia24,USER_31,Verbal Reasoning,Textual,b,b,64.42511,NOT_COGNITIVE_EFFORT
-NewMedia7,USER_31,Diagrammatic Reasoning,Graphical,b,a,25.55225,COGNITIVE_EFFORT
+NewMedia7,USER_31,Diagrammatic Reasoning,Graphical,b,a,25.55225,NOT_COGNITIVE_EFFORT
 NewMedia3,USER_31,Critical Thinking,Textual,a,b,30.48413,COGNITIVE_EFFORT
 NewMedia14,USER_31,Logical Reasoning,Graphical,a,a,42.62903,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_31,Diagrammatic Reasoning,Graphical,c,c,26.04321,NOT_COGNITIVE_EFFORT

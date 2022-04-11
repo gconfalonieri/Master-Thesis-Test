@@ -10,7 +10,7 @@ def get_df_answers_labelled(df_complete, min_times_dict, threshold_dict, col_nam
     labels = []
 
     for i in df_complete.index:
-        is_right_answer = statistics.utilities.get_answer_right_or_wrong(df_complete_labelled['USER_ANSWER'][i], df_complete_labelled['CORRECT_ANSWER'][i])
+        is_right_answer = statistics.utilities.get_answer_right_or_wrong(df_complete_labelled['MEDIA_NAME'][i], df_complete_labelled['USER_ANSWER'][i], df_complete_labelled['CORRECT_ANSWER'][i])
         answer_time = df_complete_labelled['ANSWER_TIME'][i]
         current_min_time = min_times_dict[df_complete_labelled[col_name][i]]
         current_threshold = threshold_dict[df_complete_labelled[col_name][i]]
