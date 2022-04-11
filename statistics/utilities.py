@@ -79,6 +79,23 @@ def get_answer_times_dict(df_complete):
     return answer_dict
 
 
+def get_answer_right_or_wrong(answer, solution):
+    if answer == solution:
+        return True
+    else:
+        return False
+
+
+def get_min_right_dict(df_complete):
+    min_dict = dict()
+    for i in df_complete.index:
+        min_dict[df_complete['MEDIA_NAME'][i]] = df_complete['ANSWER_TIME'][i]
+    for i in df_complete.index:
+        if get_answer_right_or_wrong(df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['ANSWER_TIME'][i] <  min_dict[df_complete['MEDIA_NAME'][i]]:
+            min_dict[df_complete['MEDIA_NAME'][i]] = df_complete['ANSWER_TIME'][i]
+    return min_dict
+
+
 def get_mean_dict(answer_times_dict):
     mean_dict = dict()
     for answer in answer_times_dict:
