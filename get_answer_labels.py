@@ -41,4 +41,3 @@ df_macro_categories_labelled_mean.to_csv('datasets/results/labels/mean/labels_me
 df_macro_categories_labelled_median.to_csv('datasets/results/labels/median/labels_median_macro_categories_all_info.csv', index=False)
 df_labelled_macro_categories_mean_statistics.to_csv('datasets/results/labels/statistic/labels_mean_statistics_macro_categories_all_info.csv', index=False)
 df_labelled_macro_categories_median_statistics.to_csv('datasets/results/labels/statistic/labels_median_statistics_macro_categories_all_info.csv', index=False)
-
