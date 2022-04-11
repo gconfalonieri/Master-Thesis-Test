@@ -23,7 +23,7 @@ for i in range(1, number_files):
     correct_answer = []
 
     for j in range(1, len(user_answer) + 1):
-        index.append(i)
+        index.append(j)
 
     for x in df_eye['MEDIA_NAME']:
         media_name.append(x)
