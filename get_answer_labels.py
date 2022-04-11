@@ -18,3 +18,5 @@ df_answers_labelled_mean.to_csv('datasets/results/labels_mean_answers_all_info.c
 df_answers_labelled_median.to_csv('datasets/results/labels_median_answers_all_info.csv', index=False)
 df_labelled_mean_statistics.to_csv('datasets/results/labels_mean_statistics_answers_all_info.csv', index=False)
 df_labelled_median_statistics.to_csv('datasets/results/labels_median_statistics_answers_all_info.csv', index=False)
+
+statistics.plots.get_labels_pie_plot(df_labelled_median_statistics)
