@@ -30,3 +30,32 @@ def correct_answer_column(df_question, df_correct_answer):
                 correct_answer_column.append(df_correct_answer['CORRECT_ANSWER'][i])
                 break
     return correct_answer_column
+
+
+def get_correct_answer(target_element, reference_df):
+    for i in reference_df.index:
+        if target_element == reference_df['MEDIA_NAME'][i]:
+            return reference_df['CORRECT_ANSWER'][i]
+
+
+def get_specific_category(target_element, reference_df):
+    for i in reference_df.index:
+        if target_element == reference_df['MEDIA_NAME'][i]:
+            return reference_df['SPECIFIC_CATEGORY'][i]
+
+
+def get_macro_category(target_element, reference_df):
+    for i in reference_df.index:
+        if target_element == reference_df['MEDIA_NAME'][i]:
+            return reference_df['MACRO_CATEGORY'][i]
+
+
+def get_user_answer(target_element, reference_df):
+    for i in reference_df.index:
+        if target_element == reference_df['MEDIA_NAME'][i]:
+            return reference_df['USER_ANSWER'][i]
+
+
+def get_answer_time(target_element, reference_df):
+    df_media = reference_df[reference_df['MEDIA_NAME'] == target_element]
+    return df_media.iloc[-1, 3]
