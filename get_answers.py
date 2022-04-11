@@ -1,13 +1,11 @@
 import pandas as pd
 import os
 
-list = os.listdir('datasets/eye-tracker')
-number_files = int(len(list) / 2) + 1
 
 for i in range(1, number_files):
     user_id = 'USER_' + str(i)
-    source = 'eye-tracker/User ' + str(i) + '_all_gaze.csv'
-    destination = 'users/answers/answer_user_' + str(i) + '.csv'
+    source = 'datasets/eye-tracker/User ' + str(i) + '_all_gaze.csv'
+    destination = 'datasets/users/answers/answer_user_' + str(i) + '.csv'
 
     df_eye = pd.read_csv (source)
     df_eye = df_eye.drop_duplicates('MEDIA_NAME', keep='last')
