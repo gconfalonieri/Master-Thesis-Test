@@ -15,7 +15,7 @@ number_files = statistics.utilities.get_n_testers()
 
 for i in range(1, number_files):
 
-    if not(i==25 or i==26 or i==30):
+    if not(i==5 or i==23 or i==25 or i==26 or i==30):
 
         user_id = 'USER_' + str(i)
         eye_source = 'datasets/eye-tracker/User ' + str(i) + '_all_gaze.csv'
