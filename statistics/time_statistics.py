@@ -6,7 +6,7 @@ config = toml.load('config.toml')
 
 def get_answers_times_df(df_correct_answer, n_users):
 
-    df_times_for_question = pd.DataFrame(columns=['ID', 'MEDIA_NAME'])
+    df_times_for_question = pd.DataFrame(columns=['MEDIA_NAME'])
     df_times_for_question['MEDIA_NAME'] = df_correct_answer['MEDIA_NAME']
 
     for i in range(1, n_users):
