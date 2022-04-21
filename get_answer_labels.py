@@ -16,6 +16,7 @@ df_answers_labelled_median.to_csv('datasets/results/labels/median/labels_median_
 df_labelled_mean_answer_statistics.to_csv('datasets/results/labels/statistic/labels_mean_statistics_answers_all_info.csv', index=False)
 df_labelled_median_answer_statistics.to_csv('datasets/results/labels/statistic/labels_median_statistics_answers_all_info.csv', index=False)
 
+statistics.plots.get_labels_pie_plot(df_labelled_median_answer_statistics)
 statistics.plots.get_total_labels_pie_plot(df_labelled_median_answer_statistics)
 
 specific_categories_dict = statistics.utilities.get_times_dict(df_complete, 'SPECIFIC_CATEGORY')
