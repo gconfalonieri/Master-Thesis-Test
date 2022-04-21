@@ -81,6 +81,23 @@ def get_answer_for_questions_df(df_correct_answers, n_users):
     return df_answers_for_question
 
 
-def get_answers_statistics_df(n_users):
+def get_questions_statistics_df(df_answers_for_questions, n_users):
 
-    return
+    df_questions_statistics = pd.DataFrame(columns=['MEDIA_NAME', 'TOTAL', 'RIGHT', 'WRONG'])
+    df_questions_statistics['MEDIA_NAME'] = df_answers_for_questions['MEDIA_NAME']
+
+    for i in df_answers_for_questions.index:
+        df_questions_statistics['TOTAL'][i] = 0
+        df_questions_statistics['RIGHT'][i] = 0
+        df_questions_statistics['WRONG'][i] = 0
+
+    for i in df_answers_for_questions.index:
+        for j in range(1, n_users):
+            if not (j == 25 or j == 26 or j == 30):
+                if df_answers_for_questions['CORRECT_ANSWER'][i] == df_answers_for_questions['USER_' + str(j)][i]:
+                    df_questions_statistics['RIGHT'][i] += 1
+                else:
+                    df_questions_statistics['WRONG'][i] += 1
+                df_questions_statistics['TOTAL'][i] += 1
+
+    return df_questions_statistics

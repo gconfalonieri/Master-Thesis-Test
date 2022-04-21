@@ -1,4 +1,28 @@
 import matplotlib.pyplot as plt
+import numpy as np
+
+
+def get_questiosn_statistics_bar_plot(df_questions_statistics):
+
+    list_rights = []
+    list_wrongs = []
+
+    for i in df_questions_statistics.index:
+        n_right = (df_questions_statistics['RIGHT'][i] / df_questions_statistics['TOTAL'][i]) * 100
+        n_wrong = (df_questions_statistics['WRONG'][i] / df_questions_statistics['TOTAL'][i]) * 100
+        list_rights.append(n_right)
+        list_wrongs.append(n_wrong)
+
+    barWidth = 0.25
+    br1 = np.arange(len(list_rights))
+    br2 = [x + barWidth for x in br1]
+
+    plt.bar(br1, list_rights, color='g', width=barWidth, edgecolor='grey', label='RIGHT')
+    plt.bar(br2, list_wrongs, color='r', width=barWidth, edgecolor='grey', label='WRONG')
+
+    plt.legend()
+    plt.savefig('plots/questions_statistics.png')
+
 
 def get_labels_pie_plot(df_label, label_column, path_init):
 

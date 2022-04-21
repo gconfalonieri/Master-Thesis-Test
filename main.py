@@ -14,5 +14,11 @@ statistics.questions_statistics.save_all_user_answers_df(n_users)
 
 # 2) Compute DataFrame with all the answers related to a single question
 
-df_answers_for_question = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
-df_answers_for_question.to_csv('datasets/results/answers_for_questions.csv', index=False)
+df_answers_for_questions = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
+df_answers_for_questions.to_csv('datasets/results/answers_for_questions.csv', index=False)
+
+# 3) Compute DataFrame with some statistics related to a single question
+
+df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
+df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
+statistics.plots.get_questiosn_statistics_bar_plot(df_questions_statistics)
