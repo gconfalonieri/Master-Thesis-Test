@@ -22,3 +22,8 @@ df_answers_for_questions.to_csv('datasets/results/answers_for_questions.csv', in
 df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
 df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
 statistics.plots.get_questiosn_statistics_bar_plot(df_questions_statistics)
+
+# 4) Compute DataFrame with times spent for each questions to get each user answer
+
+df_times_for_question = statistics.time_statistics.get_answers_times_df(df_correct_answer, n_users)
+df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
