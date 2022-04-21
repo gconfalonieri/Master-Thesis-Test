@@ -14,7 +14,6 @@ def get_df_answers_labelled(df_complete, min_times_dict, threshold_dict, col_nam
         answer_time = df_complete_labelled['ANSWER_TIME'][i]
         current_min_time = min_times_dict[df_complete_labelled[col_name][i]]
         current_threshold = threshold_dict[df_complete_labelled[col_name][i]]
-        # print(col_name + " " + str(is_right_answer) + " " + str(answer_time) + " " + str(current_min_time) + " " + str(current_threshold))
         if not is_right_answer and answer_time < current_min_time:
             labels.append('NOT_COGNITIVE_EFFORT')
         elif not is_right_answer and answer_time >= current_min_time:

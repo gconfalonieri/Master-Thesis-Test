@@ -1,14 +1,18 @@
 import statistics.utilities
+import toml
+import pandas as pd
+
+config = toml.load('config.toml')
 
 n_users = statistics.utilities.get_n_testers() + 1
 
-for i in range(1, n_users):
-    destination = 'datasets/users/answers/answer_user_' + str(i) + '.csv'
-    answer_dataframe = statistics.questions_statistics.get_user_answers_df(i)
-    n_right_answers = statistics.questions_statistics.get_n_right_answers(answer_dataframe, i)
-    if i == 25 or i == 26 or i == 30:
-        print('USER_' + str(i) + ' Correct answers: ' + str(n_right_answers) + ' / 16')
-    else:
-        print('USER_' + str(i) + ' Correct answers: ' + str(n_right_answers) + ' / 24')
-    answer_dataframe.to_csv(destination, index=False)
+df_correct_answer = pd.read_csv(config['path']['solutions_complete_dataset'])
 
+# 1) Compute Answer DataFrame for each User
+
+statistics.questions_statistics.save_all_user_answers_df(n_users)
+
+# 2) Compute DataFrame with all the answers related to a single question
+
+df_answers_for_question = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
+df_answers_for_question.to_csv('datasets/results/answers_for_questions.csv', index=False)
