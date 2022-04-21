@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def get_labels_pie_plot(df_label):
+def get_labels_pie_plot(df_label, label_column, path_init):
 
     for i in df_label.index:
         n_total = df_label['N_COGNITIVE_EFFORT'][i] + df_label['N_NOT_COGNITIVE_EFFORT'][i]
@@ -10,11 +10,11 @@ def get_labels_pie_plot(df_label):
         data = [df_label['N_COGNITIVE_EFFORT'][i], df_label['N_NOT_COGNITIVE_EFFORT'][i]]
         plt.figure()
         plt.pie(data, labels=labels)
-        plt.savefig('plots/median_labels/answers/' + df_label['MEDIA_NAME'][i] + '.png')
+        plt.savefig(path_init + df_label[label_column][i] + '.png')
         plt.close()
 
 
-def get_total_labels_pie_plot(df_label):
+def get_total_labels_pie_plot(df_label, path_init):
 
     cognitive_effort = 0
     not_cognitive_effort = 0
@@ -31,5 +31,5 @@ def get_total_labels_pie_plot(df_label):
     data = [cognitive_effort, not_cognitive_effort]
     plt.figure()
     plt.pie(data, labels=labels)
-    plt.savefig('plots/median_labels/answers/all.png')
+    plt.savefig( path_init + 'all.png')
     plt.close()
