@@ -1,6 +1,6 @@
 import os
 import statistics
-from numpy import median, mean
+from numpy import median, mean, percentile
 
 import pandas as pd
 import toml
@@ -120,3 +120,9 @@ def get_median_dict(times_dict):
         median_dict[answer] = median(times_dict[answer])
     return median_dict
 
+
+def get_percentile_dict(times_dict, n):
+    percentile_dict = dict()
+    for answer in times_dict:
+        percentile_dict[answer] = percentile(times_dict[answer], n)
+    return percentile_dict
