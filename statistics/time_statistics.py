@@ -1,3 +1,4 @@
+from numpy import mean
 import pandas as pd
 import toml
 
@@ -27,4 +28,27 @@ def get_answers_times_df(df_correct_answer, n_users):
 
             print(user_id + " DONE")
 
-    return  df_times_for_question
+    return df_times_for_question
+
+
+def get_average_times_for_questions_df(df_times_for_question, n_users):
+
+    df_average_times_for_questions = pd.DataFrame(columns=['MEDIA_NAME', 'AVERAGE_TIME'])
+    df_average_times_for_questions['MEDIA_NAME'] = df_times_for_question['MEDIA_NAME']
+
+    # df_times_for_question = pd.read_csv('datasets/results/times_for_question.csv')
+    # df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+
+    average_times = []
+
+    for i in df_times_for_question.index:
+        list_times = []
+        for j in range(1, n_users):
+            if j not in config['general']['excluded_users']:
+                list_times.append(df_times_for_question['USER_' + str(j)][i])
+        average_time = mean(list_times)
+        average_times.append(average_time)
+
+    df_average_times_for_questions['AVERAGE_TIME'] = average_times
+
+    return df_average_times_for_questions

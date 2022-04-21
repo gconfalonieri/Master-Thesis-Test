@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def get_questiosn_statistics_bar_plot(df_questions_statistics):
+def get_questions_statistics_bar_plot(df_questions_statistics):
 
     list_rights = []
     list_wrongs = []
@@ -13,6 +13,7 @@ def get_questiosn_statistics_bar_plot(df_questions_statistics):
         list_rights.append(n_right)
         list_wrongs.append(n_wrong)
 
+    plt.figure()
     barWidth = 0.25
     br1 = np.arange(len(list_rights))
     br2 = [x + barWidth for x in br1]
@@ -22,6 +23,22 @@ def get_questiosn_statistics_bar_plot(df_questions_statistics):
 
     plt.legend()
     plt.savefig('plots/questions_statistics.png')
+    plt.close()
+
+
+def get_answers_times_statistics_bar_plot(df_questions_statistics):
+
+    list_times = df_questions_statistics['AVERAGE_TIME']
+
+    plt.figure()
+    barWidth = 0.25
+    br = np.arange(len(list_times))
+
+    plt.bar(br, list_times, width=barWidth, edgecolor='grey', label='AVERAGE_TIME')
+
+    plt.legend()
+    plt.savefig('plots/average_times_for_questions.png')
+    plt.close()
 
 
 def get_labels_pie_plot(df_label, label_column, path_init):
