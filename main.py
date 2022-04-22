@@ -1,3 +1,4 @@
+import labelling.set_labels
 import statistics.utilities
 import toml
 import pandas as pd
@@ -33,3 +34,7 @@ df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=F
 df_average_times_for_questions = statistics.time_statistics.get_average_times_for_questions_df(df_times_for_question, n_users)
 df_average_times_for_questions.to_csv("datasets/results/average_times_for_questions.csv", index=False)
 statistics.plots.get_answers_times_statistics_bar_plot(df_average_times_for_questions)
+
+# 6) Compute DataFrame withg all the information related to the each user answer
+df_answer_complete_all_info = labelling.set_labels.get_answer_complete_all_info_df(n_users)
+df_answer_complete_all_info.to_csv('datasets/results/answers_complete_all_info.csv', index=False)

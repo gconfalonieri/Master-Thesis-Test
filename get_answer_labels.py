@@ -1,3 +1,4 @@
+import labelling.set_labels
 import statistics.utilities
 import pandas as pd
 
@@ -13,13 +14,13 @@ mean_answer_dict = statistics.utilities.get_mean_dict(answer_dict)
 median_answer_dict = statistics.utilities.get_median_dict(answer_dict)
 percentile_answer_dict = statistics.utilities.get_percentile_dict(answer_dict, n)
 
-df_answers_labelled_mean = statistics.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, mean_answer_dict, 'MEDIA_NAME')
-df_answers_labelled_median = statistics.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, median_answer_dict, 'MEDIA_NAME')
-df_answers_labelled_percentile = statistics.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, percentile_answer_dict, 'MEDIA_NAME')
+df_answers_labelled_mean = labelling.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, mean_answer_dict, 'MEDIA_NAME')
+df_answers_labelled_median = labelling.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, median_answer_dict, 'MEDIA_NAME')
+df_answers_labelled_percentile = labelling.set_labels.get_df_answers_labelled(df_complete, min_answer_dict, percentile_answer_dict, 'MEDIA_NAME')
 
-df_labelled_mean_answer_statistics = statistics.set_labels.get_df_label_statistics(df_answers_labelled_mean, 'MEDIA_NAME')
-df_labelled_median_answer_statistics = statistics.set_labels.get_df_label_statistics(df_answers_labelled_median, 'MEDIA_NAME')
-df_labelled_percentile_answer_statistics = statistics.set_labels.get_df_label_statistics(df_answers_labelled_percentile, 'MEDIA_NAME')
+df_labelled_mean_answer_statistics = labelling.set_labels.get_df_label_statistics(df_answers_labelled_mean, 'MEDIA_NAME')
+df_labelled_median_answer_statistics = labelling.set_labels.get_df_label_statistics(df_answers_labelled_median, 'MEDIA_NAME')
+df_labelled_percentile_answer_statistics = labelling.set_labels.get_df_label_statistics(df_answers_labelled_percentile, 'MEDIA_NAME')
 
 df_answers_labelled_mean.to_csv('datasets/results/labels/mean/labels_mean_answers_all_info.csv', index=False)
 df_answers_labelled_median.to_csv('datasets/results/labels/median/labels_median_answers_all_info.csv', index=False)
@@ -45,13 +46,13 @@ mean_specific_categories_dict = statistics.utilities.get_mean_dict(specific_cate
 median_specific_categories_dict = statistics.utilities.get_median_dict(specific_categories_dict)
 percentile_specific_categories_dict = statistics.utilities.get_percentile_dict(specific_categories_dict, n)
 
-df_specific_categories_labelled_mean = statistics.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, mean_specific_categories_dict, 'SPECIFIC_CATEGORY')
-df_specific_categories_labelled_median = statistics.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, median_specific_categories_dict, 'SPECIFIC_CATEGORY')
-df_specific_categories_labelled_percentile = statistics.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, percentile_specific_categories_dict, 'SPECIFIC_CATEGORY')
+df_specific_categories_labelled_mean = labelling.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, mean_specific_categories_dict, 'SPECIFIC_CATEGORY')
+df_specific_categories_labelled_median = labelling.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, median_specific_categories_dict, 'SPECIFIC_CATEGORY')
+df_specific_categories_labelled_percentile = labelling.set_labels.get_df_answers_labelled(df_complete, min_specific_categories_dict, percentile_specific_categories_dict, 'SPECIFIC_CATEGORY')
 
-df_labelled_specific_categories_mean_statistics = statistics.set_labels.get_df_label_statistics(df_specific_categories_labelled_mean, 'SPECIFIC_CATEGORY')
-df_labelled_specific_categories_median_statistics = statistics.set_labels.get_df_label_statistics(df_specific_categories_labelled_median, 'SPECIFIC_CATEGORY')
-df_labelled_specific_categories_percentile_statistics = statistics.set_labels.get_df_label_statistics(df_specific_categories_labelled_percentile, 'SPECIFIC_CATEGORY')
+df_labelled_specific_categories_mean_statistics = labelling.set_labels.get_df_label_statistics(df_specific_categories_labelled_mean, 'SPECIFIC_CATEGORY')
+df_labelled_specific_categories_median_statistics = labelling.set_labels.get_df_label_statistics(df_specific_categories_labelled_median, 'SPECIFIC_CATEGORY')
+df_labelled_specific_categories_percentile_statistics = labelling.set_labels.get_df_label_statistics(df_specific_categories_labelled_percentile, 'SPECIFIC_CATEGORY')
 
 df_specific_categories_labelled_mean.to_csv('datasets/results/labels/mean/labels_mean_specific_categories_all_info.csv', index=False)
 df_specific_categories_labelled_median.to_csv('datasets/results/labels/median/labels_median_specific_categories_all_info.csv', index=False)
@@ -76,13 +77,13 @@ mean_macro_categories_dict = statistics.utilities.get_mean_dict(macro_categories
 median_macro_categories_dict = statistics.utilities.get_median_dict(macro_categories_dict)
 percentile_macro_categories_dict = statistics.utilities.get_percentile_dict(macro_categories_dict, n)
 
-df_macro_categories_labelled_mean = statistics.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, mean_macro_categories_dict, 'MACRO_CATEGORY')
-df_macro_categories_labelled_median = statistics.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, median_macro_categories_dict, 'MACRO_CATEGORY')
-df_macro_categories_labelled_percentile = statistics.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, percentile_macro_categories_dict, 'MACRO_CATEGORY')
+df_macro_categories_labelled_mean = labelling.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, mean_macro_categories_dict, 'MACRO_CATEGORY')
+df_macro_categories_labelled_median = labelling.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, median_macro_categories_dict, 'MACRO_CATEGORY')
+df_macro_categories_labelled_percentile = labelling.set_labels.get_df_answers_labelled(df_complete, min_macro_categories_dict, percentile_macro_categories_dict, 'MACRO_CATEGORY')
 
-df_labelled_macro_categories_mean_statistics = statistics.set_labels.get_df_label_statistics(df_macro_categories_labelled_mean, 'MACRO_CATEGORY')
-df_labelled_macro_categories_median_statistics = statistics.set_labels.get_df_label_statistics(df_macro_categories_labelled_median, 'MACRO_CATEGORY')
-df_labelled_macro_categories_percentile_statistics = statistics.set_labels.get_df_label_statistics(df_macro_categories_labelled_percentile, 'MACRO_CATEGORY')
+df_labelled_macro_categories_mean_statistics = labelling.set_labels.get_df_label_statistics(df_macro_categories_labelled_mean, 'MACRO_CATEGORY')
+df_labelled_macro_categories_median_statistics = labelling.set_labels.get_df_label_statistics(df_macro_categories_labelled_median, 'MACRO_CATEGORY')
+df_labelled_macro_categories_percentile_statistics = labelling.set_labels.get_df_label_statistics(df_macro_categories_labelled_percentile, 'MACRO_CATEGORY')
 
 df_macro_categories_labelled_mean.to_csv('datasets/results/labels/mean/labels_mean_macro_categories_all_info.csv', index=False)
 df_macro_categories_labelled_median.to_csv('datasets/results/labels/median/labels_median_macro_categories_all_info.csv', index=False)
