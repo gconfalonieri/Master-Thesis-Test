@@ -8,6 +8,8 @@ n = 60
 
 # LABEL BASED ON EACH ANSWER
 
+print("\n # SINGLE ANSWERS #")
+
 answer_dict = statistics.utilities.get_times_dict(df_complete, 'MEDIA_NAME')
 min_answer_dict = statistics.utilities.get_min_right_dict(df_complete, 'MEDIA_NAME')
 mean_answer_dict = statistics.utilities.get_mean_dict(answer_dict)
@@ -32,13 +34,15 @@ df_labelled_percentile_answer_statistics.to_csv('datasets/results/labels/statist
 
 
 statistics.plots.get_labels_pie_plot(df_labelled_mean_answer_statistics, 'MEDIA_NAME', 'plots/mean_labels/answers/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_mean_answer_statistics, 'plots/mean_labels/answers/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_mean_answer_statistics, 'MEDIA_NAME', 'plots/mean_labels/answers/')
 statistics.plots.get_labels_pie_plot(df_labelled_median_answer_statistics, 'MEDIA_NAME', 'plots/median_labels/answers/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_median_answer_statistics, 'plots/median_labels/answers/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_median_answer_statistics, 'MEDIA_NAME', 'plots/median_labels/answers/')
 statistics.plots.get_labels_pie_plot(df_labelled_percentile_answer_statistics, 'MEDIA_NAME', 'plots/percentile_labels/answers/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_percentile_answer_statistics, 'plots/percentile_labels/answers/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_percentile_answer_statistics, 'MEDIA_NAME', 'plots/percentile_labels/answers/')
 
 # LABEL BASED ON SPECIFIC CATEGORIES
+
+print("\n # SPECIFIC CATEGORIES #")
 
 specific_categories_dict = statistics.utilities.get_times_dict(df_complete, 'SPECIFIC_CATEGORY')
 min_specific_categories_dict = statistics.utilities.get_min_right_dict(df_complete, 'SPECIFIC_CATEGORY')
@@ -63,13 +67,15 @@ df_labelled_specific_categories_median_statistics.to_csv('datasets/results/label
 df_labelled_specific_categories_percentile_statistics.to_csv('datasets/results/labels/statistic/labels_'+ str(n) +'tile_statistics_specific_categories_all_info.csv', index=False)
 
 statistics.plots.get_labels_pie_plot(df_labelled_specific_categories_mean_statistics, 'SPECIFIC_CATEGORY', 'plots/mean_labels/specific_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_mean_statistics, 'plots/mean_labels/specific_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_mean_statistics, 'SPECIFIC_CATEGORY', 'plots/mean_labels/specific_categories/')
 statistics.plots.get_labels_pie_plot(df_labelled_specific_categories_median_statistics, 'SPECIFIC_CATEGORY', 'plots/median_labels/specific_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_median_statistics, 'plots/median_labels/specific_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_median_statistics, 'SPECIFIC_CATEGORY', 'plots/median_labels/specific_categories/')
 statistics.plots.get_labels_pie_plot(df_labelled_specific_categories_percentile_statistics, 'SPECIFIC_CATEGORY', 'plots/percentile_labels/specific_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_percentile_statistics, 'plots/percentile_labels/specific_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_specific_categories_percentile_statistics, 'SPECIFIC_CATEGORY', 'plots/percentile_labels/specific_categories/')
 
 # LABEL BASED ON MACRO CATEGORIES
+
+print("\n # MACRO CATEGORIES #")
 
 macro_categories_dict = statistics.utilities.get_times_dict(df_complete, 'MACRO_CATEGORY')
 min_macro_categories_dict = statistics.utilities.get_min_right_dict(df_complete, 'MACRO_CATEGORY')
@@ -94,8 +100,8 @@ df_labelled_macro_categories_median_statistics.to_csv('datasets/results/labels/s
 df_labelled_macro_categories_percentile_statistics.to_csv('datasets/results/labels/statistic/labels_'+ str(n) +'tile_statistics_macro_categories_all_info.csv', index=False)
 
 statistics.plots.get_labels_pie_plot(df_labelled_macro_categories_mean_statistics, 'MACRO_CATEGORY', 'plots/mean_labels/macro_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_mean_statistics, 'plots/mean_labels/macro_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_mean_statistics, 'MACRO_CATEGORY', 'plots/mean_labels/macro_categories/')
 statistics.plots.get_labels_pie_plot(df_labelled_macro_categories_median_statistics, 'MACRO_CATEGORY', 'plots/median_labels/macro_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_median_statistics, 'plots/median_labels/macro_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_median_statistics, 'MACRO_CATEGORY', 'plots/median_labels/macro_categories/')
 statistics.plots.get_labels_pie_plot(df_labelled_macro_categories_percentile_statistics, 'MACRO_CATEGORY', 'plots/percentile_labels/macro_categories/')
-statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_percentile_statistics, 'plots/percentile_labels/macro_categories/')
+statistics.plots.get_total_labels_pie_plot(df_labelled_macro_categories_percentile_statistics, 'MACRO_CATEGORY', 'plots/percentile_labels/macro_categories/')

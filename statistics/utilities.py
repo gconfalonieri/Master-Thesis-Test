@@ -100,6 +100,8 @@ def get_min_right_dict(df_complete, col_name):
     for i in df_complete.index:
         if get_answer_right_or_wrong(df_complete['MEDIA_NAME'][i], df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['ANSWER_TIME'][i] < min_dict[df_complete[col_name][i]]:
             min_dict[df_complete[col_name][i]] = df_complete['ANSWER_TIME'][i]
+    print("### MIN DICT ###")
+    print(min_dict)
     return min_dict
 
 
@@ -107,6 +109,8 @@ def get_mean_dict(times_dict):
     mean_dict = dict()
     for answer in times_dict:
         mean_dict[answer] = mean(times_dict[answer])
+    print("### MEAN DICT ###")
+    print(mean_dict)
     return mean_dict
 
 
@@ -114,6 +118,8 @@ def get_median_dict(times_dict):
     median_dict = dict()
     for answer in times_dict:
         median_dict[answer] = median(times_dict[answer])
+    print("### MEDIAN DICT ###")
+    print(median_dict)
     return median_dict
 
 
@@ -121,4 +127,6 @@ def get_percentile_dict(times_dict, n):
     percentile_dict = dict()
     for answer in times_dict:
         percentile_dict[answer] = percentile(times_dict[answer], n)
+    print("### PERCENTILE DICT ###")
+    print(percentile_dict)
     return percentile_dict
