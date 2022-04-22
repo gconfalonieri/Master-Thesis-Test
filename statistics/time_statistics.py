@@ -36,9 +36,6 @@ def get_average_times_for_questions_df(df_times_for_question, n_users):
     df_average_times_for_questions = pd.DataFrame(columns=['MEDIA_NAME', 'AVERAGE_TIME'])
     df_average_times_for_questions['MEDIA_NAME'] = df_times_for_question['MEDIA_NAME']
 
-    # df_times_for_question = pd.read_csv('datasets/results/times_for_question.csv')
-    # df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
-
     average_times = []
 
     for i in df_times_for_question.index:

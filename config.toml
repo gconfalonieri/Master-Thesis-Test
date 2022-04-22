@@ -5,7 +5,7 @@
 [general]
 n_testers = 51
 reduced_test_users = [25, 26, 30]
-excluded_users = [25, 26, 30]
+excluded_users = [5, 23, 25, 26, 30, 50]
 
 [path]
 brainwaves_folder = './datasets/eeg'

@@ -3,7 +3,7 @@ NewMedia1,USER_1,Critical Thinking,Textual,b,a,58.58481,COGNITIVE_EFFORT
 NewMedia11,USER_1,Inductive Reasoning,Graphical,b,b,37.3974,NOT_COGNITIVE_EFFORT
 NewMedia12,USER_1,Inductive Reasoning,Graphical,d,d,39.72852,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_1,Inductive Reasoning,Graphical,d,a,56.80237,COGNITIVE_EFFORT
-NewMedia7,USER_1,Diagrammatic Reasoning,Graphical,b,b,76.25513000000002,NOT_COGNITIVE_EFFORT
+NewMedia7,USER_1,Diagrammatic Reasoning,Graphical,b,b,76.25513000000002,COGNITIVE_EFFORT
 NewMedia2,USER_1,Critical Thinking,Textual,a,b,50.55969,COGNITIVE_EFFORT
 NewMedia15,USER_1,Logical Reasoning,Graphical,c,c,29.50592,NOT_COGNITIVE_EFFORT
 NewMedia23,USER_1,Verbal Reasoning,Textual,d,d,87.61511,NOT_COGNITIVE_EFFORT
@@ -16,7 +16,7 @@ NewMedia8,USER_1,Diagrammatic Reasoning,Graphical,c,b,68.50464000000001,COGNITIV
 NewMedia6,USER_1,Deductive Reasoning,Textual,a,a,90.68311,COGNITIVE_EFFORT
 NewMedia24,USER_1,Verbal Reasoning,Textual,b,b,74.63428,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_1,Mechanical Reasoning,Graphical,b,b,7.24011,NOT_COGNITIVE_EFFORT
-NewMedia9,USER_1,Diagrammatic Reasoning,Graphical,b,b,73.64233,NOT_COGNITIVE_EFFORT
+NewMedia9,USER_1,Diagrammatic Reasoning,Graphical,b,b,73.64233,COGNITIVE_EFFORT
 NewMedia13,USER_1,Logical Reasoning,Graphical,d,a,81.28528,COGNITIVE_EFFORT
 NewMedia21,USER_1,Spatial Reasoning,Graphical,b,b,44.0686,NOT_COGNITIVE_EFFORT
 NewMedia19,USER_1,Spatial Reasoning,Graphical,b,d,60.01807,COGNITIVE_EFFORT
@@ -32,7 +32,7 @@ NewMedia17,USER_2,Mechanical Reasoning,Graphical,b,b,18.20599,NOT_COGNITIVE_EFFO
 NewMedia24,USER_2,Verbal Reasoning,Textual,b,b,94.72266,NOT_COGNITIVE_EFFORT
 NewMedia14,USER_2,Logical Reasoning,Graphical,a,d,54.47827,COGNITIVE_EFFORT
 NewMedia21,USER_2,Spatial Reasoning,Graphical,b,d,33.519040000000004,COGNITIVE_EFFORT
-NewMedia11,USER_2,Inductive Reasoning,Graphical,b,b,42.09277,NOT_COGNITIVE_EFFORT
+NewMedia11,USER_2,Inductive Reasoning,Graphical,b,b,42.09277,COGNITIVE_EFFORT
 NewMedia5,USER_2,Deductive Reasoning,Textual,b,c,21.20044,COGNITIVE_EFFORT
 NewMedia3,USER_2,Critical Thinking,Textual,a,b,32.52747,COGNITIVE_EFFORT
 NewMedia6,USER_2,Deductive Reasoning,Textual,a,a,51.59839,NOT_COGNITIVE_EFFORT
@@ -49,7 +49,7 @@ NewMedia8,USER_2,Diagrammatic Reasoning,Graphical,c,c,58.64465,NOT_COGNITIVE_EFF
 NewMedia19,USER_2,Spatial Reasoning,Graphical,b,b,41.58423,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_3,Inductive Reasoning,Graphical,d,a,15.17871,COGNITIVE_EFFORT
 NewMedia16,USER_3,Mechanical Reasoning,Graphical,b,b,14.770079999999998,NOT_COGNITIVE_EFFORT
-NewMedia23,USER_3,Verbal Reasoning,Textual,d,d,99.20416,NOT_COGNITIVE_EFFORT
+NewMedia23,USER_3,Verbal Reasoning,Textual,d,d,99.20416,COGNITIVE_EFFORT
 NewMedia6,USER_3,Deductive Reasoning,Textual,a,a,51.61786,NOT_COGNITIVE_EFFORT
 NewMedia3,USER_3,Critical Thinking,Textual,a,b,54.10339000000001,COGNITIVE_EFFORT
 NewMedia7,USER_3,Diagrammatic Reasoning,Graphical,b,b,57.49286,NOT_COGNITIVE_EFFORT
@@ -66,7 +66,7 @@ NewMedia14,USER_3,Logical Reasoning,Graphical,a,a,39.83545,NOT_COGNITIVE_EFFORT
 NewMedia20,USER_3,Spatial Reasoning,Graphical,c,c,43.80127,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_3,Diagrammatic Reasoning,Graphical,c,b,34.41675,COGNITIVE_EFFORT
 NewMedia5,USER_3,Deductive Reasoning,Textual,b,a,75.23682,COGNITIVE_EFFORT
-NewMedia19,USER_3,Spatial Reasoning,Graphical,b,b,48.09473,NOT_COGNITIVE_EFFORT
+NewMedia19,USER_3,Spatial Reasoning,Graphical,b,b,48.09473,COGNITIVE_EFFORT
 NewMedia18,USER_3,Mechanical Reasoning,Graphical,a,a,73.54883000000002,COGNITIVE_EFFORT
 NewMedia13,USER_3,Logical Reasoning,Graphical,d,d,31.2749,NOT_COGNITIVE_EFFORT
 NewMedia4,USER_3,Deductive Reasoning,Textual,a,a,98.28601,COGNITIVE_EFFORT
@@ -94,7 +94,7 @@ NewMedia8,USER_4,Diagrammatic Reasoning,Graphical,c,a,172.31689,COGNITIVE_EFFORT
 NewMedia5,USER_4,Deductive Reasoning,Textual,b,c,33.29736,COGNITIVE_EFFORT
 NewMedia23,USER_4,Verbal Reasoning,Textual,d,d,56.14648,NOT_COGNITIVE_EFFORT
 NewMedia2,USER_4,Critical Thinking,Textual,a,b,20.65723,COGNITIVE_EFFORT
-NewMedia7,USER_4,Diagrammatic Reasoning,Graphical,b,b,78.15039,NOT_COGNITIVE_EFFORT
+NewMedia7,USER_4,Diagrammatic Reasoning,Graphical,b,b,78.15039,COGNITIVE_EFFORT
 NewMedia10,USER_6,Inductive Reasoning,Graphical,d,a,12.31836,COGNITIVE_EFFORT
 NewMedia12,USER_6,Inductive Reasoning,Graphical,d,d,15.171879999999998,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_6,Mechanical Reasoning,Graphical,b,b,15.117679999999998,NOT_COGNITIVE_EFFORT
@@ -122,7 +122,7 @@ NewMedia23,USER_6,Verbal Reasoning,Textual,d,d,90.18066,NOT_COGNITIVE_EFFORT
 NewMedia9,USER_7,Diagrammatic Reasoning,Graphical,b,b,65.10889,NOT_COGNITIVE_EFFORT
 NewMedia14,USER_7,Logical Reasoning,Graphical,a,d,37.3374,COGNITIVE_EFFORT
 NewMedia6,USER_7,Deductive Reasoning,Textual,a,a,85.13788000000002,COGNITIVE_EFFORT
-NewMedia18,USER_7,Mechanical Reasoning,Graphical,a,a,30.83246,NOT_COGNITIVE_EFFORT
+NewMedia18,USER_7,Mechanical Reasoning,Graphical,a,a,30.83246,COGNITIVE_EFFORT
 NewMedia13,USER_7,Logical Reasoning,Graphical,d,d,33.92755,NOT_COGNITIVE_EFFORT
 NewMedia15,USER_7,Logical Reasoning,Graphical,c,c,24.77063,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_7,Inductive Reasoning,Graphical,d,a,18.89624,COGNITIVE_EFFORT
@@ -154,7 +154,7 @@ NewMedia7,USER_8,Diagrammatic Reasoning,Graphical,b,b,50.62671,NOT_COGNITIVE_EFF
 NewMedia10,USER_8,Inductive Reasoning,Graphical,d,a,50.65332,COGNITIVE_EFFORT
 NewMedia11,USER_8,Inductive Reasoning,Graphical,b,b,22.0647,NOT_COGNITIVE_EFFORT
 NewMedia21,USER_8,Spatial Reasoning,Graphical,b,b,59.88403,COGNITIVE_EFFORT
-NewMedia15,USER_8,Logical Reasoning,Graphical,c,c,50.43945,NOT_COGNITIVE_EFFORT
+NewMedia15,USER_8,Logical Reasoning,Graphical,c,c,50.43945,COGNITIVE_EFFORT
 NewMedia16,USER_8,Mechanical Reasoning,Graphical,b,b,18.02539,NOT_COGNITIVE_EFFORT
 NewMedia5,USER_8,Deductive Reasoning,Textual,b,a,37.2832,COGNITIVE_EFFORT
 NewMedia13,USER_8,Logical Reasoning,Graphical,d,d,41.00146,NOT_COGNITIVE_EFFORT
@@ -180,7 +180,7 @@ NewMedia7,USER_9,Diagrammatic Reasoning,Graphical,b,b,32.099000000000004,NOT_COG
 NewMedia14,USER_9,Logical Reasoning,Graphical,a,b,35.44806,COGNITIVE_EFFORT
 NewMedia9,USER_9,Diagrammatic Reasoning,Graphical,b,c,44.13586,COGNITIVE_EFFORT
 NewMedia22,USER_9,Verbal Reasoning,Textual,d,d,88.1983,NOT_COGNITIVE_EFFORT
-NewMedia21,USER_9,Spatial Reasoning,Graphical,b,b,48.604,NOT_COGNITIVE_EFFORT
+NewMedia21,USER_9,Spatial Reasoning,Graphical,b,b,48.604,COGNITIVE_EFFORT
 NewMedia10,USER_9,Inductive Reasoning,Graphical,d,a,22.20532,COGNITIVE_EFFORT
 NewMedia4,USER_9,Deductive Reasoning,Textual,a,a,70.01825,NOT_COGNITIVE_EFFORT
 NewMedia13,USER_9,Logical Reasoning,Graphical,d,d,42.09277,NOT_COGNITIVE_EFFORT
@@ -250,7 +250,7 @@ NewMedia24,USER_12,Verbal Reasoning,Textual,b,b,81.81226,NOT_COGNITIVE_EFFORT
 NewMedia23,USER_12,Verbal Reasoning,Textual,d,c,77.94896999999997,COGNITIVE_EFFORT
 NewMedia4,USER_12,Deductive Reasoning,Textual,a,a,58.15576,NOT_COGNITIVE_EFFORT
 NewMedia20,USER_12,Spatial Reasoning,Graphical,c,c,33.38501,NOT_COGNITIVE_EFFORT
-NewMedia1,USER_12,Critical Thinking,Textual,b,b,49.88354,NOT_COGNITIVE_EFFORT
+NewMedia1,USER_12,Critical Thinking,Textual,b,b,49.88354,COGNITIVE_EFFORT
 NewMedia18,USER_12,Mechanical Reasoning,Graphical,a,c,21.11353,COGNITIVE_EFFORT
 NewMedia10,USER_12,Inductive Reasoning,Graphical,d,a,43.15161,COGNITIVE_EFFORT
 NewMedia17,USER_12,Mechanical Reasoning,Graphical,b,a,12.84106,COGNITIVE_EFFORT
@@ -260,15 +260,15 @@ NewMedia19,USER_12,Spatial Reasoning,Graphical,b,b,42.54175,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_12,Mechanical Reasoning,Graphical,b,b,13.932620000000002,NOT_COGNITIVE_EFFORT
 NewMedia12,USER_12,Inductive Reasoning,Graphical,d,b,12.72021,COGNITIVE_EFFORT
 NewMedia3,USER_12,Critical Thinking,Textual,a,a,27.44336,NOT_COGNITIVE_EFFORT
-NewMedia11,USER_12,Inductive Reasoning,Graphical,b,b,46.79517,NOT_COGNITIVE_EFFORT
+NewMedia11,USER_12,Inductive Reasoning,Graphical,b,b,46.79517,COGNITIVE_EFFORT
 NewMedia8,USER_12,Diagrammatic Reasoning,Graphical,c,c,52.7771,NOT_COGNITIVE_EFFORT
 NewMedia13,USER_12,Logical Reasoning,Graphical,d,b,13.89233,NOT_COGNITIVE_EFFORT
 NewMedia15,USER_13,Logical Reasoning,Graphical,c,c,58.10931,COGNITIVE_EFFORT
 NewMedia7,USER_13,Diagrammatic Reasoning,Graphical,b,b,78.53864,COGNITIVE_EFFORT
 NewMedia21,USER_13,Spatial Reasoning,Graphical,b,b,54.08945,COGNITIVE_EFFORT
-NewMedia4,USER_13,Deductive Reasoning,Textual,a,a,79.47684,NOT_COGNITIVE_EFFORT
+NewMedia4,USER_13,Deductive Reasoning,Textual,a,a,79.47684,COGNITIVE_EFFORT
 NewMedia6,USER_13,Deductive Reasoning,Textual,a,b,127.23645,COGNITIVE_EFFORT
-NewMedia5,USER_13,Deductive Reasoning,Textual,b,b,79.4035,NOT_COGNITIVE_EFFORT
+NewMedia5,USER_13,Deductive Reasoning,Textual,b,b,79.4035,COGNITIVE_EFFORT
 NewMedia9,USER_13,Diagrammatic Reasoning,Graphical,b,b,128.89063000000002,COGNITIVE_EFFORT
 NewMedia11,USER_13,Inductive Reasoning,Graphical,b,b,36.92188,NOT_COGNITIVE_EFFORT
 NewMedia13,USER_13,Logical Reasoning,Graphical,d,d,105.92194,COGNITIVE_EFFORT
@@ -293,7 +293,7 @@ NewMedia10,USER_14,Inductive Reasoning,Graphical,d,b,80.30078,COGNITIVE_EFFORT
 NewMedia13,USER_14,Logical Reasoning,Graphical,d,d,180.06723,COGNITIVE_EFFORT
 NewMedia3,USER_14,Critical Thinking,Textual,a,b,86.48303,COGNITIVE_EFFORT
 NewMedia23,USER_14,Verbal Reasoning,Textual,d,a,97.08685,COGNITIVE_EFFORT
-NewMedia2,USER_14,Critical Thinking,Textual,a,a,50.55963,NOT_COGNITIVE_EFFORT
+NewMedia2,USER_14,Critical Thinking,Textual,a,a,50.55963,COGNITIVE_EFFORT
 NewMedia15,USER_14,Logical Reasoning,Graphical,c,b,95.17816,COGNITIVE_EFFORT
 NewMedia24,USER_14,Verbal Reasoning,Textual,b,d,145.85797,COGNITIVE_EFFORT
 NewMedia4,USER_14,Deductive Reasoning,Textual,a,c,63.78223000000001,COGNITIVE_EFFORT
@@ -351,7 +351,7 @@ NewMedia13,USER_16,Logical Reasoning,Graphical,d,d,81.29236,COGNITIVE_EFFORT
 NewMedia20,USER_16,Spatial Reasoning,Graphical,c,c,70.73510999999998,COGNITIVE_EFFORT
 NewMedia4,USER_16,Deductive Reasoning,Textual,a,a,103.16248,COGNITIVE_EFFORT
 NewMedia5,USER_16,Deductive Reasoning,Textual,b,b,114.34875,COGNITIVE_EFFORT
-NewMedia21,USER_16,Spatial Reasoning,Graphical,b,b,51.81836,NOT_COGNITIVE_EFFORT
+NewMedia21,USER_16,Spatial Reasoning,Graphical,b,b,51.81836,COGNITIVE_EFFORT
 NewMedia16,USER_16,Mechanical Reasoning,Graphical,b,b,14.79004,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_16,Diagrammatic Reasoning,Graphical,c,c,114.76453,COGNITIVE_EFFORT
 NewMedia1,USER_16,Critical Thinking,Textual,b,a,68.46387,COGNITIVE_EFFORT
@@ -364,7 +364,7 @@ NewMedia14,USER_17,Logical Reasoning,Graphical,a,a,66.65085,COGNITIVE_EFFORT
 NewMedia15,USER_17,Logical Reasoning,Graphical,c,b,32.35376,COGNITIVE_EFFORT
 NewMedia10,USER_17,Inductive Reasoning,Graphical,d,a,50.68024000000001,COGNITIVE_EFFORT
 NewMedia21,USER_17,Spatial Reasoning,Graphical,b,c,38.82379,COGNITIVE_EFFORT
-NewMedia6,USER_17,Deductive Reasoning,Textual,a,a,80.86346,NOT_COGNITIVE_EFFORT
+NewMedia6,USER_17,Deductive Reasoning,Textual,a,a,80.86346,COGNITIVE_EFFORT
 NewMedia18,USER_17,Mechanical Reasoning,Graphical,a,a,165.00232,COGNITIVE_EFFORT
 NewMedia20,USER_17,Spatial Reasoning,Graphical,c,d,36.66058,COGNITIVE_EFFORT
 NewMedia9,USER_17,Diagrammatic Reasoning,Graphical,b,b,196.7464,COGNITIVE_EFFORT
@@ -392,7 +392,7 @@ NewMedia21,USER_18,Spatial Reasoning,Graphical,b,a,94.20013,COGNITIVE_EFFORT
 NewMedia20,USER_18,Spatial Reasoning,Graphical,c,c,30.61194,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_18,Diagrammatic Reasoning,Graphical,c,c,71.25763,NOT_COGNITIVE_EFFORT
 NewMedia5,USER_18,Deductive Reasoning,Textual,b,a,56.46747,COGNITIVE_EFFORT
-NewMedia6,USER_18,Deductive Reasoning,Textual,a,a,81.05084000000002,NOT_COGNITIVE_EFFORT
+NewMedia6,USER_18,Deductive Reasoning,Textual,a,a,81.05084000000002,COGNITIVE_EFFORT
 NewMedia3,USER_18,Critical Thinking,Textual,a,a,41.68427,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_18,Mechanical Reasoning,Graphical,b,b,18.96997,NOT_COGNITIVE_EFFORT
 NewMedia24,USER_18,Verbal Reasoning,Textual,b,b,102.95447,COGNITIVE_EFFORT
@@ -444,7 +444,7 @@ NewMedia7,USER_20,Diagrammatic Reasoning,Graphical,b,b,51.78467,NOT_COGNITIVE_EF
 NewMedia12,USER_20,Inductive Reasoning,Graphical,d,d,16.136229999999998,NOT_COGNITIVE_EFFORT
 NewMedia3,USER_20,Critical Thinking,Textual,a,b,48.60986,COGNITIVE_EFFORT
 NewMedia19,USER_20,Spatial Reasoning,Graphical,b,d,128.96338,COGNITIVE_EFFORT
-NewMedia22,USER_20,Verbal Reasoning,Textual,d,d,95.9541,NOT_COGNITIVE_EFFORT
+NewMedia22,USER_20,Verbal Reasoning,Textual,d,d,95.9541,COGNITIVE_EFFORT
 NewMedia1,USER_20,Critical Thinking,Textual,b,b,65.79834,COGNITIVE_EFFORT
 NewMedia5,USER_20,Deductive Reasoning,Textual,b,a,200.96484,COGNITIVE_EFFORT
 NewMedia17,USER_20,Mechanical Reasoning,Graphical,b,b,28.09326,NOT_COGNITIVE_EFFORT
@@ -505,7 +505,7 @@ NewMedia13,USER_22,Logical Reasoning,Graphical,d,d,128.94421,COGNITIVE_EFFORT
 NewMedia4,USER_22,Deductive Reasoning,Textual,a,a,34.48352,NOT_COGNITIVE_EFFORT
 NewMedia4,USER_24,Deductive Reasoning,Textual,a,a,86.91211,COGNITIVE_EFFORT
 NewMedia7,USER_24,Diagrammatic Reasoning,Graphical,b,b,56.33984,NOT_COGNITIVE_EFFORT
-NewMedia2,USER_24,Critical Thinking,Textual,a,a,50.39844,NOT_COGNITIVE_EFFORT
+NewMedia2,USER_24,Critical Thinking,Textual,a,a,50.39844,COGNITIVE_EFFORT
 NewMedia14,USER_24,Logical Reasoning,Graphical,a,a,45.32129000000001,NOT_COGNITIVE_EFFORT
 NewMedia18,USER_24,Mechanical Reasoning,Graphical,a,a,38.5957,COGNITIVE_EFFORT
 NewMedia9,USER_24,Diagrammatic Reasoning,Graphical,b,b,57.8877,NOT_COGNITIVE_EFFORT
@@ -529,7 +529,7 @@ NewMedia10,USER_24,Inductive Reasoning,Graphical,d,a,67.72705,COGNITIVE_EFFORT
 NewMedia6,USER_24,Deductive Reasoning,Textual,a,a,83.26074,COGNITIVE_EFFORT
 NewMedia24,USER_27,Verbal Reasoning,Textual,b,a,38.67676,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_27,Mechanical Reasoning,Graphical,b,b,15.74805,NOT_COGNITIVE_EFFORT
-NewMedia17,USER_27,Mechanical Reasoning,Graphical,b,b,30.87207,NOT_COGNITIVE_EFFORT
+NewMedia17,USER_27,Mechanical Reasoning,Graphical,b,b,30.87207,COGNITIVE_EFFORT
 NewMedia9,USER_27,Diagrammatic Reasoning,Graphical,b,b,160.69433999999995,COGNITIVE_EFFORT
 NewMedia1,USER_27,Critical Thinking,Textual,b,b,73.25391,COGNITIVE_EFFORT
 NewMedia2,USER_27,Critical Thinking,Textual,a,b,72.38965,COGNITIVE_EFFORT
@@ -550,7 +550,7 @@ NewMedia13,USER_27,Logical Reasoning,Graphical,d,d,212.82031,COGNITIVE_EFFORT
 NewMedia15,USER_27,Logical Reasoning,Graphical,c,c,40.88086,NOT_COGNITIVE_EFFORT
 NewMedia14,USER_27,Logical Reasoning,Graphical,a,a,79.08594000000002,COGNITIVE_EFFORT
 NewMedia3,USER_27,Critical Thinking,Textual,a,b,49.45508,COGNITIVE_EFFORT
-NewMedia20,USER_27,Spatial Reasoning,Graphical,c,c,48.25,NOT_COGNITIVE_EFFORT
+NewMedia20,USER_27,Spatial Reasoning,Graphical,c,c,48.25,COGNITIVE_EFFORT
 NewMedia8,USER_28,Diagrammatic Reasoning,Graphical,c,a,68.19672,COGNITIVE_EFFORT
 NewMedia18,USER_28,Mechanical Reasoning,Graphical,a,a,33.2041,COGNITIVE_EFFORT
 NewMedia20,USER_28,Spatial Reasoning,Graphical,c,c,30.571590000000004,NOT_COGNITIVE_EFFORT
@@ -587,7 +587,7 @@ NewMedia5,USER_29,Deductive Reasoning,Textual,b,b,49.67505,NOT_COGNITIVE_EFFORT
 NewMedia14,USER_29,Logical Reasoning,Graphical,a,b,47.16309,COGNITIVE_EFFORT
 NewMedia4,USER_29,Deductive Reasoning,Textual,a,a,29.36572,NOT_COGNITIVE_EFFORT
 NewMedia19,USER_29,Spatial Reasoning,Graphical,b,b,39.17261,NOT_COGNITIVE_EFFORT
-NewMedia17,USER_29,Mechanical Reasoning,Graphical,b,b,31.663090000000004,NOT_COGNITIVE_EFFORT
+NewMedia17,USER_29,Mechanical Reasoning,Graphical,b,b,31.663090000000004,COGNITIVE_EFFORT
 NewMedia9,USER_29,Diagrammatic Reasoning,Graphical,b,b,48.1748,NOT_COGNITIVE_EFFORT
 NewMedia15,USER_29,Logical Reasoning,Graphical,c,a,47.00952,COGNITIVE_EFFORT
 NewMedia6,USER_29,Deductive Reasoning,Textual,a,a,87.68236999999998,COGNITIVE_EFFORT
@@ -625,18 +625,18 @@ NewMedia8,USER_31,Diagrammatic Reasoning,Graphical,c,c,26.04321,NOT_COGNITIVE_EF
 NewMedia15,USER_31,Logical Reasoning,Graphical,c,d,48.97888,COGNITIVE_EFFORT
 NewMedia4,USER_32,Deductive Reasoning,Textual,a,a,73.18698,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_32,Inductive Reasoning,Graphical,d,b,87.57474,COGNITIVE_EFFORT
-NewMedia13,USER_32,Logical Reasoning,Graphical,d,d,52.83719,NOT_COGNITIVE_EFFORT
-NewMedia15,USER_32,Logical Reasoning,Graphical,c,c,51.80554,NOT_COGNITIVE_EFFORT
+NewMedia13,USER_32,Logical Reasoning,Graphical,d,d,52.83719,COGNITIVE_EFFORT
+NewMedia15,USER_32,Logical Reasoning,Graphical,c,c,51.80554,COGNITIVE_EFFORT
 NewMedia6,USER_32,Deductive Reasoning,Textual,a,a,120.34991,COGNITIVE_EFFORT
 NewMedia17,USER_32,Mechanical Reasoning,Graphical,b,b,45.65607,COGNITIVE_EFFORT
 NewMedia20,USER_32,Spatial Reasoning,Graphical,c,c,59.48718,COGNITIVE_EFFORT
 NewMedia19,USER_32,Spatial Reasoning,Graphical,b,d,45.30988,COGNITIVE_EFFORT
-NewMedia14,USER_32,Logical Reasoning,Graphical,a,a,53.24567,NOT_COGNITIVE_EFFORT
+NewMedia14,USER_32,Logical Reasoning,Graphical,a,a,53.24567,COGNITIVE_EFFORT
 NewMedia9,USER_32,Diagrammatic Reasoning,Graphical,b,b,104.8905,COGNITIVE_EFFORT
 NewMedia21,USER_32,Spatial Reasoning,Graphical,b,b,81.68103,COGNITIVE_EFFORT
 NewMedia11,USER_32,Inductive Reasoning,Graphical,b,b,51.698,COGNITIVE_EFFORT
 NewMedia8,USER_32,Diagrammatic Reasoning,Graphical,c,c,129.03796,COGNITIVE_EFFORT
-NewMedia22,USER_32,Verbal Reasoning,Textual,d,d,98.5675,NOT_COGNITIVE_EFFORT
+NewMedia22,USER_32,Verbal Reasoning,Textual,d,d,98.5675,COGNITIVE_EFFORT
 NewMedia12,USER_32,Inductive Reasoning,Graphical,d,d,30.08875,NOT_COGNITIVE_EFFORT
 NewMedia5,USER_32,Deductive Reasoning,Textual,b,b,55.90416999999999,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_32,Mechanical Reasoning,Graphical,b,b,16.759520000000002,NOT_COGNITIVE_EFFORT
@@ -685,12 +685,12 @@ NewMedia9,USER_34,Diagrammatic Reasoning,Graphical,b,b,42.87646,NOT_COGNITIVE_EF
 NewMedia3,USER_34,Critical Thinking,Textual,a,a,21.27393,NOT_COGNITIVE_EFFORT
 NewMedia4,USER_34,Deductive Reasoning,Textual,a,a,50.0166,NOT_COGNITIVE_EFFORT
 NewMedia1,USER_34,Critical Thinking,Textual,b,a,42.43506,COGNITIVE_EFFORT
-NewMedia17,USER_34,Mechanical Reasoning,Graphical,b,b,30.83936,NOT_COGNITIVE_EFFORT
+NewMedia17,USER_34,Mechanical Reasoning,Graphical,b,b,30.83936,COGNITIVE_EFFORT
 NewMedia13,USER_34,Logical Reasoning,Graphical,d,d,27.95313,NOT_COGNITIVE_EFFORT
 NewMedia7,USER_34,Diagrammatic Reasoning,Graphical,b,b,33.8335,NOT_COGNITIVE_EFFORT
 NewMedia19,USER_34,Spatial Reasoning,Graphical,b,b,22.05713,NOT_COGNITIVE_EFFORT
 NewMedia5,USER_34,Deductive Reasoning,Textual,b,b,41.12793,NOT_COGNITIVE_EFFORT
-NewMedia21,USER_34,Spatial Reasoning,Graphical,b,b,51.25684,NOT_COGNITIVE_EFFORT
+NewMedia21,USER_34,Spatial Reasoning,Graphical,b,b,51.25684,COGNITIVE_EFFORT
 NewMedia12,USER_34,Inductive Reasoning,Graphical,d,d,15.78711,NOT_COGNITIVE_EFFORT
 NewMedia18,USER_34,Mechanical Reasoning,Graphical,a,a,23.16309,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_34,Mechanical Reasoning,Graphical,b,b,11.56152,NOT_COGNITIVE_EFFORT
@@ -730,7 +730,7 @@ NewMedia2,USER_36,Critical Thinking,Textual,a,a,76.71729,COGNITIVE_EFFORT
 NewMedia10,USER_36,Inductive Reasoning,Graphical,d,a,97.99121,COGNITIVE_EFFORT
 NewMedia4,USER_36,Deductive Reasoning,Textual,a,a,175.53833,COGNITIVE_EFFORT
 NewMedia19,USER_36,Spatial Reasoning,Graphical,b,b,59.06641,COGNITIVE_EFFORT
-NewMedia11,USER_36,Inductive Reasoning,Graphical,b,b,46.73486,NOT_COGNITIVE_EFFORT
+NewMedia11,USER_36,Inductive Reasoning,Graphical,b,b,46.73486,COGNITIVE_EFFORT
 NewMedia8,USER_36,Diagrammatic Reasoning,Graphical,c,b,129.16724,COGNITIVE_EFFORT
 NewMedia14,USER_36,Logical Reasoning,Graphical,a,a,57.33765,COGNITIVE_EFFORT
 NewMedia16,USER_36,Mechanical Reasoning,Graphical,b,b,26.51196,NOT_COGNITIVE_EFFORT
@@ -746,7 +746,7 @@ NewMedia5,USER_36,Deductive Reasoning,Textual,b,b,110.88525,COGNITIVE_EFFORT
 NewMedia6,USER_37,Deductive Reasoning,Textual,a,a,73.4209,NOT_COGNITIVE_EFFORT
 NewMedia7,USER_37,Diagrammatic Reasoning,Graphical,b,b,173.28076,COGNITIVE_EFFORT
 NewMedia4,USER_37,Deductive Reasoning,Textual,a,a,70.20557,NOT_COGNITIVE_EFFORT
-NewMedia16,USER_37,Mechanical Reasoning,Graphical,b,b,31.094240000000006,NOT_COGNITIVE_EFFORT
+NewMedia16,USER_37,Mechanical Reasoning,Graphical,b,b,31.094240000000006,COGNITIVE_EFFORT
 NewMedia2,USER_37,Critical Thinking,Textual,a,a,44.53125,NOT_COGNITIVE_EFFORT
 NewMedia22,USER_37,Verbal Reasoning,Textual,d,d,65.48975,NOT_COGNITIVE_EFFORT
 NewMedia18,USER_37,Mechanical Reasoning,Graphical,a,a,29.50635,NOT_COGNITIVE_EFFORT
@@ -754,7 +754,7 @@ NewMedia23,USER_37,Verbal Reasoning,Textual,d,d,207.02686,COGNITIVE_EFFORT
 NewMedia21,USER_37,Spatial Reasoning,Graphical,b,c,47.67285,COGNITIVE_EFFORT
 NewMedia14,USER_37,Logical Reasoning,Graphical,a,d,162.1084,COGNITIVE_EFFORT
 NewMedia15,USER_37,Logical Reasoning,Graphical,c,a,25.33301,COGNITIVE_EFFORT
-NewMedia9,USER_37,Diagrammatic Reasoning,Graphical,b,b,76.19385,NOT_COGNITIVE_EFFORT
+NewMedia9,USER_37,Diagrammatic Reasoning,Graphical,b,b,76.19385,COGNITIVE_EFFORT
 NewMedia12,USER_37,Inductive Reasoning,Graphical,d,d,39.54053,NOT_COGNITIVE_EFFORT
 NewMedia20,USER_37,Spatial Reasoning,Graphical,c,d,103.57715,COGNITIVE_EFFORT
 NewMedia13,USER_37,Logical Reasoning,Graphical,d,d,32.39307,NOT_COGNITIVE_EFFORT
@@ -848,7 +848,7 @@ NewMedia5,USER_41,Deductive Reasoning,Textual,b,c,64.09045,COGNITIVE_EFFORT
 NewMedia2,USER_41,Critical Thinking,Textual,a,a,69.45605,COGNITIVE_EFFORT
 NewMedia16,USER_41,Mechanical Reasoning,Graphical,b,b,27.35596,NOT_COGNITIVE_EFFORT
 NewMedia22,USER_41,Verbal Reasoning,Textual,d,d,79.98523,NOT_COGNITIVE_EFFORT
-NewMedia13,USER_41,Logical Reasoning,Graphical,d,d,52.73608,NOT_COGNITIVE_EFFORT
+NewMedia13,USER_41,Logical Reasoning,Graphical,d,d,52.73608,COGNITIVE_EFFORT
 NewMedia6,USER_41,Deductive Reasoning,Textual,a,a,82.84619,COGNITIVE_EFFORT
 NewMedia12,USER_41,Inductive Reasoning,Graphical,d,d,22.21179,NOT_COGNITIVE_EFFORT
 NewMedia4,USER_41,Deductive Reasoning,Textual,a,a,27.66431,NOT_COGNITIVE_EFFORT
@@ -881,7 +881,7 @@ NewMedia10,USER_42,Inductive Reasoning,Graphical,d,b,35.15967,COGNITIVE_EFFORT
 NewMedia11,USER_42,Inductive Reasoning,Graphical,b,b,34.57666,NOT_COGNITIVE_EFFORT
 NewMedia9,USER_42,Diagrammatic Reasoning,Graphical,b,a,42.36768,COGNITIVE_EFFORT
 NewMedia15,USER_42,Logical Reasoning,Graphical,c,c,28.03271,NOT_COGNITIVE_EFFORT
-NewMedia14,USER_42,Logical Reasoning,Graphical,a,a,54.16943000000001,NOT_COGNITIVE_EFFORT
+NewMedia14,USER_42,Logical Reasoning,Graphical,a,a,54.16943000000001,COGNITIVE_EFFORT
 NewMedia7,USER_42,Diagrammatic Reasoning,Graphical,b,b,30.8667,NOT_COGNITIVE_EFFORT
 NewMedia2,USER_42,Critical Thinking,Textual,a,b,44.14844,COGNITIVE_EFFORT
 NewMedia22,USER_42,Verbal Reasoning,Textual,d,d,60.57324000000001,NOT_COGNITIVE_EFFORT
@@ -910,7 +910,7 @@ NewMedia6,USER_43,Deductive Reasoning,Textual,a,c,73.12573,COGNITIVE_EFFORT
 NewMedia22,USER_43,Verbal Reasoning,Textual,d,d,134.32324,COGNITIVE_EFFORT
 NewMedia14,USER_43,Logical Reasoning,Graphical,a,a,116.21094,COGNITIVE_EFFORT
 NewMedia16,USER_43,Mechanical Reasoning,Graphical,b,b,7.8042,NOT_COGNITIVE_EFFORT
-NewMedia20,USER_43,Spatial Reasoning,Graphical,c,c,51.57739,NOT_COGNITIVE_EFFORT
+NewMedia20,USER_43,Spatial Reasoning,Graphical,c,c,51.57739,COGNITIVE_EFFORT
 NewMedia1,USER_44,Critical Thinking,Textual,b,a,77.47412,COGNITIVE_EFFORT
 NewMedia23,USER_44,Verbal Reasoning,Textual,d,d,151.21704,COGNITIVE_EFFORT
 NewMedia16,USER_44,Mechanical Reasoning,Graphical,b,b,25.25879,NOT_COGNITIVE_EFFORT
@@ -931,7 +931,7 @@ NewMedia13,USER_44,Logical Reasoning,Graphical,d,d,20.79199,NOT_COGNITIVE_EFFORT
 NewMedia19,USER_44,Spatial Reasoning,Graphical,b,b,34.20215,NOT_COGNITIVE_EFFORT
 NewMedia21,USER_44,Spatial Reasoning,Graphical,b,b,23.58545,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_44,Inductive Reasoning,Graphical,d,d,69.22754,COGNITIVE_EFFORT
-NewMedia24,USER_44,Verbal Reasoning,Textual,b,b,99.95459,NOT_COGNITIVE_EFFORT
+NewMedia24,USER_44,Verbal Reasoning,Textual,b,b,99.95459,COGNITIVE_EFFORT
 NewMedia8,USER_44,Diagrammatic Reasoning,Graphical,c,c,46.54004000000001,NOT_COGNITIVE_EFFORT
 NewMedia11,USER_44,Inductive Reasoning,Graphical,b,b,56.05957,COGNITIVE_EFFORT
 NewMedia17,USER_44,Mechanical Reasoning,Graphical,b,b,17.5498,NOT_COGNITIVE_EFFORT
@@ -975,7 +975,7 @@ NewMedia8,USER_46,Diagrammatic Reasoning,Graphical,c,c,131.5437,COGNITIVE_EFFORT
 NewMedia23,USER_46,Verbal Reasoning,Textual,d,c,101.43457,COGNITIVE_EFFORT
 NewMedia15,USER_46,Logical Reasoning,Graphical,c,c,59.15381,COGNITIVE_EFFORT
 NewMedia21,USER_46,Spatial Reasoning,Graphical,b,b,169.33667,COGNITIVE_EFFORT
-NewMedia16,USER_46,Mechanical Reasoning,Graphical,b,b,31.79077,NOT_COGNITIVE_EFFORT
+NewMedia16,USER_46,Mechanical Reasoning,Graphical,b,b,31.79077,COGNITIVE_EFFORT
 NewMedia3,USER_46,Critical Thinking,Textual,a,a,30.42383,NOT_COGNITIVE_EFFORT
 NewMedia6,USER_46,Deductive Reasoning,Textual,a,a,114.07471,COGNITIVE_EFFORT
 NewMedia17,USER_46,Mechanical Reasoning,Graphical,b,b,30.33008,NOT_COGNITIVE_EFFORT
@@ -995,7 +995,7 @@ NewMedia2,USER_47,Critical Thinking,Textual,a,a,32.011720000000004,NOT_COGNITIVE
 NewMedia24,USER_47,Verbal Reasoning,Textual,b,b,69.12146,NOT_COGNITIVE_EFFORT
 NewMedia16,USER_47,Mechanical Reasoning,Graphical,b,b,12.72687,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_47,Diagrammatic Reasoning,Graphical,c,c,90.19452,COGNITIVE_EFFORT
-NewMedia14,USER_47,Logical Reasoning,Graphical,a,a,51.5506,NOT_COGNITIVE_EFFORT
+NewMedia14,USER_47,Logical Reasoning,Graphical,a,a,51.5506,COGNITIVE_EFFORT
 NewMedia19,USER_47,Spatial Reasoning,Graphical,b,b,25.10565,NOT_COGNITIVE_EFFORT
 NewMedia12,USER_47,Inductive Reasoning,Graphical,d,d,16.853270000000002,NOT_COGNITIVE_EFFORT
 NewMedia15,USER_47,Logical Reasoning,Graphical,c,a,18.17957,COGNITIVE_EFFORT
@@ -1027,7 +1027,7 @@ NewMedia16,USER_48,Mechanical Reasoning,Graphical,b,b,19.39795,NOT_COGNITIVE_EFF
 NewMedia12,USER_48,Inductive Reasoning,Graphical,d,d,12.99512,NOT_COGNITIVE_EFFORT
 NewMedia8,USER_48,Diagrammatic Reasoning,Graphical,c,c,59.9375,NOT_COGNITIVE_EFFORT
 NewMedia17,USER_48,Mechanical Reasoning,Graphical,b,b,23.19678,NOT_COGNITIVE_EFFORT
-NewMedia24,USER_48,Verbal Reasoning,Textual,b,b,99.63867,NOT_COGNITIVE_EFFORT
+NewMedia24,USER_48,Verbal Reasoning,Textual,b,b,99.63867,COGNITIVE_EFFORT
 NewMedia5,USER_48,Deductive Reasoning,Textual,b,a,61.81981999999999,COGNITIVE_EFFORT
 NewMedia4,USER_48,Deductive Reasoning,Textual,a,a,19.82764,NOT_COGNITIVE_EFFORT
 NewMedia10,USER_48,Inductive Reasoning,Graphical,d,a,53.27246,COGNITIVE_EFFORT
@@ -1035,7 +1035,7 @@ NewMedia4,USER_49,Deductive Reasoning,Textual,a,a,84.33249,COGNITIVE_EFFORT
 NewMedia23,USER_49,Verbal Reasoning,Textual,d,c,102.7261,COGNITIVE_EFFORT
 NewMedia6,USER_49,Deductive Reasoning,Textual,a,a,138.94433999999998,COGNITIVE_EFFORT
 NewMedia17,USER_49,Mechanical Reasoning,Graphical,b,b,25.94269,NOT_COGNITIVE_EFFORT
-NewMedia9,USER_49,Diagrammatic Reasoning,Graphical,b,b,73.32025,NOT_COGNITIVE_EFFORT
+NewMedia9,USER_49,Diagrammatic Reasoning,Graphical,b,b,73.32025,COGNITIVE_EFFORT
 NewMedia1,USER_49,Critical Thinking,Textual,b,b,61.12933,COGNITIVE_EFFORT
 NewMedia2,USER_49,Critical Thinking,Textual,a,a,67.01703,COGNITIVE_EFFORT
 NewMedia8,USER_49,Diagrammatic Reasoning,Graphical,c,c,110.0874,COGNITIVE_EFFORT
@@ -1061,7 +1061,7 @@ NewMedia3,USER_51,Critical Thinking,Textual,a,a,35.88965,NOT_COGNITIVE_EFFORT
 NewMedia24,USER_51,Verbal Reasoning,Textual,b,b,71.69214000000002,NOT_COGNITIVE_EFFORT
 NewMedia7,USER_51,Diagrammatic Reasoning,Graphical,b,d,45.64258,COGNITIVE_EFFORT
 NewMedia20,USER_51,Spatial Reasoning,Graphical,c,c,34.28223,NOT_COGNITIVE_EFFORT
-NewMedia12,USER_51,Inductive Reasoning,Graphical,d,d,45.14014,NOT_COGNITIVE_EFFORT
+NewMedia12,USER_51,Inductive Reasoning,Graphical,d,d,45.14014,COGNITIVE_EFFORT
 NewMedia16,USER_51,Mechanical Reasoning,Graphical,b,b,18.01855,NOT_COGNITIVE_EFFORT
 NewMedia13,USER_51,Logical Reasoning,Graphical,d,d,55.30811,COGNITIVE_EFFORT
 NewMedia1,USER_51,Critical Thinking,Textual,b,b,48.63062,NOT_COGNITIVE_EFFORT

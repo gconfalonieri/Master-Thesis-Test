@@ -1,5 +1,8 @@
 import pandas as pd
 import statistics.utilities
+import toml
+
+config = toml.load('config.toml')
 
 pd.options.mode.chained_assignment = None
 
@@ -18,7 +21,7 @@ def get_answer_complete_all_info_df(n_users):
 
     for i in range(1, n_users):
 
-        if not (i == 5 or i == 23 or i == 25 or i == 26 or i == 30 or i == 50):
+        if i not in config['general']['excluded_users']:
 
             user_id = 'USER_' + str(i)
             eye_source = 'datasets/eye-tracker/User ' + str(i) + '_all_gaze.csv'

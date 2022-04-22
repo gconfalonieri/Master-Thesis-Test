@@ -4,7 +4,7 @@ import pandas as pd
 
 df_complete = pd.read_csv('datasets/results/answers_complete_all_info.csv')
 
-n = 65
+n = 60
 
 # LABEL BASED ON EACH ANSWER
 

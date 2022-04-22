@@ -1,6 +1,8 @@
 import statistics.utilities
 import pandas as pd
+import toml
 
+config = toml.load('config.toml')
 
 def get_user_answers_df(i):
 
@@ -10,7 +12,7 @@ def get_user_answers_df(i):
     df_eye = pd.read_csv(source)
     df_eye = df_eye.drop_duplicates('MEDIA_NAME', keep='last')
 
-    if i == 25 or i == 26 or i == 30:
+    if i in config['general']['reduced_test_users']:
         df_correct_answer = pd.read_csv('datasets/questions/solutions_reduced.csv')
         df_user_answer = pd.read_csv('datasets/questions/answers_reduced.csv')
     else:
@@ -36,7 +38,7 @@ def get_n_right_answers(df_user_answers, i):
 
     for j in range(0, len(user_answer)):
         if media_name[j] == 'NewMedia7':
-            if not (i == 25 or i == 26 or i == 30) and (user_answer[j] == 'a' or user_answer[j] == 'b'):
+            if i not in config['general']['reduced_test_users'] and (user_answer[j] == 'a' or user_answer[j] == 'b'):
                 n_right_answers += 1
         else:
             if user_answer[j] == correct_answer[j]:
@@ -50,7 +52,7 @@ def save_all_user_answers_df(n_users):
         destination = 'datasets/users/answers/answer_user_' + str(i) + '.csv'
         answer_dataframe = statistics.questions_statistics.get_user_answers_df(i)
         n_right_answers = statistics.questions_statistics.get_n_right_answers(answer_dataframe, i)
-        if i == 25 or i == 26 or i == 30:
+        if i in config['general']['reduced_test_users']:
             print('USER_' + str(i) + ' Correct answers: ' + str(n_right_answers) + ' / 16')
         else:
             print('USER_' + str(i) + ' Correct answers: ' + str(n_right_answers) + ' / 24')
@@ -65,7 +67,7 @@ def get_answer_for_questions_df(df_correct_answers, n_users):
 
     for i in range(1, n_users):
 
-        if not (i == 25 or i == 26 or i == 30):
+        if i not in config['general']['excluded_users']:
 
             user_id = 'USER_' + str(i)
             user_answers = 'datasets/users/answers/answer_user_' + str(i) + '.csv'
@@ -93,7 +95,7 @@ def get_questions_statistics_df(df_answers_for_questions, n_users):
 
     for i in df_answers_for_questions.index:
         for j in range(1, n_users):
-            if not (j == 25 or j == 26 or j == 30):
+            if j not in config['general']['excluded_users']:
                 if df_answers_for_questions['CORRECT_ANSWER'][i] == df_answers_for_questions['USER_' + str(j)][i]:
                     df_questions_statistics['RIGHT'][i] += 1
                 else:
