@@ -18,7 +18,7 @@ def get_answer_complete_all_info_df(n_users):
 
     for i in range(1, n_users):
 
-        if not (i == 5 or i == 23 or i == 25 or i == 26 or i == 30):
+        if not (i == 5 or i == 23 or i == 25 or i == 26 or i == 30 or i == 50):
 
             user_id = 'USER_' + str(i)
             eye_source = 'datasets/eye-tracker/User ' + str(i) + '_all_gaze.csv'
@@ -48,6 +48,8 @@ def get_answer_complete_all_info_df(n_users):
     df_answer_complete_all_info['CORRECT_ANSWER'] = correct_answer
     df_answer_complete_all_info['USER_ANSWER'] = user_answer
     df_answer_complete_all_info['ANSWER_TIME'] = answer_time
+
+    return df_answer_complete_all_info
 
 
 def get_df_answers_labelled(df_complete, min_times_dict, threshold_dict, col_name):

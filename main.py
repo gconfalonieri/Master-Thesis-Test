@@ -35,6 +35,7 @@ df_average_times_for_questions = statistics.time_statistics.get_average_times_fo
 df_average_times_for_questions.to_csv("datasets/results/average_times_for_questions.csv", index=False)
 statistics.plots.get_answers_times_statistics_bar_plot(df_average_times_for_questions)
 
-# 6) Compute DataFrame withg all the information related to the each user answer
+# 6) Compute DataFrame with all the information related to each user answer
+
 df_answer_complete_all_info = labelling.set_labels.get_answer_complete_all_info_df(n_users)
 df_answer_complete_all_info.to_csv('datasets/results/answers_complete_all_info.csv', index=False)

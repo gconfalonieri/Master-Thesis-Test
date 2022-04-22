@@ -109,8 +109,6 @@ def get_mean_dict(times_dict):
     mean_dict = dict()
     for answer in times_dict:
         mean_dict[answer] = mean(times_dict[answer])
-        # if answer == 'NewMedia12':
-            # print(answer + " " + str(mean_dict[answer]))
     return mean_dict
 
 
