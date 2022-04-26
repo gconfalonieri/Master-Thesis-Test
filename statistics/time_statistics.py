@@ -1,4 +1,4 @@
-from numpy import mean
+from numpy import mean, std
 import pandas as pd
 import toml
 
@@ -31,12 +31,13 @@ def get_answers_times_df(df_correct_answer, n_users):
     return df_times_for_question
 
 
-def get_average_times_for_questions_df(df_times_for_question, n_users):
+def get_statistics_times_for_questions_df(df_times_for_question, n_users):
 
-    df_average_times_for_questions = pd.DataFrame(columns=['MEDIA_NAME', 'AVERAGE_TIME'])
+    df_average_times_for_questions = pd.DataFrame(columns=['MEDIA_NAME', 'AVERAGE_TIME', 'STANDARD_DEVIATION'])
     df_average_times_for_questions['MEDIA_NAME'] = df_times_for_question['MEDIA_NAME']
 
     average_times = []
+    standard_deviations = []
 
     for i in df_times_for_question.index:
         list_times = []
@@ -44,8 +45,11 @@ def get_average_times_for_questions_df(df_times_for_question, n_users):
             if j not in config['general']['excluded_users']:
                 list_times.append(df_times_for_question['USER_' + str(j)][i])
         average_time = mean(list_times)
+        standard_deviation = std(list_times)
         average_times.append(average_time)
+        standard_deviations.append(standard_deviation)
 
     df_average_times_for_questions['AVERAGE_TIME'] = average_times
+    df_average_times_for_questions['STANDARD_DEVIATION'] = standard_deviations
 
     return df_average_times_for_questions
