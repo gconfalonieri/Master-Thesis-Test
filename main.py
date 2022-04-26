@@ -11,25 +11,25 @@ df_correct_answer = pd.read_csv(config['path']['solutions_complete_dataset'])
 
 # 1) Compute Answer DataFrame for each User
 
-statistics.questions_statistics.save_all_user_answers_df(n_users)
+# statistics.questions_statistics.save_all_user_answers_df(n_users)
 
 # 2) Compute DataFrame with all the answers related to a single question
 
-df_answers_for_questions = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
-df_answers_for_questions.to_csv('datasets/results/answers_for_questions.csv', index=False)
+# df_answers_for_questions = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
+# df_answers_for_questions.to_csv('datasets/results/answers_for_questions.csv', index=False)
 
 # 3) Compute DataFrame with some statistics related to a single question
 
-df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
-df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
-statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
+# df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
+# df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
+# statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
 
 # 4) Compute DataFrame with times spent for each questions to get each user answer
 
-df_times_for_question = statistics.time_statistics.get_times_for_question_df(df_correct_answer, n_users)
-df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
+# df_times_for_question = statistics.time_statistics.get_times_for_question_df(df_correct_answer, n_users)
+# df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
 
-# df_times_for_question = pd.read_csv("datasets/results/times_for_questions.csv")
+df_times_for_question = pd.read_csv("datasets/results/times_for_questions.csv")
 
 df_times_for_user = statistics.time_statistics.get_times_for_user_df(df_times_for_question, n_users)
 df_times_for_user.to_csv("datasets/results/times_for_users.csv", index=False)
