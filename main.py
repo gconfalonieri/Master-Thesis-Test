@@ -26,8 +26,12 @@ df_correct_answer = pd.read_csv(config['path']['solutions_complete_dataset'])
 
 # 4) Compute DataFrame with times spent for each questions to get each user answer
 
-df_times_for_question = statistics.time_statistics.get_answers_times_df(df_correct_answer, n_users)
-df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
+# df_times_for_question = statistics.time_statistics.get_times_for_question_df(df_correct_answer, n_users)
+# df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
+
+df_times_for_question = pd.read_csv("datasets/results/times_for_questions.csv")
+df_times_for_user = statistics.time_statistics.get_times_for_user_df(df_times_for_question, n_users)
+df_times_for_user.to_csv("datasets/results/times_for_users.csv", index=False)
 
 # 5) Compute DataFrame with some statistics related to times spent for each questions to get each user answer
 
