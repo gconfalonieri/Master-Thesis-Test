@@ -83,19 +83,19 @@ def get_statistics_times_for_questions_df(df_times_for_question, n_users):
     return df_statistics_times_for_questions
 
 
-def get_statistics_times_for_users_df(df_times_for_question, n_users):
+def get_statistics_times_for_users_df(df_times_for_users):
 
-    df_statistics_times_for_users = pd.DataFrame(columns=['MEDIA_NAME', 'AVERAGE_TIME', 'STANDARD_DEVIATION'])
-    df_statistics_times_for_users['MEDIA_NAME'] = df_times_for_question['MEDIA_NAME']
+    df_statistics_times_for_users = pd.DataFrame(columns=['USER_ID', 'AVERAGE_TIME', 'STANDARD_DEVIATION'])
+    df_statistics_times_for_users['USER_ID'] = df_times_for_users['USER_ID']
 
     average_times = []
     standard_deviations = []
 
-    for i in df_times_for_question.index:
+    for i in df_times_for_users.index:
         list_times = []
-        for j in range(1, n_users):
-            if j not in config['general']['excluded_users']:
-                list_times.append(df_times_for_question['USER_' + str(j)][i])
+        for j in range(0, 24):
+            media_id = 'NewMedia' + str(j + 1)
+            list_times.append(df_times_for_users[media_id][i])
         average_time = mean(list_times)
         standard_deviation = std(list_times)
         average_times.append(average_time)
