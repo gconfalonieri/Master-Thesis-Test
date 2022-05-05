@@ -82,5 +82,10 @@ def get_ratio_df(n_users):
 df_ratio = get_ratio_df(n_users)
 df_ratio.to_csv("datasets/results/ratio_df.csv", index=False)
 
+fig, ax = plt.subplots()
+ax.set_xlabel('RATIO QUESTION 16')
+ax.set_ylabel('RATIO TOTAL TIME')
 plt.scatter(df_ratio['RATIO_16'], df_ratio['RATIO_TOTAL'])
+plt.axhline(y=1, color='r', linestyle='-')
 plt.savefig('test.png')
+plt.close()
