@@ -6,6 +6,55 @@ config = toml.load('config.toml')
 
 pd.options.mode.chained_assignment = None
 
+def get_d_ij(user_id, media_name):
+
+    df_time_for_users = pd.read_csv('datasets/results/times_for_users.csv')
+    df_statistics_times_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
+
+    i = df_time_for_users[ df_time_for_users['USER_ID'] == user_id ].index[0]
+    j = df_statistics_times_for_questions[ df_statistics_times_for_questions['MEDIA_NAME'] == media_name ].index[0]
+
+    t_ij = df_time_for_users[media_name][i]
+    av_t_j = df_statistics_times_for_questions['AVERAGE_TIME'][j]
+
+    d_ij = (t_ij - av_t_j) / t_ij
+
+    return d_ij
+
+
+def get_user_d_ij_list(user_id):
+
+    df_time_for_users = pd.read_csv('datasets/results/times_for_users.csv')
+    df_statistics_times_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
+
+    i = df_time_for_users[ df_time_for_users['USER_ID'] == user_id ].index[0]
+
+    user_d_ij_list = []
+
+    for media_id in range(1, 25):
+        media_name = 'NewMedia' + str(media_id)
+        j = df_statistics_times_for_questions[df_statistics_times_for_questions['MEDIA_NAME'] == media_name].index[0]
+        t_ij = df_time_for_users[media_name][i]
+        av_t_j = df_statistics_times_for_questions['AVERAGE_TIME'][j]
+        d_ij = (t_ij - av_t_j) / t_ij
+        user_d_ij_list.append(d_ij)
+
+    return user_d_ij_list
+
+
+def get_av_d_i(user_id):
+
+    n_questions = config['general']['n_questions']
+    user_d_ij_list = get_user_d_ij_list(user_id)
+
+    sum = 0
+
+    for d_ij in user_d_ij_list:
+        sum += d_ij
+
+    av_d_i = sum / n_questions
+
+    return av_d_i
 
 def get_answer_complete_all_info_df(n_users):
 
