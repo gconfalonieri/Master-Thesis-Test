@@ -25,7 +25,7 @@ df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', inde
 
 df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
-statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
+# statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
 
 # 4) Compute DataFrame with times spent for each questions to get each user answer
 
@@ -41,20 +41,20 @@ df_times_for_users.to_csv("datasets/results/times_for_users.csv", index=False)
 
 df_statistics_times_for_questions = statistics.time_statistics.get_statistics_times_for_questions_df(df_times_for_question, n_users)
 df_statistics_times_for_questions.to_csv("datasets/results/statistics_times_for_questions.csv", index=False)
-statistics.plots.get_answers_times_statistics_bar_plot(df_statistics_times_for_questions, 'Questions')
-statistics.plots.get_answers_times_statistics_bar_plot_normalized(df_statistics_times_for_questions, 'Questions')
-statistics.plots.get_error_bar_plot_time_questions(df_statistics_times_for_questions, 2, 'Questions')
-statistics.plots.get_error_bar_plot_time_questions_normalized(df_statistics_times_for_questions, 2, 'Questions')
+#statistics.plots.get_answers_times_statistics_bar_plot(df_statistics_times_for_questions, 'Questions')
+#statistics.plots.get_answers_times_statistics_bar_plot_normalized(df_statistics_times_for_questions, 'Questions')
+#statistics.plots.get_error_bar_plot_time_questions(df_statistics_times_for_questions, 2, 'Questions')
+#statistics.plots.get_error_bar_plot_time_questions_normalized(df_statistics_times_for_questions, 2, 'Questions')
 
 df_statistics_times_for_users = statistics.time_statistics.get_statistics_times_for_users_df(df_times_for_users)
 df_statistics_times_for_users.to_csv("datasets/results/statistics_times_for_users.csv", index=False)
 
-statistics.plots.get_answers_times_statistics_bar_plot(df_statistics_times_for_users, 'Users')
-statistics.plots.get_answers_times_statistics_bar_plot_normalized(df_statistics_times_for_users, 'Users')
-statistics.plots.get_error_bar_plot_time_questions(df_statistics_times_for_users, 5, 'Users')
-statistics.plots.get_error_bar_plot_time_questions_normalized(df_statistics_times_for_users, 5, 'Users')
+#statistics.plots.get_answers_times_statistics_bar_plot(df_statistics_times_for_users, 'Users')
+#statistics.plots.get_answers_times_statistics_bar_plot_normalized(df_statistics_times_for_users, 'Users')
+#statistics.plots.get_error_bar_plot_time_questions(df_statistics_times_for_users, 5, 'Users')
+#statistics.plots.get_error_bar_plot_time_questions_normalized(df_statistics_times_for_users, 5, 'Users')
 
 # 6) Compute DataFrame with all the information related to each user answer
 
-df_answer_complete_all_info = labelling.set_labels.get_answer_complete_all_info_df(n_users)
+df_answer_complete_all_info = labelling.utilities.get_answer_complete_all_info_df(n_users)
 df_answer_complete_all_info.to_csv('datasets/results/answers_complete_all_info.csv', index=False)

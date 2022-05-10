@@ -5,7 +5,7 @@ import statistics.utilities
 import toml
 import pandas as pd
 
-config = toml.load('config.toml')
+config = toml.load('../config.toml')
 
 n_users = statistics.utilities.get_n_testers() + 1
 
@@ -29,7 +29,7 @@ def get_total_mean():
 
 def total_user_time(user_id):
 
-    df_time_for_users = pd.read_csv('datasets/results/times_for_questions.csv')
+    df_time_for_users = pd.read_csv('../datasets/results/times_for_questions.csv')
 
     sum = 0
 
@@ -42,8 +42,8 @@ def total_user_time(user_id):
 
 def get_ratio_df(n_users):
 
-    df_statistics_time_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
-    df_time_for_users = pd.read_csv('datasets/results/times_for_users.csv')
+    df_statistics_time_for_questions = pd.read_csv('../datasets/results/statistics_times_for_questions.csv')
+    df_time_for_users = pd.read_csv('../datasets/results/times_for_users.csv')
 
     df_ratio = pd.DataFrame(columns=['USER_ID', 'ANSWER_TIME_16' , 'TOTAL_USER_TIME', 'RATIO_16', 'RATIO_TOTAL'])
 
