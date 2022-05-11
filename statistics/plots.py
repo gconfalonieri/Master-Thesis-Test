@@ -161,5 +161,5 @@ def get_total_labels_pie_plot(df_label, label_column, path_init):
     fig, ax = plt.subplots()
     ax.set_title(label_column + " - ALL")
     plt.pie(data, labels=labels)
-    plt.savefig( path_init + 'all.png')
+    plt.savefig( path_init + 'label_statistics_all.png')
     plt.close()
