@@ -6,25 +6,37 @@ config = toml.load('config.toml')
 
 pd.options.mode.chained_assignment = None
 
+def set_label_general_with_threshold(df_complete, col_name, threshold_dict):
 
-def get_df_answers_labelled(df_complete, min_times_dict, threshold_dict, col_name):
+    labels = []
+
+    min_times_dict = statistics.utilities.get_min_right_dict(df_complete, 'MEDIA_NAME')
+
+    for i in df_complete.index:
+        is_right_answer = statistics.utilities.get_answer_right_or_wrong(df_complete['MEDIA_NAME'][i], df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i])
+        answer_time = df_complete['T_I_J'][i]
+        current_min_time = min_times_dict[df_complete[col_name][i]]
+        current_threshold = threshold_dict[df_complete[col_name][i]]
+        if not is_right_answer and answer_time < current_min_time:
+            labels.append('0')
+        elif not is_right_answer and answer_time >= current_min_time:
+            labels.append('1')
+        elif is_right_answer and answer_time > current_threshold:
+            labels.append('1')
+        elif is_right_answer and current_min_time <= answer_time <= current_threshold:
+            labels.append('0')
+
+    return labels
+
+
+def get_df_answers_labelled(df_complete, labelling_type):
 
     df_complete_labelled = df_complete
     labels = []
 
-    for i in df_complete.index:
-        is_right_answer = statistics.utilities.get_answer_right_or_wrong(df_complete_labelled['MEDIA_NAME'][i], df_complete_labelled['USER_ANSWER'][i], df_complete_labelled['CORRECT_ANSWER'][i])
-        answer_time = df_complete_labelled['ANSWER_TIME'][i]
-        current_min_time = min_times_dict[df_complete_labelled[col_name][i]]
-        current_threshold = threshold_dict[df_complete_labelled[col_name][i]]
-        if not is_right_answer and answer_time < current_min_time:
-            labels.append('NOT_COGNITIVE_EFFORT')
-        elif not is_right_answer and answer_time >= current_min_time:
-            labels.append('COGNITIVE_EFFORT')
-        elif is_right_answer and answer_time > current_threshold:
-            labels.append('COGNITIVE_EFFORT')
-        elif is_right_answer and current_min_time <= answer_time <= current_threshold:
-            labels.append('NOT_COGNITIVE_EFFORT')
+    if labelling_type == 'GENERAL_AVERAGE_MEDIA_NAME':
+        mean_answer_dict = statistics.utilities.get_mean_dict(statistics.utilities.get_times_dict(df_complete_labelled, 'MEDIA_NAME'))
+        labels = set_label_general_with_threshold(df_complete_labelled, 'MEDIA_NAME', mean_answer_dict)
 
     df_complete_labelled['LABEL'] = labels
 
@@ -47,9 +59,9 @@ def get_df_label_statistics(df_labelled, col_name):
         not_effort_dict[x] = 0
 
     for i in df_labelled.index:
-        if df_labelled['LABEL'][i] == "COGNITIVE_EFFORT":
+        if df_labelled['LABEL'][i] == "1":
             effort_dict[df_labelled[col_name][i]] += 1
-        elif df_labelled['LABEL'][i] == "NOT_COGNITIVE_EFFORT":
+        elif df_labelled['LABEL'][i] == "0":
             not_effort_dict[df_labelled[col_name][i]] += 1
 
     df_label_statistics['N_COGNITIVE_EFFORT'] = effort_dict.values()

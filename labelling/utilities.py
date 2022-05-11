@@ -56,9 +56,19 @@ def get_av_d_i(user_id):
 
     return av_d_i
 
+def get_av_t_j(media_name):
+
+    df_statistics_times_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
+
+    j = df_statistics_times_for_questions[ df_statistics_times_for_questions['MEDIA_NAME'] == media_name ].index[0]
+
+    av_t_j = df_statistics_times_for_questions['AVERAGE_TIME'][j]
+
+    return av_t_j
+
 def get_answer_complete_all_info_df(n_users):
 
-    df_answer_complete_all_info = pd.DataFrame(columns=['MEDIA_NAME', 'USER_ID', 'SPECIFIC_CATEGORY', 'MACRO_CATEGORY', 'CORRECT_ANSWER', 'USER_ANSWER', 'ANSWER_TIME'])
+    df_answer_complete_all_info = pd.DataFrame(columns=['MEDIA_NAME', 'USER_ID', 'SPECIFIC_CATEGORY', 'MACRO_CATEGORY', 'CORRECT_ANSWER', 'USER_ANSWER', 'T_I_J', 'AVERAGE_T_J', 'D_I_J','AVERAGE_D_I'])
 
     media_name = []
     user_id_col = []
@@ -66,7 +76,10 @@ def get_answer_complete_all_info_df(n_users):
     macro_category = []
     correct_answer = []
     user_answer = []
-    answer_time = []
+    col_t_i_j = []
+    col_av_t_j = []
+    col_d_i_j = []
+    col_av_d_i = []
 
     for i in range(1, n_users):
 
@@ -82,6 +95,8 @@ def get_answer_complete_all_info_df(n_users):
             df_eye_complete = pd.read_csv(eye_source)
             df_eye = df_eye_complete.drop_duplicates('MEDIA_NAME', keep='last')
 
+            av_d_i = get_av_d_i(user_id)
+
             for x in df_eye['MEDIA_NAME']:
                 media_name.append(x)
                 user_id_col.append(user_id)
@@ -89,7 +104,10 @@ def get_answer_complete_all_info_df(n_users):
                 macro_category.append(statistics.utilities.get_macro_category(x, df_categories_complete))
                 correct_answer.append(statistics.utilities.get_correct_answer(x, df_user_answer))
                 user_answer.append(statistics.utilities.get_user_answer(x, df_user_answer))
-                answer_time.append(statistics.utilities.get_answer_time(x, df_eye_complete))
+                col_t_i_j.append(statistics.utilities.get_answer_time(x, df_eye_complete))
+                col_av_t_j.append(get_av_t_j(x))
+                col_d_i_j.append(get_d_ij(user_id, x))
+                col_av_d_i.append(av_d_i)
 
             print(user_id + " COMPLETE")
 
@@ -99,6 +117,9 @@ def get_answer_complete_all_info_df(n_users):
     df_answer_complete_all_info['MACRO_CATEGORY'] = macro_category
     df_answer_complete_all_info['CORRECT_ANSWER'] = correct_answer
     df_answer_complete_all_info['USER_ANSWER'] = user_answer
-    df_answer_complete_all_info['ANSWER_TIME'] = answer_time
+    df_answer_complete_all_info['T_I_J'] = col_t_i_j
+    df_answer_complete_all_info['AVERAGE_T_J'] = col_av_t_j
+    df_answer_complete_all_info['D_I_J'] = col_d_i_j
+    df_answer_complete_all_info['AVERAGE_D_I'] = col_av_d_i
 
     return df_answer_complete_all_info

@@ -79,7 +79,7 @@ def get_times_dict(df_complete, col_name):
         df_path = 'datasets/questions/categories_complete.csv'
     answer_dict = statistics.utilities.initialize_answer_list(pd.read_csv(df_path), col_name)
     for i in df_complete.index:
-        answer_dict[df_complete[col_name][i]].append(df_complete['ANSWER_TIME'][i])
+        answer_dict[df_complete[col_name][i]].append(df_complete['T_I_J'][i])
     return answer_dict
 
 
@@ -96,10 +96,10 @@ def get_answer_right_or_wrong(media_name, answer, solution):
 def get_min_right_dict(df_complete, col_name):
     min_dict = dict()
     for i in df_complete.index:
-        min_dict[df_complete[col_name][i]] = df_complete['ANSWER_TIME'][i]
+        min_dict[df_complete[col_name][i]] = df_complete['T_I_J'][i]
     for i in df_complete.index:
-        if get_answer_right_or_wrong(df_complete['MEDIA_NAME'][i], df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['ANSWER_TIME'][i] < min_dict[df_complete[col_name][i]]:
-            min_dict[df_complete[col_name][i]] = df_complete['ANSWER_TIME'][i]
+        if get_answer_right_or_wrong(df_complete['MEDIA_NAME'][i], df_complete['USER_ANSWER'][i], df_complete['CORRECT_ANSWER'][i]) and df_complete['T_I_J'][i] < min_dict[df_complete[col_name][i]]:
+            min_dict[df_complete[col_name][i]] = df_complete['T_I_J'][i]
     print("### MIN DICT ###")
     print(min_dict)
     return min_dict
