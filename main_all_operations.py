@@ -18,14 +18,7 @@ statistics.questions_statistics.save_all_user_answers_df(n_users)
 df_answers_for_questions = statistics.questions_statistics.get_answer_for_questions_df(df_correct_answer, n_users)
 df_answers_for_questions.to_csv('datasets/results/answers_for_questions.csv', index=False)
 
-# 3) Compute DataFrame with some statistics related to a single question
-
-df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
-df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
-
-statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
-
-# 4) Compute DataFrame with times spent for each questions to get each user answer
+# 3) Compute DataFrame with times spent for each questions to get each user answer
 
 df_times_for_question = statistics.time_statistics.get_times_for_question_df(df_correct_answer, n_users)
 df_times_for_question.to_csv("datasets/results/times_for_questions.csv", index=False)
@@ -35,7 +28,7 @@ df_times_for_question = pd.read_csv("datasets/results/times_for_questions.csv")
 df_times_for_users = statistics.time_statistics.get_times_for_user_df(df_times_for_question, n_users)
 df_times_for_users.to_csv("datasets/results/times_for_users.csv", index=False)
 
-# 5) Compute DataFrame with some statistics related to times spent for each questions to get each user answer
+# 4) Compute DataFrame with some statistics related to times spent for each questions to get each user answer
 
 df_statistics_times_for_questions = statistics.time_statistics.get_statistics_times_for_questions_df(df_times_for_question, n_users)
 df_statistics_times_for_questions.to_csv("datasets/results/statistics_times_for_questions.csv", index=False)
@@ -50,6 +43,13 @@ statistics.plots.get_answers_times_statistics_bar_plot(df_statistics_times_for_u
 statistics.plots.get_answers_times_statistics_bar_plot_normalized(df_statistics_times_for_users, 'Users')
 # statistics.plots.get_error_bar_plot_time_questions(df_statistics_times_for_users, 5, 'Users')
 # statistics.plots.get_error_bar_plot_time_questions_normalized(df_statistics_times_for_users, 5, 'Users')
+
+# 5) Compute DataFrame with some statistics related to a single question
+
+df_questions_statistics = statistics.questions_statistics.get_questions_statistics_df(df_answers_for_questions, n_users)
+df_questions_statistics.to_csv('datasets/results/questions_statistics.csv', index=False)
+
+statistics.plots.get_questions_statistics_bar_plot(df_questions_statistics)
 
 # 6) Compute DataFrame with all the information related to each user answer
 

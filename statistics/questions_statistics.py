@@ -85,7 +85,7 @@ def get_answer_for_questions_df(df_correct_answers, n_users):
 
 def get_questions_statistics_df(df_answers_for_questions, n_users):
 
-    df_questions_statistics = pd.DataFrame(columns=['MEDIA_NAME', 'TOTAL', 'RIGHT', 'WRONG'])
+    df_questions_statistics = pd.DataFrame(columns=['MEDIA_NAME', 'TOTAL', 'RIGHT', 'WRONG', 'AVERAGE_TIME', 'STANDARD_DEVIATION'])
     df_questions_statistics['MEDIA_NAME'] = df_answers_for_questions['MEDIA_NAME']
 
     for i in df_answers_for_questions.index:
@@ -101,5 +101,10 @@ def get_questions_statistics_df(df_answers_for_questions, n_users):
                 else:
                     df_questions_statistics['WRONG'][i] += 1
                 df_questions_statistics['TOTAL'][i] += 1
+
+    df_statistics_time_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
+
+    df_questions_statistics['AVERAGE_TIME'] = df_statistics_time_for_questions['AVERAGE_TIME']
+    df_questions_statistics['STANDARD_DEVIATION'] = df_statistics_time_for_questions['STANDARD_DEVIATION']
 
     return df_questions_statistics
