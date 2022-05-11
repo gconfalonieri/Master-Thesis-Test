@@ -6,6 +6,77 @@ config = toml.load('config.toml')
 
 pd.options.mode.chained_assignment = None
 
+
+def get_simplest_question():
+
+    simplest_question = ''
+
+    df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+
+    simplest_thr = df_question_statistics['TOTAL'][0] * 0.25
+    min_time = min(df_question_statistics['AVERAGE_TIME'])
+
+    for i in df_question_statistics.index:
+        if (df_question_statistics['AVERAGE_TIME'][i] == min_time) and df_question_statistics['RIGHT'][i] > simplest_thr:
+            simplest_question = df_question_statistics['MEDIA_NAME'][i]
+            break
+
+    return simplest_question
+
+
+def get_hardest_question():
+
+    hardest_question = ''
+
+    df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+
+    hardest_thr = df_question_statistics['TOTAL'][0] * 0.25
+    max_time = max(df_question_statistics['AVERAGE_TIME'])
+
+    for i in df_question_statistics.index:
+        if (df_question_statistics['AVERAGE_TIME'][i] == max_time) and df_question_statistics['WRONG'][i] > hardest_thr:
+                hardest_question = df_question_statistics['MEDIA_NAME'][i]
+                break
+
+    return hardest_question
+
+
+def get_n_simplest_questions(n):
+
+    simplest_questions = []
+
+    df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+
+    simplest_thr = df_question_statistics['TOTAL'][0] * 0.25
+
+    for j in range(0, n):
+        min_time = min(df_question_statistics['AVERAGE_TIME'])
+        for i in df_question_statistics.index:
+            if (df_question_statistics['AVERAGE_TIME'][i] == min_time) and df_question_statistics['WRONG'][i] > simplest_thr:
+                simplest_questions.append(df_question_statistics['MEDIA_NAME'][i])
+                df_question_statistics = df_question_statistics.drop(i)
+
+    return simplest_questions
+
+
+def get_n_hardest_questions(n):
+
+    hardest_questions = []
+
+    df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+
+    hardest_thr = df_question_statistics['TOTAL'][0] * 0.25
+
+    for j in range(0, n):
+        max_time = max(df_question_statistics['AVERAGE_TIME'])
+        for i in df_question_statistics.index:
+            if (df_question_statistics['AVERAGE_TIME'][i] == max_time) and df_question_statistics['RIGHT'][i] > hardest_thr:
+                hardest_questions.append(df_question_statistics['MEDIA_NAME'][i])
+                df_question_statistics = df_question_statistics.drop(i)
+
+    return hardest_questions
+
+
 def get_d_ij(user_id, media_name):
 
     df_time_for_users = pd.read_csv('datasets/results/times_for_users.csv')
