@@ -43,6 +43,21 @@ def set_label_times_only_v1(df_complete):
     return labels
 
 
+def set_label_times_only_v2(df_complete):
+
+    labels = []
+
+    for i in df_complete.index:
+        n1 = df_complete['T_I_J'][i] * (1 - df_complete['AVERAGE_D_I'][i])
+        n2 = df_complete['AVERAGE_T_J'][i]
+        if n1 > n2:
+            labels.append('1')
+        else:
+            labels.append('0')
+
+    return labels
+
+
 def get_df_answers_labelled(df_complete, labelling_type):
 
     df_complete_labelled = df_complete
@@ -53,6 +68,8 @@ def get_df_answers_labelled(df_complete, labelling_type):
         labels = set_label_general_with_threshold(df_complete_labelled, 'MEDIA_NAME', mean_answer_dict)
     elif labelling_type == 'TIMES_ONLY_V1':
         labels = set_label_times_only_v1(df_complete)
+    elif labelling_type == 'TIMES_ONLY_V2':
+        labels = set_label_times_only_v2(df_complete)
 
     df_complete_labelled['LABEL'] = labels
 
