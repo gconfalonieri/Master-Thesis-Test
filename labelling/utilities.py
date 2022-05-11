@@ -77,6 +77,60 @@ def get_n_hardest_questions(n):
     return hardest_questions
 
 
+def get_t_i_f(user_id):
+
+    df_question_statistics = pd.read_csv('datasets/results/times_for_users.csv')
+    simplest_question = get_simplest_question()
+    simplest_index = df_question_statistics[df_question_statistics['USER_ID'] == user_id].index[0]
+    t_i_f = df_question_statistics[simplest_question][simplest_index]
+    return t_i_f
+
+
+def get_av_t_f():
+
+    df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+    simplest_question = get_simplest_question()
+    simplest_index = df_questions_statistics[df_questions_statistics['MEDIA_NAME'] == simplest_question].index[0]
+    av_t_f = df_questions_statistics['AVERAGE_TIME'][simplest_index]
+    return av_t_f
+
+
+def get_d_i_f(user_id):
+
+    av_t_f = get_av_t_f()
+    t_i_f = get_t_i_f(user_id)
+    d_i_f = (t_i_f - av_t_f) / t_i_f
+
+    return d_i_f
+
+
+def get_t_i_h(user_id):
+
+    df_question_statistics = pd.read_csv('datasets/results/times_for_users.csv')
+    hardest_question = get_hardest_question()
+    hardest_index = df_question_statistics[df_question_statistics['USER_ID'] == user_id].index[0]
+    t_i_h = df_question_statistics[hardest_question][hardest_index]
+    return t_i_h
+
+
+def get_av_t_h():
+
+    df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+    hardest_question = get_simplest_question()
+    hardest_index = df_questions_statistics[df_questions_statistics['MEDIA_NAME'] == hardest_question].index[0]
+    av_t_h = df_questions_statistics['AVERAGE_TIME'][hardest_index]
+    return av_t_h
+
+
+def get_d_i_h(user_id):
+
+    av_t_h = get_av_t_h()
+    t_i_h = get_t_i_h(user_id)
+    d_i_h = (t_i_h - av_t_h) / t_i_h
+
+    return d_i_h
+
+
 def get_d_ij(user_id, media_name):
 
     df_time_for_users = pd.read_csv('datasets/results/times_for_users.csv')
@@ -127,6 +181,7 @@ def get_av_d_i(user_id):
 
     return av_d_i
 
+
 def get_av_t_j(media_name):
 
     df_statistics_times_for_questions = pd.read_csv('datasets/results/statistics_times_for_questions.csv')
@@ -136,6 +191,7 @@ def get_av_t_j(media_name):
     av_t_j = df_statistics_times_for_questions['AVERAGE_TIME'][j]
 
     return av_t_j
+
 
 def get_answer_complete_all_info_df(n_users):
 

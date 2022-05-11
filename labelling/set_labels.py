@@ -1,4 +1,6 @@
 import pandas as pd
+
+import labelling.utilities
 import statistics.utilities
 import toml
 
@@ -43,6 +45,38 @@ def set_label_times_only_v1(df_complete):
     return labels
 
 
+def set_label_times_only_v1_1F(df_complete):
+
+    labels = []
+
+    for i in df_complete.index:
+        d_i_f = labelling.utilities.get_d_i_f(df_complete['USER_ID'][i])
+        n1 = df_complete['T_I_J'][i]
+        n2 = df_complete['AVERAGE_T_J'][i] * (1 + d_i_f)
+        if n1 > n2:
+            labels.append('1')
+        else:
+            labels.append('0')
+
+    return labels
+
+
+def set_label_times_only_v1_1H(df_complete):
+
+    labels = []
+
+    for i in df_complete.index:
+        d_i_h = labelling.utilities.get_d_i_h(df_complete['USER_ID'][i])
+        n1 = df_complete['T_I_J'][i]
+        n2 = df_complete['AVERAGE_T_J'][i] * (1 + d_i_h)
+        if n1 > n2:
+            labels.append('1')
+        else:
+            labels.append('0')
+
+    return labels
+
+
 def set_label_times_only_v2(df_complete):
 
     labels = []
@@ -58,6 +92,37 @@ def set_label_times_only_v2(df_complete):
     return labels
 
 
+def set_label_times_only_v2_1F(df_complete):
+
+    labels = []
+
+    for i in df_complete.index:
+        d_i_f = labelling.utilities.get_d_i_f(df_complete['USER_ID'][i])
+        n1 = df_complete['T_I_J'][i] * (1 - d_i_f)
+        n2 = df_complete['AVERAGE_T_J'][i]
+        if n1 > n2:
+            labels.append('1')
+        else:
+            labels.append('0')
+
+    return labels
+
+
+def set_label_times_only_v2_1H(df_complete):
+
+    labels = []
+
+    for i in df_complete.index:
+        d_i_h = labelling.utilities.get_d_i_h(df_complete['USER_ID'][i])
+        n1 = df_complete['T_I_J'][i] * (1 - d_i_h)
+        n2 = df_complete['AVERAGE_T_J'][i]
+        if n1 > n2:
+            labels.append('1')
+        else:
+            labels.append('0')
+
+    return labels
+
 def get_df_answers_labelled(df_complete, labelling_type):
 
     df_complete_labelled = df_complete
@@ -70,6 +135,15 @@ def get_df_answers_labelled(df_complete, labelling_type):
         labels = set_label_times_only_v1(df_complete)
     elif labelling_type == 'TIMES_ONLY_V2':
         labels = set_label_times_only_v2(df_complete)
+    elif labelling_type == 'TIMES_ONLY_V1_1F':
+        labels = set_label_times_only_v1_1F(df_complete)
+    elif labelling_type == 'TIMES_ONLY_V1_1H':
+        labels = set_label_times_only_v1_1H(df_complete)
+    elif labelling_type == 'TIMES_ONLY_V2_1F':
+        labels = set_label_times_only_v2_1F(df_complete)
+    elif labelling_type == 'TIMES_ONLY_V2_1H':
+        labels = set_label_times_only_v2_1H(df_complete)
+
 
     df_complete_labelled['LABEL'] = labels
 
