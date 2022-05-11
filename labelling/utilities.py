@@ -47,12 +47,12 @@ def get_n_simplest_questions(n):
 
     df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
-    simplest_thr = df_question_statistics['TOTAL'][0] * 0.25
+    simplest_thr = df_question_statistics['TOTAL'][0] * 0.75
 
     for j in range(0, n):
         min_time = min(df_question_statistics['AVERAGE_TIME'])
         for i in df_question_statistics.index:
-            if (df_question_statistics['AVERAGE_TIME'][i] == min_time) and df_question_statistics['WRONG'][i] > simplest_thr:
+            if (df_question_statistics['AVERAGE_TIME'][i] == min_time) and df_question_statistics['RIGHT'][i] > simplest_thr:
                 simplest_questions.append(df_question_statistics['MEDIA_NAME'][i])
                 df_question_statistics = df_question_statistics.drop(i)
 
@@ -65,12 +65,12 @@ def get_n_hardest_questions(n):
 
     df_question_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
-    hardest_thr = df_question_statistics['TOTAL'][0] * 0.25
+    hardest_thr = df_question_statistics['TOTAL'][0] * 0.15
 
     for j in range(0, n):
         max_time = max(df_question_statistics['AVERAGE_TIME'])
         for i in df_question_statistics.index:
-            if (df_question_statistics['AVERAGE_TIME'][i] == max_time) and df_question_statistics['RIGHT'][i] > hardest_thr:
+            if (df_question_statistics['AVERAGE_TIME'][i] == max_time) and df_question_statistics['WRONG'][i] > hardest_thr:
                 hardest_questions.append(df_question_statistics['MEDIA_NAME'][i])
                 df_question_statistics = df_question_statistics.drop(i)
 
@@ -102,6 +102,38 @@ def get_d_i_f(user_id):
     d_i_f = (t_i_f - av_t_f) / t_i_f
 
     return d_i_f
+
+
+def get_av_d_i_f(user_id, n):
+
+    simplest_questions = get_n_simplest_questions(n)
+    df_times_for_users= pd.read_csv('datasets/results/times_for_users.csv')
+
+    sum = 0
+
+    for q in simplest_questions:
+        simplest_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
+        sum += df_times_for_users[q][simplest_index]
+
+    av_d_i_f = sum / n
+
+    return av_d_i_f
+
+
+def get_av_d_i_h(user_id, n):
+
+    hardest_questions = get_n_hardest_questions(n)
+    df_times_for_users= pd.read_csv('datasets/results/times_for_users.csv')
+
+    sum = 0
+
+    for q in hardest_questions:
+        hardest_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
+        sum += df_times_for_users[q][hardest_index]
+
+    av_d_i_h = sum / n
+
+    return av_d_i_h
 
 
 def get_t_i_h(user_id):
