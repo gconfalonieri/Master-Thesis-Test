@@ -108,12 +108,17 @@ def get_av_d_i_f(user_id, n):
 
     simplest_questions = get_n_simplest_questions(n)
     df_times_for_users= pd.read_csv('datasets/results/times_for_users.csv')
+    df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
     sum = 0
 
     for q in simplest_questions:
-        simplest_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
-        sum += df_times_for_users[q][simplest_index]
+        user_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
+        simplest_question_index = df_questions_statistics[df_questions_statistics['MEDIA_NAME'] == q].index[0]
+        av_t_f = df_questions_statistics['AVERAGE_TIME'][simplest_question_index]
+        t_i_f = df_times_for_users[q][user_index]
+        d_i_f = (t_i_f - av_t_f) / t_i_f
+        sum += d_i_f
 
     av_d_i_f = sum / n
 
@@ -124,12 +129,17 @@ def get_av_d_i_h(user_id, n):
 
     hardest_questions = get_n_hardest_questions(n)
     df_times_for_users= pd.read_csv('datasets/results/times_for_users.csv')
+    df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
 
     sum = 0
 
     for q in hardest_questions:
-        hardest_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
-        sum += df_times_for_users[q][hardest_index]
+        user_index = df_times_for_users[df_times_for_users['USER_ID'] == user_id].index[0]
+        hardest_question_index = df_questions_statistics[df_questions_statistics['MEDIA_NAME'] == q].index[0]
+        av_t_h = df_questions_statistics['AVERAGE_TIME'][hardest_question_index]
+        t_i_h = df_times_for_users[q][user_index]
+        d_i_h = (t_i_h - av_t_h) / t_i_h
+        sum += d_i_h
 
     av_d_i_h = sum / n
 
@@ -227,7 +237,7 @@ def get_av_t_j(media_name):
 
 def get_answer_complete_all_info_df(n_users):
 
-    df_answer_complete_all_info = pd.DataFrame(columns=['MEDIA_NAME', 'USER_ID', 'SPECIFIC_CATEGORY', 'MACRO_CATEGORY', 'CORRECT_ANSWER', 'USER_ANSWER', 'T_I_J', 'AVERAGE_T_J', 'D_I_J','AVERAGE_D_I'])
+    df_answer_complete_all_info = pd.DataFrame(columns=['MEDIA_NAME', 'USER_ID', 'SPECIFIC_CATEGORY', 'MACRO_CATEGORY', 'CORRECT_ANSWER', 'USER_ANSWER', 'T_I_J', 'AVERAGE_T_J', 'D_I_J','AVERAGE_D_I', 'D_I_F',  'AVERAGE_D_I_F', 'D_I_H', 'AVERAGE_D_I_H'])
 
     media_name = []
     user_id_col = []
@@ -239,6 +249,10 @@ def get_answer_complete_all_info_df(n_users):
     col_av_t_j = []
     col_d_i_j = []
     col_av_d_i = []
+    col_d_i_f = []
+    col_av_d_i_f = []
+    col_d_i_h = []
+    col_av_d_i_h = []
 
     for i in range(1, n_users):
 
@@ -267,6 +281,10 @@ def get_answer_complete_all_info_df(n_users):
                 col_av_t_j.append(get_av_t_j(x))
                 col_d_i_j.append(get_d_ij(user_id, x))
                 col_av_d_i.append(av_d_i)
+                col_d_i_f.append(get_d_i_f(user_id))
+                col_av_d_i_f.append(get_av_d_i_f(user_id, 3))
+                col_d_i_h.append(get_d_i_h(user_id))
+                col_av_d_i_h.append(get_av_d_i_h(user_id, 3))
 
             print(user_id + " COMPLETE")
 
@@ -280,5 +298,9 @@ def get_answer_complete_all_info_df(n_users):
     df_answer_complete_all_info['AVERAGE_T_J'] = col_av_t_j
     df_answer_complete_all_info['D_I_J'] = col_d_i_j
     df_answer_complete_all_info['AVERAGE_D_I'] = col_av_d_i
+    df_answer_complete_all_info['D_I_F'] = col_d_i_f
+    df_answer_complete_all_info['AVERAGE_D_I_F'] = col_av_d_i_f
+    df_answer_complete_all_info['D_I_H'] = col_d_i_h
+    df_answer_complete_all_info['AVERAGE_D_I_H'] = col_av_d_i_h
 
     return df_answer_complete_all_info
