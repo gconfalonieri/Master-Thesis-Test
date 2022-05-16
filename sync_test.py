@@ -67,16 +67,18 @@ for i in range(1, 53):
         all_fpogx = dict()
         all_media_name = dict()
         fpogx_list = []
+        media_list = []
 
         for j in df_eye.index:
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
             all_fpogx[index] = df_eye['FPOGX'][j]
+            all_media_name[index] = df_eye['MEDIA_NAME'][j]
 
         for key1 in eeg_time:
             for key2 in all_fpogx:
                 if int(key1) == int(key2):
                     fpogx_list.append(all_fpogx[key2])
-
+                    media_list.append(all_media_name[key2])
 
         # adapt column to the shortest duration
 
@@ -103,9 +105,9 @@ for i in range(1, 53):
         for value in reduced_delta:
             delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
 
+        sync_dataframe['MEDIA_ID'] = media_list
         sync_dataframe['delta'] = delta_list
         sync_dataframe['FPOGX'] = fpogx_list
-        sync_dataframe['MEDIA_ID'] = media_names
 
         sync_dataframe.to_csv('datasets/sync_datasets/sync_dataset_user_' + str(i) + '.csv', index=False)
 
