@@ -1,37 +1,54 @@
+from time import gmtime, strftime
+
 import pandas as pd
 import toml
-import labelling.utilities
-
+from datetime import datetime
+from datetime import datetime
+from datetime import timedelta
 config = toml.load('config.toml')
 
-simplest_questions = labelling.utilities.get_n_simplest_questions(3)
-df_times_for_users = pd.read_csv('datasets/results/times_for_users.csv')
-df_questions_statistics = pd.read_csv('datasets/results/questions_statistics.csv')
+df_eye = pd.read_csv('datasets/eye-tracker/User 46_all_gaze.csv')
+df_eeg = pd.read_csv('datasets/eeg/eeg_user_46.csv')
 
-#print(simplest_questions)
+eeg_time_col = df_eeg[' time']
 
-#sum = 0
+eeg_duration = eeg_time_col.iloc[-1]
 
-#for q in simplest_questions:
-#    simplest_index = df_times_for_users[df_times_for_users['USER_ID'] == 'USER_1'].index[0]
-#    print(df_times_for_users[q])
-#    sum += df_times_for_users[q][simplest_index]
+max_times = dict()
 
-# av_d_i_f = sum / 3
+for j in df_eye.index:
+    max_times[df_eye['MEDIA_NAME'][j]] = round(df_eye[df_eye.columns[3]][j], 3)
 
-# print(av_d_i_f)
+interval_bounds = dict()
 
-sum = 0
+eye_duration = 0
 
-print(simplest_questions)
+for key in max_times:
+    eye_duration += max_times[key]
 
-for q in simplest_questions:
-    user_index = df_times_for_users[df_times_for_users['USER_ID'] == 'USER_1'].index[0]
-    simplest_question_index = df_questions_statistics[df_questions_statistics['MEDIA_NAME'] == q].index[0]
-    av_t_f = df_questions_statistics['AVERAGE_TIME'][simplest_question_index]
-    t_i_f = df_times_for_users[q][user_index]
-    d_i_f = (t_i_f - av_t_f) / t_i_f
-    print(d_i_f)
-    sum += d_i_f
 
-av_d_i_f = sum / 3
+diff = round(eye_duration - eeg_duration, 3)
+
+print(diff)
+
+path_eye = "datasets/timestamps/eye-tracker/timestamp_eye_user_46.txt"
+path_eeg = "datasets/timestamps/eeg/timestamp_eeg_user_46.txt"
+
+file_eye = open(path_eye, "r")
+timestamp_eye = file_eye.readline()
+file_eye.close()
+date = datetime.strptime(timestamp_eye, "%Y-%m-%d %H:%M:%S.%f")
+
+print(timestamp_eye)
+
+seconds = (date.hour * 3600) + (date.minute * 60) + date.second + (date.microsecond / 1000000)
+
+print(diff)
+
+seconds_eeg = seconds + diff
+
+print(seconds_eeg)
+
+timestamp_eeg = strftime("%H:%M:%S", gmtime(seconds_eeg))
+
+print(timestamp_eeg)
