@@ -36,6 +36,11 @@ for i in range(1, 53):
         eye_time = df_eye[df_eye.columns[3]]
         eeg_time_col = df_eeg[' time']
         delta_channel = df_eeg[' Delta']
+        beta1_channel = df_eeg[' Beta1']
+        beta2_channel = df_eeg[' Beta2']
+        total_power_channel = df_eeg[' totPwr']
+        attention_channel = df_eeg[' Attention']
+        meditation_channel = df_eeg[' Meditation']
         FPOGX_serie = df_eye['FPOGX']
         eeg_time = []
         start_eye = get_dict_start_seconds(user_id, 'eye')
@@ -84,29 +89,41 @@ for i in range(1, 53):
 
         reduced_eeg_time = []
         reduced_delta = []
+        reduced_beta1 = []
+        reduced_beta2 = []
+        reduced_totPwr = []
+        reduced_attention = []
+        reduced_meditation = []
 
         for j in range(0, len(fpogx_list)):
             reduced_eeg_time.append(round((eeg_time[j] - start_eeg), 1))
             reduced_delta.append(delta_channel[j])
+            reduced_beta1.append(beta1_channel[j])
+            reduced_beta2.append(beta2_channel[j])
+            reduced_totPwr.append(total_power_channel[j])
+            reduced_attention.append(attention_channel[j])
+            reduced_meditation.append(meditation_channel[j])
 
 
         # save dataframe
 
-        sync_dataframe = pd.DataFrame(columns=['time', 'MEDIA_ID', 'delta', 'FPOGX'])
+        sync_dataframe = pd.DataFrame(columns=['time', 'MEDIA_ID', 'delta', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
-        print(reduced_delta)
+        # min_delta = min(reduced_delta)
+        # max_delta = max(reduced_delta)
 
-        delta_list = []
-        min_delta = min(reduced_delta)
-        max_delta = max(reduced_delta)
-
-        for value in reduced_delta:
-            delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
+        # for value in reduced_delta:
+        #    delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
 
         sync_dataframe['MEDIA_ID'] = media_list
-        sync_dataframe['delta'] = delta_list
+        sync_dataframe['delta'] = reduced_delta
+        sync_dataframe['beta1'] = reduced_beta1
+        sync_dataframe['beta2'] = reduced_beta2
+        sync_dataframe['totalPower'] = reduced_totPwr
+        sync_dataframe['attention'] = reduced_attention
+        sync_dataframe['meditation'] = reduced_meditation
         sync_dataframe['FPOGX'] = fpogx_list
 
         sync_dataframe.to_csv('datasets/sync_datasets/sync_dataset_user_' + str(i) + '.csv', index=False)
@@ -115,7 +132,7 @@ for i in range(1, 53):
 
         # save plot
 
-        plt.plot(sync_dataframe['time'], sync_dataframe['delta'], color='r', label='normalized delta channel')
-        plt.plot(sync_dataframe['time'], sync_dataframe['FPOGX'], color='g', label='fixation point-of-gaze x')
-        plt.legend(loc="upper left")
-        plt.savefig('test_plot.png')
+        # plt.plot(sync_dataframe['time'], sync_dataframe['delta'], color='r', label='normalized delta channel')
+        # plt.plot(sync_dataframe['time'], sync_dataframe['FPOGX'], color='g', label='fixation point-of-gaze x')
+        # plt.legend(loc="upper left")
+        # plt.savefig('test_plot.png')
