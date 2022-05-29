@@ -73,6 +73,7 @@ for i in range(1, 53):
         all_media_name = dict()
         fpogx_list = []
         media_list = []
+        user_id_list = []
 
         for j in df_eye.index:
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
@@ -84,6 +85,7 @@ for i in range(1, 53):
                 if int(key1) == int(key2):
                     fpogx_list.append(all_fpogx[key2])
                     media_list.append(all_media_name[key2])
+                    user_id_list.append(user_id)
 
         # adapt column to the shortest duration
 
@@ -107,7 +109,7 @@ for i in range(1, 53):
 
         # save dataframe
 
-        sync_dataframe = pd.DataFrame(columns=['time', 'MEDIA_ID', 'delta', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
+        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
@@ -117,7 +119,8 @@ for i in range(1, 53):
         # for value in reduced_delta:
         #    delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
 
-        sync_dataframe['MEDIA_ID'] = media_list
+        sync_dataframe['user_id'] = user_id_list
+        sync_dataframe['media_name'] = media_list
         sync_dataframe['delta'] = reduced_delta
         sync_dataframe['beta1'] = reduced_beta1
         sync_dataframe['beta2'] = reduced_beta2
