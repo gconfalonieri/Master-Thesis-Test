@@ -66,6 +66,31 @@ def get_questions_array():
     return np.array(complete_x_list, dtype=np.ndarray)
 
 
+def get_questions_padded_array():
+
+    complete_x_list = []
+
+    max_len = get_max_series_len()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                question_list = []
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                for f in config['algorithm']['eeg_features']:
+                    arr = np.asarray(reduced_df[f]).astype('float32')
+                    pad_len = max_len - len(arr)
+                    padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='mean' )
+                    question_list.append(padded_array)
+                complete_x_list.append(question_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray)
+
+
 def get_labels_users_array():
 
     c = 0
@@ -94,6 +119,7 @@ def get_labels_questions_array():
     df_labelled = pd.read_csv(path_labelled_df)
 
     for i in df_labelled.index:
-        complete_y_list.append(df_labelled['LABEL'][i])
+        arr = np.array(df_labelled['LABEL'][i])
+        complete_y_list.append(np.expand_dims(arr, axis=(0)))
 
     return np.asarray(complete_y_list).astype('int')
