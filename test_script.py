@@ -33,9 +33,9 @@ print(complete_y_list[0].shape)
 print(type(complete_y_list[0]))
 
 # X_train, X_test, y_train, y_test = train_test_split(np.ones((46 * 24, 2, 100)), np.ones((46 * 24, 1)), test_size=0.2)
-X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.2, shuffle=True)
 
-X_train = np.asarray(X_train).astype(np.float32)
+X_train = np.array(X_train).astype(np.float32)
 X_test = np.asarray(X_test).astype(np.float32)
 
 # y_train = to_categorical(y_train)
@@ -45,11 +45,13 @@ model = Sequential()
 model.add(Conv1D(filters=256, kernel_size=2))
 model.add(MaxPooling1D(pool_size=2, padding='same'))
 # model.add(LSTM(32))
-model.add(Dense(1))
-model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+model.add(Dense(1, activation='relu'))
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(X_train, y_train, epochs=200)
+model.fit(X_train, y_train, epochs=30, batch_size=32)
+results = model.evaluate(X_test, y_test)
 
+print(results)
 
 # model = Model(input_tensor, output_tensor, name='Model')
 # model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])

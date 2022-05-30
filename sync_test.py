@@ -36,8 +36,6 @@ for i in range(1, 53):
         eye_time = df_eye[df_eye.columns[3]]
         eeg_time_col = df_eeg[' time']
         delta_channel = df_eeg[' Delta']
-        beta1_channel = df_eeg[' Beta1']
-        beta2_channel = df_eeg[' Beta2']
         total_power_channel = df_eeg[' totPwr']
         attention_channel = df_eeg[' Attention']
         meditation_channel = df_eeg[' Meditation']
@@ -91,17 +89,23 @@ for i in range(1, 53):
 
         reduced_eeg_time = []
         reduced_delta = []
+        reduced_alpha_1 = []
+        reduced_alpha_2 = []
         reduced_beta1 = []
         reduced_beta2 = []
         reduced_totPwr = []
         reduced_attention = []
         reduced_meditation = []
 
+
+
         for j in range(0, len(fpogx_list)):
             reduced_eeg_time.append(round((eeg_time[j] - start_eeg), 1))
+            reduced_alpha_1.append(df_eeg[' Alpha1'][j])
+            reduced_alpha_2.append(df_eeg[' Alpha2'][j])
             reduced_delta.append(delta_channel[j])
-            reduced_beta1.append(beta1_channel[j])
-            reduced_beta2.append(beta2_channel[j])
+            reduced_beta1.append(df_eeg[' Beta1'][j])
+            reduced_beta2.append(df_eeg[' Beta2'][j])
             reduced_totPwr.append(total_power_channel[j])
             reduced_attention.append(attention_channel[j])
             reduced_meditation.append(meditation_channel[j])
@@ -109,7 +113,7 @@ for i in range(1, 53):
 
         # save dataframe
 
-        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
+        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
@@ -122,6 +126,8 @@ for i in range(1, 53):
         sync_dataframe['user_id'] = user_id_list
         sync_dataframe['media_name'] = media_list
         sync_dataframe['delta'] = reduced_delta
+        sync_dataframe['alpha1'] = reduced_alpha_1
+        sync_dataframe['alpha2'] = reduced_alpha_2
         sync_dataframe['beta1'] = reduced_beta1
         sync_dataframe['beta2'] = reduced_beta2
         sync_dataframe['totalPower'] = reduced_totPwr
