@@ -14,3 +14,6 @@ brainwaves_folder = './datasets/eeg'
 solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
+
+[algorithm]
+eeg_features = ['beta1', 'beta2']
