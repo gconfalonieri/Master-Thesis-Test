@@ -11,7 +11,7 @@ import tensorflow as tf
 import keras.preprocessing
 import pandas as pd
 from keras import Sequential, Model
-from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten
+from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten, MaxPooling2D
 from sklearn.model_selection import train_test_split
 import numpy as np
 import toml
@@ -51,7 +51,7 @@ model.add(LSTM(64))
 model.add(Dense(1, activation='linear'))
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
 
-history = model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 history_dict = history.history
 
 models.plots.plot_model_loss(history_dict)
