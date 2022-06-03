@@ -19,4 +19,4 @@ labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
 
 [preprocessing]
-resample_library = 'sklearn'
+resample_library = 'scipy'

@@ -158,11 +158,11 @@ def get_questions_oversampled_array():
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 for f in config['algorithm']['eeg_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
-                    oversampled_array = numpy.array()
+                    oversampled_array = numpy.array(0)
                     if config['preprocessing']['resample_library'] == 'sklearn':
                         oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
-                    elif config['preprocessing']['resample_library'] == 'scikit':
-                        oversampled_array = sklearn.utils.resample(arr, max_len)
+                    elif config['preprocessing']['resample_library'] == 'scipy':
+                        oversampled_array = scipy.signal.resample(arr, max_len)
                     question_list.append(oversampled_array)
                 complete_x_list.append(question_list)
 
