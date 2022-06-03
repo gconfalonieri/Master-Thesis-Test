@@ -24,6 +24,27 @@ def get_max_series_len():
     return max_len
 
 
+def get_max_series_df():
+
+    max_len = 0
+    max_series_df = pd.DataFrame()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                curr_len = len(reduced_df['time'])
+                if curr_len > max_len:
+                    max_len = curr_len
+                    max_series_df = reduced_df
+
+    return max_series_df
+
+
 def get_users_array():
 
     complete_x_list = []

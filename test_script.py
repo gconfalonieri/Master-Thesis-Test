@@ -19,7 +19,6 @@ import toml
 complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
 
-
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
 print(type(complete_x_list))
@@ -47,7 +46,7 @@ X_test = np.asarray(X_test).astype(np.float32)
 model = Sequential()
 model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=4))
-model.add(LSTM(64))
+model.add(LSTM(32))
 model.add(Dense(1, activation='linear'))
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
 
