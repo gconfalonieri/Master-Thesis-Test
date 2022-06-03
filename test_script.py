@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import toml
 
-complete_x_list = models.utilities.get_questions_padded_array()
+complete_x_list = models.utilities.get_questions_oversampled_array()
 complete_y_list = models.utilities.get_labels_questions_array()
 
 print("# TRAIN SERIES #")
