@@ -27,6 +27,25 @@ def get_max_series_len():
     return max_len
 
 
+def get_min_series_len():
+
+    min_len = float('inf')
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                curr_len = len(reduced_df['time'])
+                if curr_len < min_len:
+                    min_len = curr_len
+
+    return min_len
+
+
 def get_max_series_df():
 
     max_len = 0
@@ -210,7 +229,8 @@ def get_labels_users_array():
         if i not in config['general']['excluded_users']:
             user_list = []
             for j in range(1, 25):
-                user_list.append(df_labelled['LABEL'][c])
+                arr = np.array(df_labelled['LABEL'][c])
+                user_list.append(np.expand_dims(arr, axis=(0)))
                 c += 1
             complete_y_list.append(user_list)
 
