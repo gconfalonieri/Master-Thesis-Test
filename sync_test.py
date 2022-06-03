@@ -35,7 +35,6 @@ for i in range(1, 53):
         media_names = df_eye.drop_duplicates('MEDIA_NAME', keep='last')['MEDIA_NAME']
         eye_time = df_eye[df_eye.columns[3]]
         eeg_time_col = df_eeg[' time']
-        delta_channel = df_eeg[' Delta']
         total_power_channel = df_eeg[' totPwr']
         attention_channel = df_eeg[' Attention']
         meditation_channel = df_eeg[' Meditation']
@@ -93,9 +92,10 @@ for i in range(1, 53):
         reduced_alpha_2 = []
         reduced_beta1 = []
         reduced_beta2 = []
+        reduced_gamma1 = []
+        reduced_gamma2 = []
+        reduced_theta = []
         reduced_totPwr = []
-        reduced_attention = []
-        reduced_meditation = []
 
 
 
@@ -103,17 +103,18 @@ for i in range(1, 53):
             reduced_eeg_time.append(round((eeg_time[j] - start_eeg), 1))
             reduced_alpha_1.append(df_eeg[' Alpha1'][j])
             reduced_alpha_2.append(df_eeg[' Alpha2'][j])
-            reduced_delta.append(delta_channel[j])
+            reduced_delta.append(df_eeg[' Delta'][j])
             reduced_beta1.append(df_eeg[' Beta1'][j])
             reduced_beta2.append(df_eeg[' Beta2'][j])
+            reduced_gamma1.append(df_eeg[' Gamma1'][j])
+            reduced_gamma2.append(df_eeg[' Gamma2'][j])
+            reduced_theta.append(df_eeg[' Theta'][j])
             reduced_totPwr.append(total_power_channel[j])
-            reduced_attention.append(attention_channel[j])
-            reduced_meditation.append(meditation_channel[j])
-
 
         # save dataframe
 
-        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2', 'totalPower', 'attention', 'meditation', 'FPOGX'])
+        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2',
+                                               'gamma1', 'gamma2', 'theta', 'totalPower', 'FPOGX'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
@@ -130,9 +131,10 @@ for i in range(1, 53):
         sync_dataframe['alpha2'] = reduced_alpha_2
         sync_dataframe['beta1'] = reduced_beta1
         sync_dataframe['beta2'] = reduced_beta2
+        sync_dataframe['gamma1'] = reduced_gamma1
+        sync_dataframe['gamma2'] = reduced_gamma2
+        sync_dataframe['theta'] = reduced_theta
         sync_dataframe['totalPower'] = reduced_totPwr
-        sync_dataframe['attention'] = reduced_attention
-        sync_dataframe['meditation'] = reduced_meditation
         sync_dataframe['FPOGX'] = fpogx_list
 
         sync_dataframe.to_csv('datasets/sync_datasets/sync_dataset_user_' + str(i) + '.csv', index=False)
