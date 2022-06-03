@@ -1,8 +1,9 @@
+import numpy
 import toml
 import pandas as pd
 import numpy as np
-# from scipy.signal import resample
-from sklearn.utils import resample
+import scipy.signal
+import sklearn.utils
 
 config = toml.load('config.toml')
 
@@ -157,7 +158,11 @@ def get_questions_oversampled_array():
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 for f in config['algorithm']['eeg_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
-                    oversampled_array = resample(arr, n_samples=max_len)
+                    oversampled_array = numpy.array()
+                    if config['preprocessing']['resample_library'] == 'sklearn':
+                        oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                    elif config['preprocessing']['resample_library'] == 'scikit':
+                        oversampled_array = sklearn.utils.resample(arr, max_len)
                     question_list.append(oversampled_array)
                 complete_x_list.append(question_list)
 
