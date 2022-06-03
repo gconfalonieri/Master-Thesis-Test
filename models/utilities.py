@@ -96,6 +96,35 @@ def get_users_padded_array():
     return np.array(complete_x_list, dtype=np.ndarray)
 
 
+def get_users_oversampled_array():
+
+    complete_x_list = []
+    max_len = get_max_series_len()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            user_list = []
+            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                question_list = []
+                for f in config['algorithm']['eeg_features']:
+                    arr = np.asarray(reduced_df[f]).astype('float32')
+                    oversampled_array = numpy.array(0)
+                    if config['preprocessing']['resample_library'] == 'sklearn':
+                        oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                    elif config['preprocessing']['resample_library'] == 'scipy':
+                        oversampled_array = scipy.signal.resample(arr, max_len)
+                    question_list.append(oversampled_array)
+                user_list.append(question_list)
+            complete_x_list.append(user_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray)
+
+
 def get_questions_array():
 
     complete_x_list = []
