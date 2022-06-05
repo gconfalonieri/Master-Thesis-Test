@@ -1,6 +1,7 @@
 import os
 
 from matplotlib import pyplot as plt
+from numpy import load
 
 import models.utilities
 import models.plots
@@ -11,28 +12,23 @@ import tensorflow as tf
 import keras.preprocessing
 import pandas as pd
 from keras import Sequential, Model
-from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten, MaxPooling2D
+from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten, MaxPooling2D, \
+    TimeDistributed
 from sklearn.model_selection import train_test_split
 import numpy as np
 import toml
 
-complete_x_list = models.utilities.get_questions_oversampled_array()
-complete_y_list = models.utilities.get_labels_questions_array()
+all_windowed_array_data = load('all_windowed_array_data.npy', allow_pickle=True)
+all_windowed_array_labels = load('all_windowed_array_labels.npy')
+
+complete_x_list = np.expand_dims(all_windowed_array_data[0], axis=1)
+complete_y_list = np.expand_dims(all_windowed_array_labels[1], axis=1)
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
-print(type(complete_x_list))
-print(complete_x_list[0].shape)
-print(type(complete_x_list[0]))
-print(complete_x_list[0][0].shape)
-print(type(complete_x_list[0][0]))
-print(type(complete_x_list[0][0][0]))
 
 print("# TRAIN LABELS #")
 print(complete_y_list.shape)
-print(type(complete_y_list))
-print(complete_y_list[0].shape)
-print(type(complete_y_list[0]))
 
 # X_train, X_test, y_train, y_test = train_test_split(np.ones((46 * 24, 2, 100)), np.ones((46 * 24, 1)), test_size=0.2)
 X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.2, shuffle=True)
