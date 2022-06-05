@@ -339,3 +339,42 @@ def get_all_windowed_array():
                         complete_y_list.append(df_labelled['LABEL'][label_index])
 
     return np.array(complete_x_list, dtype=np.ndarray), np.asarray(complete_y_list).astype('int')
+
+
+def get_user_windowed_array(i):
+
+    complete_x_list = []
+    complete_y_list = []
+
+    path_labelled_df = config['path']['labelled_dataset']
+    df_labelled = pd.read_csv(path_labelled_df)
+
+    min_len = get_min_series_len()
+    win_len = min_len
+
+    user_id = 'USER_' + str(i)
+    if i not in config['general']['excluded_users']:
+        user_list = []
+        user_label_list = []
+        path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+        df_sync = pd.read_csv(path)
+        for f in config['algorithm']['eeg_features']:
+            feature_list = []
+            label_list = []
+            end_index = - 1
+            max_index = int(len(df_sync['time']) / win_len)
+            for i in range(0, max_index):
+                start_index = end_index + 1
+                end_index = start_index + win_len
+                arr = np.asarray(df_sync[f].iloc[start_index:end_index]).astype('float32')
+                if len(arr) == win_len:
+                    feature_list.append(arr)
+                    label_index = df_labelled.index[(df_labelled['MEDIA_NAME'] == df_sync['media_name'][start_index]) & (
+                                    df_labelled['USER_ID'] == df_sync['user_id'][start_index])]
+                    label_list.append(df_labelled['LABEL'][label_index])
+            user_list.append(feature_list)
+            user_label_list.append(label_list)
+        complete_x_list.append(user_list)
+        complete_y_list.append(user_label_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray), np.asarray(complete_y_list).astype('int')
