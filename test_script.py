@@ -1,5 +1,6 @@
 import os
 
+from keras.utils.vis_utils import plot_model
 from matplotlib import pyplot as plt
 from numpy import load
 
@@ -13,7 +14,7 @@ import keras.preprocessing
 import pandas as pd
 from keras import Sequential, Model
 from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten, MaxPooling2D, \
-    TimeDistributed
+    TimeDistributed, ReLU, BatchNormalization, GlobalAveragePooling1D, Dropout, ConvLSTM2D
 from sklearn.model_selection import train_test_split
 import numpy as np
 import toml
@@ -30,8 +31,21 @@ def get_model_1():
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
 
-complete_x_list = models.utilities.get_users_padded_array()
-complete_y_list = models.utilities.get_labels_users_array()
+def make_model():
+
+    model = Sequential()
+    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
+    model.add(MaxPooling1D(pool_size=4))
+    model.add(BatchNormalization())
+    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
+    model.add(LSTM(32))
+    model.add(Dense(1, activation='linear'))
+    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+
+    return model
+
+complete_x_list = models.utilities.get_questions_oversampled_array()
+complete_y_list = models.utilities.get_labels_questions_array()
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
@@ -49,25 +63,27 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = get_model_1()
+model = make_model()
 
-history = model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, epochs=500, validation_data=(X_test, y_test))
 
 history_dict = history.history
 
-#models.plots.plot_model_loss(history_dict)
-#plt.clf()
-#models.plots.plot_model_accuracy(history_dict)
+models.plots.plot_model_loss(history_dict)
+plt.clf()
+models.plots.plot_model_accuracy(history_dict)
 
 results = model.evaluate(X_test, y_test)
 
-loss_list.append(results[0])
-accuracy_list.append(results[1])
+print(results)
 
-df_results = pd.DataFrame(columns=['loss', 'accuracy'])
+#loss_list.append(results[0])
+#accuracy_list.append(results[1])
 
-df_results['loss'] = results[0]
-df_results['accuracy'] = results[1]
-df_results.to_csv('model_results/questions_oversampled.csv', index=False)
+#df_results = pd.DataFrame(columns=['loss', 'accuracy'])
+
+#df_results['loss'] = results[0]
+#df_results['accuracy'] = results[1]
+#df_results.to_csv('model_results/questions_oversampled.csv', index=False)
 
 # print(model.summary())

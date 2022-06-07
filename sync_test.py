@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import numpy
 import pandas as pd
 import toml
 import matplotlib.pyplot as plt
@@ -47,12 +48,16 @@ for i in range(1, 53):
             time = x + start_eeg
             eeg_time.append(time)
 
+        print(eeg_time)
+
         # compute duration of each media
 
         max_times = dict()
 
         for j in df_eye.index:
             max_times[df_eye['MEDIA_NAME'][j]] = int(df_eye[df_eye.columns[3]][j])
+
+        print(max_times)
 
         # compute upper bound of each media
 
@@ -64,6 +69,8 @@ for i in range(1, 53):
             interval_bounds[key] = sum
             sum += max_times[key]
 
+        print(interval_bounds)
+
         # compute fpogx starting from zero to the last sampling time
 
         all_fpogx = dict()
@@ -74,8 +81,18 @@ for i in range(1, 53):
 
         for j in df_eye.index:
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
-            all_fpogx[index] = df_eye['FPOGX'][j]
+            all_fpogx[index] = []
+            all_media_name[index] = ''
+
+        for j in df_eye.index:
+            index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
+            all_fpogx[index].append(df_eye['FPOGX'][j])
             all_media_name[index] = df_eye['MEDIA_NAME'][j]
+
+        for key in all_fpogx:
+            all_fpogx[key] = numpy.mean(all_fpogx[key])
+
+        print(all_fpogx)
 
         for key1 in eeg_time:
             for key2 in all_fpogx:
