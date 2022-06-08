@@ -16,7 +16,7 @@ answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
 
 [algorithm]
-eeg_features = ['beta1', 'beta2', 'gamma1', 'gamma2']
+eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
 
 [preprocessing]
 resample_library = 'scipy'
