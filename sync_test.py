@@ -40,6 +40,9 @@ for i in range(1, 53):
         attention_channel = df_eeg[' Attention']
         meditation_channel = df_eeg[' Meditation']
         FPOGX_serie = df_eye['FPOGX']
+        FPOGY_serie = df_eye['FPOGY']
+        RPD_serie = df_eye['RPD']
+        LPD_serie = df_eye['LPD']
         eeg_time = []
         start_eye = get_dict_start_seconds(user_id, 'eye')
         start_eeg = get_dict_start_seconds(user_id, 'eeg')
@@ -74,30 +77,46 @@ for i in range(1, 53):
         # compute fpogx starting from zero to the last sampling time
 
         all_fpogx = dict()
+        all_fpogy = dict()
+        all_rpd = dict()
+        all_lpd = dict()
         all_media_name = dict()
         fpogx_list = []
+        fpogy_list = []
+        rpd_list = []
+        lpd_list = []
         media_list = []
         user_id_list = []
 
         for j in df_eye.index:
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
             all_fpogx[index] = []
+            all_fpogy[index] = []
+            all_rpd[index] = []
+            all_lpd[index] = []
             all_media_name[index] = ''
 
         for j in df_eye.index:
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
             all_fpogx[index].append(df_eye['FPOGX'][j])
+            all_fpogy[index].append(df_eye['FPOGY'][j])
+            all_rpd[index].append(df_eye['RPD'][j])
+            all_lpd[index].append(df_eye['LPD'][j])
             all_media_name[index] = df_eye['MEDIA_NAME'][j]
 
         for key in all_fpogx:
             all_fpogx[key] = numpy.mean(all_fpogx[key])
-
-        print(all_fpogx)
+            all_fpogy[key] = numpy.mean(all_fpogy[key])
+            all_rpd[key] = numpy.mean(all_rpd[key])
+            all_lpd[key] = numpy.mean(all_lpd[key])
 
         for key1 in eeg_time:
             for key2 in all_fpogx:
                 if int(key1) == int(key2):
                     fpogx_list.append(all_fpogx[key2])
+                    fpogy_list.append(all_fpogy[key2])
+                    rpd_list.append(all_rpd[key2])
+                    lpd_list.append(all_lpd[key2])
                     media_list.append(all_media_name[key2])
                     user_id_list.append(user_id)
 
@@ -131,7 +150,7 @@ for i in range(1, 53):
         # save dataframe
 
         sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2',
-                                               'gamma1', 'gamma2', 'theta', 'totalPower', 'FPOGX'])
+                                               'gamma1', 'gamma2', 'theta', 'totalPower', 'FPOGX', 'FPOGY'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
@@ -153,6 +172,9 @@ for i in range(1, 53):
         sync_dataframe['theta'] = reduced_theta
         sync_dataframe['totalPower'] = reduced_totPwr
         sync_dataframe['FPOGX'] = fpogx_list
+        sync_dataframe['FPOGY'] = fpogy_list
+        sync_dataframe['RPD'] = rpd_list
+        sync_dataframe['LPD'] = lpd_list
 
         sync_dataframe.to_csv('datasets/sync_datasets/sync_dataset_user_' + str(i) + '.csv', index=False)
 

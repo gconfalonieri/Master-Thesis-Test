@@ -40,9 +40,9 @@ def get_model_2():
     model = Sequential()
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))
-    # model.add(Dropout(0.2))
-    # model.add(TimeDistributed(Flatten()))
-    # model.add(LSTM(32))
+    model.add(Dropout(0.2))
+    model.add(TimeDistributed(Flatten()))
+    model.add(LSTM(32))
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
@@ -63,11 +63,12 @@ def make_model():
 
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
-# complete_x_list = np.expand_dims(complete_x_list, 1)
-# complete_y_list = np.expand_dims(complete_y_list, 1)
 
 complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
+
+complete_x_list = np.expand_dims(complete_x_list, 2)
+complete_y_list = np.expand_dims(complete_y_list, 2)
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
@@ -84,7 +85,7 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = get_model_0()
+model = get_model_2()
 
 history = model.fit(X_train, y_train, epochs=50, validation_data=(X_test, y_test))
 
