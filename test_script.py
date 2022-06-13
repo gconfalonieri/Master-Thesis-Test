@@ -1,65 +1,11 @@
-import os
-
-import numpy
-from keras.utils.vis_utils import plot_model
 from matplotlib import pyplot as plt
-from numpy import load
-
 import models.utilities
-import models.plots
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-from keras.utils.np_utils import to_categorical
-import tensorflow as tf
-import keras.preprocessing
-import pandas as pd
-from keras import Sequential, Model
-from keras.layers import LSTM, Dense, Input, Embedding, Conv1D, Conv2D, MaxPooling1D, Flatten, MaxPooling2D, \
-    TimeDistributed, ReLU, BatchNormalization, GlobalAveragePooling1D, Dropout, ConvLSTM2D
+import models.deep_learning_models
 from sklearn.model_selection import train_test_split
 import numpy as np
-import toml
 
 loss_list = []
 accuracy_list = []
-
-
-def get_model_1():
-    model = Sequential()
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
-    model.add(MaxPooling1D(pool_size=4, padding='same'))
-    model.add(LSTM(32))
-    model.add(Dense(16))
-    model.add(Dense(8))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
-    return model
-
-
-def get_model_2():
-    model = Sequential()
-    model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
-    model.add(MaxPooling2D(pool_size=3, padding='same'))
-    model.add(Dropout(0.2))
-    model.add(TimeDistributed(Flatten()))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
-    return model
-
-
-def make_model():
-    model = Sequential()
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
-    model.add(MaxPooling1D(pool_size=4))
-    model.add(BatchNormalization())
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
-
-    return model
-
 
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
@@ -85,7 +31,7 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = get_model_2()
+model = models.deep_learning_models.get_model_cnn2d_lstm()
 
 history = model.fit(X_train, y_train, epochs=50, validation_data=(X_test, y_test))
 
@@ -100,14 +46,3 @@ results = model.evaluate(X_test, y_test)
 print(results)
 
 # model.save('model_results/padding/cnn2d')
-
-# loss_list.append(results[0])
-# accuracy_list.append(results[1])
-
-# df_results = pd.DataFrame(columns=['loss', 'accuracy'])
-
-# df_results['loss'] = results[0]
-# df_results['accuracy'] = results[1]
-# df_results.to_csv('model_results/questions_oversampled.csv', index=False)
-
-# print(model.summary())
