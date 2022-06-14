@@ -57,4 +57,5 @@ def second_test():
     plt.plot(time, complete_x_list, '-r')
     plt.savefig('new.png')
 
-second_test()
+
+models.utilities.get_questions_interpolation_array()

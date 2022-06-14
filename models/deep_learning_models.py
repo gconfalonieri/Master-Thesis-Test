@@ -56,7 +56,7 @@ def get_model_cnn1d_lstm_3x_dense():
     return model
 
 
-def get_model_ccn2d():
+def get_model_cnn2d():
     model = Sequential()
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))

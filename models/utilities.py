@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import scipy.signal
 import sklearn.utils
+from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
 
 config = toml.load('config.toml')
 
@@ -241,6 +243,33 @@ def get_questions_oversampled_array():
                     elif config['preprocessing']['resample_library'] == 'scipy':
                         oversampled_array = scipy.signal.resample(arr, max_len)
                     question_list.append(oversampled_array)
+                complete_x_list.append(question_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray)
+
+
+def get_questions_interpolation_array():
+
+    complete_x_list = []
+
+    max_len = get_max_series_len()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                question_list = []
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                time = np.asarray(reduced_df['time']).astype('float32')
+                for f in config['algorithm']['gaze_features']:
+                    arr = np.asarray(reduced_df[f]).astype('float32')
+                    interp_funct = interp1d(time, arr, kind = config['preprocessing']['interpolation_kind'])
+                    new_time = np.linspace(time[0], time[len(time)-1], max_len)
+                    interpolated_array = interp_funct(new_time)
+                    question_list.append(interpolated_array)
                 complete_x_list.append(question_list)
 
     return np.array(complete_x_list, dtype=np.ndarray)
