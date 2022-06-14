@@ -1,5 +1,5 @@
 import os
-from keras import Sequential
+from keras import Sequential, regularizers
 from keras.layers import Conv1D, MaxPooling1D, Dense, LSTM, BatchNormalization, Conv2D, MaxPooling2D, Dropout, \
     TimeDistributed, Flatten
 

@@ -41,6 +41,7 @@ for i in range(1, 53):
         meditation_channel = df_eeg[' Meditation']
         FPOGX_serie = df_eye['FPOGX']
         FPOGY_serie = df_eye['FPOGY']
+        FPOGD_serie = df_eye['FPOGD']
         RPD_serie = df_eye['RPD']
         LPD_serie = df_eye['LPD']
         eeg_time = []
@@ -51,16 +52,12 @@ for i in range(1, 53):
             time = x + start_eeg
             eeg_time.append(time)
 
-        print(eeg_time)
-
         # compute duration of each media
 
         max_times = dict()
 
         for j in df_eye.index:
             max_times[df_eye['MEDIA_NAME'][j]] = int(df_eye[df_eye.columns[3]][j])
-
-        print(max_times)
 
         # compute upper bound of each media
 
@@ -72,17 +69,17 @@ for i in range(1, 53):
             interval_bounds[key] = sum
             sum += max_times[key]
 
-        print(interval_bounds)
-
         # compute fpogx starting from zero to the last sampling time
 
         all_fpogx = dict()
         all_fpogy = dict()
+        all_fpogd = dict()
         all_rpd = dict()
         all_lpd = dict()
         all_media_name = dict()
         fpogx_list = []
         fpogy_list = []
+        fpogd_list = []
         rpd_list = []
         lpd_list = []
         media_list = []
@@ -92,6 +89,7 @@ for i in range(1, 53):
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
             all_fpogx[index] = []
             all_fpogy[index] = []
+            all_fpogd[index] = []
             all_rpd[index] = []
             all_lpd[index] = []
             all_media_name[index] = ''
@@ -100,6 +98,7 @@ for i in range(1, 53):
             index = int(df_eye[df_eye.columns[3]][j]) + interval_bounds[df_eye['MEDIA_NAME'][j]]
             all_fpogx[index].append(df_eye['FPOGX'][j])
             all_fpogy[index].append(df_eye['FPOGY'][j])
+            all_fpogd[index].append(df_eye['FPOGD'][j])
             all_rpd[index].append(df_eye['RPD'][j])
             all_lpd[index].append(df_eye['LPD'][j])
             all_media_name[index] = df_eye['MEDIA_NAME'][j]
@@ -107,6 +106,7 @@ for i in range(1, 53):
         for key in all_fpogx:
             all_fpogx[key] = numpy.mean(all_fpogx[key])
             all_fpogy[key] = numpy.mean(all_fpogy[key])
+            all_fpogd[key] = numpy.mean(all_fpogd[key])
             all_rpd[key] = numpy.mean(all_rpd[key])
             all_lpd[key] = numpy.mean(all_lpd[key])
 
@@ -115,6 +115,7 @@ for i in range(1, 53):
                 if int(key1) == int(key2):
                     fpogx_list.append(all_fpogx[key2])
                     fpogy_list.append(all_fpogy[key2])
+                    fpogd_list.append(all_fpogd[key2])
                     rpd_list.append(all_rpd[key2])
                     lpd_list.append(all_lpd[key2])
                     media_list.append(all_media_name[key2])
@@ -173,6 +174,7 @@ for i in range(1, 53):
         sync_dataframe['totalPower'] = reduced_totPwr
         sync_dataframe['FPOGX'] = fpogx_list
         sync_dataframe['FPOGY'] = fpogy_list
+        sync_dataframe['FPOGD'] = fpogd_list
         sync_dataframe['RPD'] = rpd_list
         sync_dataframe['LPD'] = lpd_list
 
