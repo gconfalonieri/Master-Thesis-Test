@@ -21,4 +21,5 @@ gaze_features = ['FPOGX', 'FPOGY', 'FPOGD', 'RPD', 'LPD']
 
 [preprocessing]
 interpolation_kind = 'linear'
+sync_normalization = true
 resample_library = 'sklearn'

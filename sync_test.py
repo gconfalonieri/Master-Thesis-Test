@@ -1,10 +1,10 @@
 from datetime import datetime
+from sklearn.preprocessing import normalize
 
 import numpy
 import pandas as pd
 import toml
-import matplotlib.pyplot as plt
-import labelling.utilities
+
 
 def get_dict_start_seconds(user_id, data_type):
 
@@ -160,6 +160,22 @@ for i in range(1, 53):
 
         # for value in reduced_delta:
         #    delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
+
+        if config['preprocessing']['sync_normalization']:
+            reduced_delta = normalize([reduced_delta])
+            reduced_alpha_1 = normalize([reduced_alpha_1])
+            reduced_alpha_2 = normalize([reduced_alpha_2])
+            reduced_beta1 = normalize([reduced_beta1])
+            reduced_beta2 = normalize([reduced_beta2])
+            reduced_gamma1 = normalize([reduced_gamma1])
+            reduced_gamma2 = normalize([reduced_gamma2])
+            reduced_theta = normalize([reduced_theta])
+            reduced_totPwr = normalize([reduced_totPwr])
+            fpogx_list = normalize([fpogx_list])
+            fpogy_list = normalize([fpogy_list])
+            fpogd_list = normalize([fpogd_list])
+            rpd_list = normalize([rpd_list])
+            lpd_list = normalize([lpd_list])
 
         sync_dataframe['user_id'] = user_id_list
         sync_dataframe['media_name'] = media_list
