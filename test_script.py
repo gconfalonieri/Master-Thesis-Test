@@ -13,8 +13,8 @@ accuracy_list = []
 complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
 
-# complete_x_list = np.expand_dims(complete_x_list, 2)
-# complete_y_list = np.expand_dims(complete_y_list, 2)
+complete_x_list = np.expand_dims(complete_x_list, 2)
+complete_y_list = np.expand_dims(complete_y_list, 2)
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
@@ -31,9 +31,9 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = models.deep_learning_models.get_model_2x_cnn1d_lstm()
+model = models.deep_learning_models.get_model_cnn2d_lstm()
 
-history = model.fit(X_train, y_train, epochs=50, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
 history_dict = history.history
 

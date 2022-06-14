@@ -20,4 +20,4 @@ eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
 gaze_features = ['FPOGX', 'FPOGY', 'FPOGD', 'RPD', 'LPD']
 
 [preprocessing]
-resample_library = 'scipy'
+resample_library = 'sklearn'

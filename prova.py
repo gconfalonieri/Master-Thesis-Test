@@ -1,34 +1,60 @@
-import numpy
-import toml
-from numpy import load
-from sklearn.model_selection import train_test_split
-
-import models.utilities
+import matplotlib.pyplot as plt
+import scipy.signal
+import sklearn
+from scipy import interpolate
 import numpy as np
-import pandas as pd
 
-config = toml.load('config.toml')
-path_labelled_df = config['path']['labelled_dataset']
+import numpy.fft as fft
 
-# save numpy array as npy file
-# all_windowed_array_data = load('all_windowed_array_data.npy', allow_pickle=True)
-# all_windowed_array_labels = load('all_windowed_array_labels.npy')
 
-complete_x_list = models.utilities.get_user_windowed_array(2)[0]
-complete_y_list = models.utilities.get_user_windowed_array(2)[1]
+import models
 
-print("# TRAIN SERIES #")
+def first_test():
+    original_list = models.utilities.get_questions_array()
+    time_original = np.arange(0, len(original_list[0][0]))
+    complete_x_list = models.utilities.get_questions_oversampled_array()
+    time = np.arange(0, len(complete_x_list[0][0]))
+    spectrum_orig = fft.fft(original_list)
+    freq_orig = fft.fftfreq(len(spectrum_orig))
+    spectrum = fft.fft(complete_x_list)
+    freq = fft.fftfreq(len(spectrum))
+    plt.plot(freq_orig, abs(spectrum_orig), '-b', freq, abs(spectrum), '-r')
+    plt.show()
+    print(np.mean(original_list[0][0]))
+    print(np.mean(complete_x_list[0][0]))
+    print(np.std(original_list[0][0]))
+    print(np.std(complete_x_list[0][0]))
+    plt.plot(time_original, original_list[0][0], '-b', time, complete_x_list[0][0], '-r')
+    plt.savefig('overlapped.png')
+    plt.plot(time_original, original_list[0][0], '-b')
+    plt.savefig('original.png')
+    plt.plot(time, complete_x_list[0][0], '-r')
+    plt.savefig('new.png')
 
-print(complete_x_list.shape)
-print(type(complete_x_list))
-print(complete_x_list[0].shape)
-print(type(complete_x_list[0]))
-print(complete_x_list[0][0].shape)
-print(type(complete_x_list[0][0]))
-print(type(complete_x_list[0][0][0]))
 
-print("# TRAIN LABELS #")
-print(complete_y_list.shape)
-print(type(complete_y_list))
-print(complete_y_list[0].shape)
-print(type(complete_y_list[0]))
+def second_test():
+
+    time_original = np.arange(0, 53)
+    original_list = np.sin(time_original)
+    time = np.arange(0, 265)
+    complete_x_list = sklearn.utils.resample(original_list, n_samples=265, stratify=original_list)
+    # complete_x_list = scipy.signal.resample(original_list, 265)
+    spectrum_orig = fft.fft(original_list)
+    freq_orig = fft.fftfreq(len(spectrum_orig))
+    spectrum = fft.fft(complete_x_list)
+    freq = fft.fftfreq(len(spectrum))
+    plt.plot(freq_orig, abs(spectrum_orig), '-b', freq, abs(spectrum), '-r')
+    plt.show()
+    print(complete_x_list.shape)
+    print(np.mean(original_list))
+    print(np.mean(complete_x_list))
+    print(np.std(original_list))
+    print(np.std(complete_x_list))
+    plt.plot(time_original, original_list, '-b', time, complete_x_list, '-r')
+    plt.savefig('overlapped.png')
+    plt.plot(time_original, original_list, '-b')
+    plt.savefig('original.png')
+    plt.plot(time, complete_x_list, '-r')
+    plt.savefig('new.png')
+
+second_test()
