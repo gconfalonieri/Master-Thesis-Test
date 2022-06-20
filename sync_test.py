@@ -5,9 +5,18 @@ import numpy
 import pandas as pd
 import toml
 
+def normalize_in_range(arr, t_min, t_max):
+    norm_arr = []
+    diff = t_max - t_min
+    diff_arr = max(arr) - min(arr)
+    for i in arr:
+        temp = (((i - min(arr)) * diff) / diff_arr) + t_min
+        # temp = (i - min(arr)) / diff_arr
+        norm_arr.append(temp)
+    return norm_arr
+
 
 def get_dict_start_seconds(user_id, data_type):
-
     path = ""
 
     if data_type == 'eye':
@@ -27,6 +36,8 @@ def get_dict_start_seconds(user_id, data_type):
 
 config = toml.load('config.toml')
 
+min_norm_value = config['preprocessing']['min_normalization']
+max_norm_value = config['preprocessing']['max_normalization']
 
 for i in range(1, 53):
     user_id = 'USER_' + str(i)
@@ -134,8 +145,6 @@ for i in range(1, 53):
         reduced_theta = []
         reduced_totPwr = []
 
-
-
         for j in range(0, len(fpogx_list)):
             reduced_eeg_time.append(round((eeg_time[j] - start_eeg), 1))
             reduced_alpha_1.append(df_eeg[' Alpha1'][j])
@@ -150,8 +159,9 @@ for i in range(1, 53):
 
         # save dataframe
 
-        sync_dataframe = pd.DataFrame(columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2',
-                                               'gamma1', 'gamma2', 'theta', 'totalPower', 'FPOGX', 'FPOGY'])
+        sync_dataframe = pd.DataFrame(
+            columns=['time', 'user_id', 'media_name', 'delta', 'alpha1', 'alpha2', 'beta1', 'beta2',
+                     'gamma1', 'gamma2', 'theta', 'totalPower', 'FPOGX', 'FPOGY'])
 
         sync_dataframe['time'] = reduced_eeg_time
 
@@ -162,20 +172,20 @@ for i in range(1, 53):
         #    delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
 
         if config['preprocessing']['sync_normalization']:
-            reduced_delta = normalize([reduced_delta])
-            reduced_alpha_1 = normalize([reduced_alpha_1])
-            reduced_alpha_2 = normalize([reduced_alpha_2])
-            reduced_beta1 = normalize([reduced_beta1])
-            reduced_beta2 = normalize([reduced_beta2])
-            reduced_gamma1 = normalize([reduced_gamma1])
-            reduced_gamma2 = normalize([reduced_gamma2])
-            reduced_theta = normalize([reduced_theta])
-            reduced_totPwr = normalize([reduced_totPwr])
-            fpogx_list = normalize([fpogx_list])
-            fpogy_list = normalize([fpogy_list])
-            fpogd_list = normalize([fpogd_list])
-            rpd_list = normalize([rpd_list])
-            lpd_list = normalize([lpd_list])
+            reduced_delta = normalize_in_range(reduced_delta, min_norm_value, max_norm_value)
+            reduced_alpha_1 = normalize_in_range(reduced_alpha_1, min_norm_value, max_norm_value)
+            reduced_alpha_2 = normalize_in_range(reduced_alpha_2, min_norm_value, max_norm_value)
+            reduced_beta1 = normalize_in_range(reduced_beta1, min_norm_value, max_norm_value)
+            reduced_beta2 = normalize_in_range(reduced_beta2, min_norm_value, max_norm_value)
+            reduced_gamma1 = normalize_in_range(reduced_gamma1, min_norm_value, max_norm_value)
+            reduced_gamma2 = normalize_in_range(reduced_gamma2, min_norm_value, max_norm_value)
+            reduced_theta = normalize_in_range(reduced_theta, min_norm_value, max_norm_value)
+            reduced_totPwr = normalize_in_range(reduced_totPwr, min_norm_value, max_norm_value)
+            fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
+            fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
+            fpogd_list = normalize_in_range(fpogd_list, min_norm_value, max_norm_value)
+            rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
+            lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
 
         sync_dataframe['user_id'] = user_id_list
         sync_dataframe['media_name'] = media_list
@@ -194,7 +204,7 @@ for i in range(1, 53):
         sync_dataframe['RPD'] = rpd_list
         sync_dataframe['LPD'] = lpd_list
 
-        sync_dataframe.to_csv('datasets/sync_datasets/sync_dataset_user_' + str(i) + '.csv', index=False)
+        sync_dataframe.to_csv(config['path']['sync_prefix'] + 'sync_dataset_user_' + str(i) + '.csv', index=False)
 
         print(user_id + " DONE")
 

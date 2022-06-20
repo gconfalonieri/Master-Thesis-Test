@@ -5,7 +5,6 @@ import numpy as np
 import scipy.signal
 import sklearn.utils
 from scipy.interpolate import interp1d
-import matplotlib.pyplot as plt
 
 config = toml.load('config.toml')
 
@@ -17,7 +16,7 @@ def get_max_series_len():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -36,7 +35,7 @@ def get_min_series_len():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -56,7 +55,7 @@ def get_max_series_df():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -77,7 +76,7 @@ def get_users_array():
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
             user_list = []
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -100,13 +99,13 @@ def get_users_padded_array():
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
             user_list = []
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 question_list = []
-                for f in config['algorithm']['eeg_features']:
+                for f in config['algorithm']['gaze_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
                     padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='mean')
@@ -126,7 +125,7 @@ def get_users_oversampled_array():
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
             user_list = []
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -155,7 +154,7 @@ def get_users_undersampled_array():
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
             user_list = []
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -182,7 +181,7 @@ def get_questions_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix']+ 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -204,13 +203,13 @@ def get_questions_padded_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for f in config['algorithm']['eeg_features']:
+                for f in config['algorithm']['gaze_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
                     padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
@@ -229,7 +228,7 @@ def get_questions_oversampled_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -257,7 +256,7 @@ def get_questions_interpolation_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -284,7 +283,7 @@ def get_questions_undersampled_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
@@ -352,7 +351,7 @@ def get_all_windowed_array():
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
         if i not in config['general']['excluded_users']:
-            path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             for f in config['algorithm']['eeg_features']:
                 end_index = - 1
@@ -385,7 +384,7 @@ def get_user_windowed_array(i):
     if i not in config['general']['excluded_users']:
         user_list = []
         user_label_list = []
-        path = 'datasets/sync_datasets/sync_dataset_' + user_id.lower() + '.csv'
+        path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
         df_sync = pd.read_csv(path)
         for f in config['algorithm']['eeg_features']:
             feature_list = []
