@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from numpy import mean, std
 from sklearn.preprocessing import normalize
 
 import numpy
@@ -14,6 +16,25 @@ def normalize_in_range(arr, t_min, t_max):
         # temp = (i - min(arr)) / diff_arr
         norm_arr.append(temp)
     return norm_arr
+
+
+def get_df_no_outliers(arr):
+    new_arr = []
+    count = 0
+    data_mean, data_std = mean(arr), std(arr)
+    cut_off = data_std * 3
+    lower, upper = data_mean - cut_off, data_mean + cut_off
+    for x in arr:
+        if x < lower:
+            new_arr.append(lower)
+            count += 1
+        elif x > upper:
+            new_arr.append(upper)
+            count += 1
+        else:
+            new_arr.append(x)
+    print("Outliers: " + str(count) + " / " + str(len(arr)))
+    return new_arr
 
 
 def get_dict_start_seconds(user_id, data_type):
@@ -172,20 +193,20 @@ for i in range(1, 53):
         #    delta_list.append(round(((value - min_delta) / (max_delta - min_delta)),5))
 
         if config['preprocessing']['sync_normalization']:
-            reduced_delta = normalize_in_range(reduced_delta, min_norm_value, max_norm_value)
-            reduced_alpha_1 = normalize_in_range(reduced_alpha_1, min_norm_value, max_norm_value)
-            reduced_alpha_2 = normalize_in_range(reduced_alpha_2, min_norm_value, max_norm_value)
-            reduced_beta1 = normalize_in_range(reduced_beta1, min_norm_value, max_norm_value)
-            reduced_beta2 = normalize_in_range(reduced_beta2, min_norm_value, max_norm_value)
-            reduced_gamma1 = normalize_in_range(reduced_gamma1, min_norm_value, max_norm_value)
-            reduced_gamma2 = normalize_in_range(reduced_gamma2, min_norm_value, max_norm_value)
-            reduced_theta = normalize_in_range(reduced_theta, min_norm_value, max_norm_value)
-            reduced_totPwr = normalize_in_range(reduced_totPwr, min_norm_value, max_norm_value)
-            fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
-            fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
-            fpogd_list = normalize_in_range(fpogd_list, min_norm_value, max_norm_value)
-            rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
-            lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
+            reduced_delta = normalize_in_range(get_df_no_outliers(reduced_delta), min_norm_value, max_norm_value)
+            reduced_alpha_1 = normalize_in_range(get_df_no_outliers(reduced_alpha_1), min_norm_value, max_norm_value)
+            reduced_alpha_2 = normalize_in_range(get_df_no_outliers(reduced_alpha_2), min_norm_value, max_norm_value)
+            reduced_beta1 = normalize_in_range(get_df_no_outliers(reduced_beta1), min_norm_value, max_norm_value)
+            reduced_beta2 = normalize_in_range(get_df_no_outliers(reduced_beta2), min_norm_value, max_norm_value)
+            reduced_gamma1 = normalize_in_range(get_df_no_outliers(reduced_gamma1), min_norm_value, max_norm_value)
+            reduced_gamma2 = normalize_in_range(get_df_no_outliers(reduced_gamma2), min_norm_value, max_norm_value)
+            reduced_theta = normalize_in_range(get_df_no_outliers(reduced_theta), min_norm_value, max_norm_value)
+            reduced_totPwr = normalize_in_range(get_df_no_outliers(reduced_totPwr), min_norm_value, max_norm_value)
+            fpogx_list = normalize_in_range(get_df_no_outliers(fpogx_list), min_norm_value, max_norm_value)
+            fpogy_list = normalize_in_range(get_df_no_outliers(fpogy_list), min_norm_value, max_norm_value)
+            fpogd_list = normalize_in_range(get_df_no_outliers(fpogd_list), min_norm_value, max_norm_value)
+            rpd_list = normalize_in_range(get_df_no_outliers(rpd_list), min_norm_value, max_norm_value)
+            lpd_list = normalize_in_range(get_df_no_outliers(lpd_list), min_norm_value, max_norm_value)
 
         sync_dataframe['user_id'] = user_id_list
         sync_dataframe['media_name'] = media_list

@@ -105,7 +105,7 @@ def get_users_padded_array():
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 question_list = []
-                for f in config['algorithm']['gaze_features']:
+                for f in config['algorithm']['eeg_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
                     padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='mean')
@@ -209,10 +209,11 @@ def get_questions_padded_array():
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for f in config['algorithm']['gaze_features']:
+                for f in config['algorithm']['eeg_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
-                    padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
+                    # padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
+                    padded_array = np.pad(arr, pad_width=(0, pad_len), mode='constant', constant_values=0)
                     question_list.append(padded_array)
                 complete_x_list.append(question_list)
 
