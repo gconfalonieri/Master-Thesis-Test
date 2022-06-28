@@ -18,8 +18,8 @@ def plot_model_loss(history_dict):
 
 
 def plot_model_accuracy(history_dict):
-    acc = history_dict["accuracy"]
-    val_acc = history_dict["val_accuracy"]
+    acc = history_dict["acc"]
+    val_acc = history_dict["val_acc"]
     epochs = range(1, len(val_acc) + 1)
     plt.plot(epochs, acc, "ro", label="Training acc")
     plt.plot(epochs, val_acc, "b", label="Validation acc")
