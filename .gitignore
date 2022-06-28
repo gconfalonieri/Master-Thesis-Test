@@ -136,3 +136,5 @@ example-test
 model_results
 data1d.npy
 labels1d.npy
+accuracy.png
+loss.png
