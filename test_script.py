@@ -10,13 +10,13 @@ accuracy_list = []
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
 
-# complete_x_list = models.utilities.get_questions_padded_array()
-# complete_y_list = models.utilities.get_labels_questions_array()
-# np.save('data1d.npy', complete_x_list)
-# np.save('labels1d.npy', complete_y_list)
+complete_x_list = models.utilities.get_questions_padded_array()
+complete_y_list = models.utilities.get_labels_questions_array()
+np.save('testx.npy', complete_x_list)
+np.save('testy.npy', complete_y_list)
 
-complete_x_list = np.load('data1d.npy', allow_pickle=True)
-complete_y_list = np.load('labels1d.npy', allow_pickle=True)
+# complete_x_list = np.load('data1d.npy', allow_pickle=True)
+# complete_y_list = np.load('labels1d.npy', allow_pickle=True)
 
 # complete_x_list = np.expand_dims(complete_x_list, 2)
 # complete_y_list = np.expand_dims(complete_y_list, 2)
