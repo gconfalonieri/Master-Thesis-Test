@@ -14,7 +14,7 @@ brainwaves_folder = './datasets/eeg'
 solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
-sync_prefix = './datasets/sync_datasets/undersampled_gaze/'
+sync_prefix = './datasets/sync_datasets/no_norm/'
 
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
