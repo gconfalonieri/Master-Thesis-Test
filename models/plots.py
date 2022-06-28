@@ -1,6 +1,6 @@
 import matplotlib
-from matplotlib import pyplot as plt
 matplotlib.use('Agg')
+from matplotlib import pyplot as plt
 
 def plot_model_loss(history_dict):
 
