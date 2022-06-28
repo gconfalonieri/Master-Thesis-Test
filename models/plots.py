@@ -14,6 +14,7 @@ def plot_model_loss(history_dict):
     plt.ylabel("Loss")
     plt.legend()
     plt.savefig('loss.png')
+    plt.show()
 
 
 def plot_model_accuracy(history_dict):
@@ -27,3 +28,4 @@ def plot_model_accuracy(history_dict):
     plt.ylabel("Accuracy")
     plt.legend()
     plt.savefig('accuracy.png')
+    plt.show()
