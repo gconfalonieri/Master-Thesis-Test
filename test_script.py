@@ -36,9 +36,11 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = models.deep_learning_models.get_model_cnn1d_lstm()
+model = models.deep_learning_models.get_model_cnn1d_lstm(complete_x_list)
 
 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
+
+model.summary()
 
 history_dict = history.history
 
