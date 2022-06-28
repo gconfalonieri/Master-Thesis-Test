@@ -55,7 +55,7 @@ def get_dict_start_seconds(user_id, data_type):
     return seconds
 
 
-config = toml.load('config.toml')
+config = toml.load('../config.toml')
 
 min_norm_value = config['preprocessing']['min_normalization']
 max_norm_value = config['preprocessing']['max_normalization']

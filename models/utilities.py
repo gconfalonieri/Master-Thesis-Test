@@ -21,7 +21,7 @@ def get_max_series_len():
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                curr_len = len(reduced_df['time'])
+                curr_len = len(reduced_df.iloc[:, 0])
                 if curr_len > max_len:
                     max_len = curr_len
 
@@ -209,7 +209,7 @@ def get_questions_padded_array():
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for f in config['algorithm']['eeg_features']:
+                for f in config['algorithm']['gaze_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
                     # padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
