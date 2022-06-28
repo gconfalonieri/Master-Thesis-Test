@@ -13,6 +13,9 @@ accuracy_list = []
 complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
 
+np.save('data1d.npy', complete_x_list)
+np.save('labels1d.npy', complete_y_list)
+
 # complete_x_list = np.expand_dims(complete_x_list, 2)
 # complete_y_list = np.expand_dims(complete_y_list, 2)
 

@@ -134,3 +134,5 @@ dmypy.json
 # Project Folders
 example-test
 model_results
+data1d.npy
+labels1d.npy
