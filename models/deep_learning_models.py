@@ -35,7 +35,6 @@ def get_model_lstm():
 
 def get_model_cnn1d_lstm():
     model = Sequential()
-    model.add(InputLayer(input_shape=(None, 1104, 5)))
     model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
     model.add(MaxPooling1D(pool_size=4, padding='same'))
     model.add(LSTM(32))
