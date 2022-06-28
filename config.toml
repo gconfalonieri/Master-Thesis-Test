@@ -18,7 +18,7 @@ sync_prefix = './datasets/sync_datasets/no_norm/'
 
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
-gaze_features = ['FPOGX', 'FPOGY', 'FPOGD', 'RPD', 'LPD']
+gaze_features = ['FPOGX', 'FPOGY', 'FPOGV', 'RPD', 'LPD']
 
 [preprocessing]
 min_normalization = -1
