@@ -264,7 +264,7 @@ def get_questions_interpolation_array():
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 time = np.asarray(reduced_df['time']).astype('float32')
-                for f in config['algorithm']['eeg_features']:
+                for f in config['algorithm']['gaze_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     new_time = np.linspace(time[0], time[len(time)-1], max_len)
                     interp_funct = interp1d(time, arr, kind=config['preprocessing']['interpolation_kind'])
