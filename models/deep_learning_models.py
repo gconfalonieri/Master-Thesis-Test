@@ -45,8 +45,9 @@ def get_model_cnn1d_lstm(complete_x_list):
     return model
 
 
-def get_model_2x_cnn1d_lstm():
+def get_model_2x_cnn1d_lstm(complete_x_list):
     model = Sequential()
+    model.add(InputLayer(input_shape=complete_x_list[0].shape))
     model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
     model.add(MaxPooling1D(pool_size=4))
     model.add(BatchNormalization())
