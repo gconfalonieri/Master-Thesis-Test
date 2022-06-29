@@ -77,7 +77,7 @@ def get_model_cnn2d(complete_x_list):
     model.add(InputLayer(input_shape=complete_x_list[0].shape))
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))
-    model.add(Dense(3, activation='linear'))
+    model.add(Dense(4, activation='linear'))
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
