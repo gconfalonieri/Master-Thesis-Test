@@ -30,9 +30,7 @@ print("# TRAIN LABELS #")
 print(complete_y_list.shape)
 
 # X_train, X_test, y_train, y_test = train_test_split(np.ones((46 * 24, 2, 100)), np.ones((46 * 24, 1)), test_size=0.2)
-train_set, test_set = train_test_split(complete_x_list, complete_y_list, test_size=0.2, shuffle=True)
-X_train, y_train = train_set
-X_test, y_test = test_set
+X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.2, shuffle=True)
 
 X_train = np.array(X_train).astype(np.float32)
 X_test = np.asarray(X_test).astype(np.float32)
