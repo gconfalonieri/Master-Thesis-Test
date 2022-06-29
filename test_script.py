@@ -12,9 +12,9 @@ accuracy_list = []
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
 
-complete_x_list = models.utilities.get_questions_oversampled_array()
+complete_x_list = models.utilities.get_questions_interpolation_array()
 complete_y_list = models.utilities.get_labels_questions_array()
-np.save('oversampled_x_1d.npy', complete_x_list)
+np.save('interpolation_x_1d.npy', complete_x_list)
 np.save('labels_y.npy', complete_y_list)
 
 # complete_x_list = np.load('padded_x_1d.npy', allow_pickle=True)
