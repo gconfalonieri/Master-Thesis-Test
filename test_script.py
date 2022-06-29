@@ -20,8 +20,8 @@ complete_y_list = models.utilities.get_labels_questions_array()
 # complete_x_list = np.load('padded_x_1d.npy', allow_pickle=True)
 # complete_y_list = np.load('labels_y.npy', allow_pickle=True)
 
-# complete_x_list = np.expand_dims(complete_x_list, 2)
-# complete_y_list = np.expand_dims(complete_y_list, 2)
+complete_x_list = np.expand_dims(complete_x_list, 2)
+complete_y_list = np.expand_dims(complete_y_list, 2)
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
