@@ -75,7 +75,7 @@ def get_model_cnn1d_lstm_3x_dense(complete_x_list):
 
 def get_model_cnn2d(complete_x_list):
     model = Sequential()
-    model.add(InputLayer(input_shape=complete_x_list[0].shape))
+    model.add(InputLayer(input_shape=complete_x_list[0][0].shape))
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))
     model.add(Flatten())
