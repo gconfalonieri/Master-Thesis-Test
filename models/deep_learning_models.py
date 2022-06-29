@@ -21,7 +21,6 @@ def get_model_ccn1d(complete_x_list):
     model.add(InputLayer(input_shape=complete_x_list[0].shape))
     model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
     model.add(MaxPooling1D(pool_size=4, padding='same'))
-    model.add(Dense(4, activation='linear'))
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
