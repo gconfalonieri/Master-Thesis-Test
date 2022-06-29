@@ -39,7 +39,7 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_test = to_categorical(y_test)
 
 model = models.deep_learning_models.get_model_ccn1d(complete_x_list)
-name = 'CCN1D_LSTM'
+name = 'CCN1D'
 
 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
