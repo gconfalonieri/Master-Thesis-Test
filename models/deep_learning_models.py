@@ -80,8 +80,9 @@ def get_model_cnn2d():
     return model
 
 
-def get_model_cnn2d_lstm():
+def get_model_cnn2d_lstm(complete_x_list):
     model = Sequential()
+    model.add(InputLayer(input_shape=complete_x_list.shape))
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))
     model.add(Dropout(0.2))

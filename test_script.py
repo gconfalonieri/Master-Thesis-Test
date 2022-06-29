@@ -12,7 +12,7 @@ accuracy_list = []
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
 
-complete_x_list = models.utilities.get_questions_oversampled_array()
+complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
 # np.save('interpolation_x_1d.npy', complete_x_list)
 # np.save('labels_y.npy', complete_y_list)
@@ -38,8 +38,8 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = models.deep_learning_models.get_model_2x_cnn1d_lstm(complete_x_list)
-name = '2CCN1D_LSTM'
+model = models.deep_learning_models.get_model_cnn2d_lstm(complete_x_list)
+name = 'CCN2D_LSTM'
 
 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
