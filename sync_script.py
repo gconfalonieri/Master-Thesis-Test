@@ -54,7 +54,7 @@ def undersample_gaze_df():
 for i in range(1, 53):
     user_id = 'USER_' + str(i)
     if i not in config['general']['excluded_users']:
-        df_gaze = pd.read_csv('datasets/eye-tracker/User ' + str(i) + '_all_gaze.csv')
+        df_gaze = pd.read_csv('datasets/sync_datasets/undersampled_gaze/User ' + str(i) + '_all_gaze_undersampled.csv')
         df_eeg = pd.read_csv('datasets/eeg/eeg_user_' + str(i) + '.csv')
         start_eye = get_dict_start_seconds(user_id, 'eye')
         start_eeg = get_dict_start_seconds(user_id, 'eeg')

@@ -14,8 +14,8 @@ accuracy_list = []
 
 complete_x_list = models.utilities.get_questions_padded_array()
 complete_y_list = models.utilities.get_labels_questions_array()
-np.save('testx.npy', complete_x_list)
-np.save('testy.npy', complete_y_list)
+np.save('padded_x_1d.npy', complete_x_list)
+np.save('labels_y.npy', complete_y_list)
 
 # complete_x_list = np.load('data1d.npy', allow_pickle=True)
 # complete_y_list = np.load('labels1d.npy', allow_pickle=True)
@@ -39,16 +39,17 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_test = to_categorical(y_test)
 
 model = models.deep_learning_models.get_model_cnn1d_lstm(complete_x_list)
+name = 'CCN1D_LSTM'
 
-history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test))
 
 model.summary()
 
 history_dict = history.history
 
-models.plots.plot_model_loss(history_dict)
+models.plots.plot_model_loss(history_dict, name)
 plt.clf()
-models.plots.plot_model_accuracy(history_dict)
+models.plots.plot_model_accuracy(history_dict, name)
 
 results = model.evaluate(X_test, y_test)
 

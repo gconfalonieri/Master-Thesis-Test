@@ -134,7 +134,12 @@ dmypy.json
 # Project Folders
 example-test
 model_results
-data1d.npy
-labels1d.npy
+padded_x_1d.npy
+oversampled_x_1d.npy
+labels_y.npy
 accuracy.png
 loss.png
+data1d.npy
+labels1d.npy
+testx.npy
+testy.npy
