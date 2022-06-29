@@ -20,8 +20,8 @@ complete_y_list = models.utilities.get_labels_questions_array()
 # complete_x_list = np.load('padded_x_1d.npy', allow_pickle=True)
 # complete_y_list = np.load('labels_y.npy', allow_pickle=True)
 
-complete_x_list = np.expand_dims(complete_x_list, 2)
-complete_y_list = np.expand_dims(complete_y_list, 2)
+# complete_x_list = np.expand_dims(complete_x_list, 2)
+# complete_y_list = np.expand_dims(complete_y_list, 2)
 
 print("# TRAIN SERIES #")
 print(complete_x_list.shape)
@@ -38,8 +38,8 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = models.deep_learning_models.get_model_cnn2d(complete_x_list)
-name = 'CNN2D'
+model = models.deep_learning_models.get_model_ccn1d(complete_x_list)
+name = 'CNN1D'
 
 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
