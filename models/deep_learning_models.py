@@ -78,6 +78,7 @@ def get_model_cnn2d(complete_x_list):
     model.add(InputLayer(input_shape=complete_x_list[0].shape))
     model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=3, padding='same'))
+    model.add(Dropout(0.2))
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
@@ -90,7 +91,7 @@ def get_model_cnn2d_lstm(complete_x_list):
     model.add(MaxPooling2D(pool_size=3, padding='same'))
     model.add(Dropout(0.2))
     model.add(TimeDistributed(Flatten()))
-    model.add(LSTM(32, return_sequences=False))
+    model.add(LSTM(32))
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
