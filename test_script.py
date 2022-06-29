@@ -12,13 +12,13 @@ accuracy_list = []
 # complete_x_list = numpy.load('datasets/numpy_arrays/all_windowed_array_data.npy', allow_pickle=True)
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
 
-complete_x_list = models.utilities.get_questions_padded_array()
-complete_y_list = models.utilities.get_labels_questions_array()
-np.save('padded_x_1d.npy', complete_x_list)
-np.save('labels_y.npy', complete_y_list)
+# complete_x_list = models.utilities.get_questions_padded_array()
+# complete_y_list = models.utilities.get_labels_questions_array()
+# np.save('padded_x_1d.npy', complete_x_list)
+# np.save('labels_y.npy', complete_y_list)
 
-# complete_x_list = np.load('data1d.npy', allow_pickle=True)
-# complete_y_list = np.load('labels1d.npy', allow_pickle=True)
+complete_x_list = np.load('padded_x_1d.npy', allow_pickle=True)
+complete_y_list = np.load('labels_y.npy', allow_pickle=True)
 
 # complete_x_list = np.expand_dims(complete_x_list, 2)
 # complete_y_list = np.expand_dims(complete_y_list, 2)
@@ -38,7 +38,7 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
-model = models.deep_learning_models.get_model_cnn1d_lstm(complete_x_list)
+model = models.deep_learning_models.get_model_ccn1d(complete_x_list)
 name = 'CCN1D_LSTM'
 
 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))

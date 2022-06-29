@@ -23,7 +23,7 @@ def plot_model_accuracy(history_dict, name):
     epochs = range(1, len(val_acc) + 1)
     plt.plot(epochs, acc, "ro", label="Training acc")
     plt.plot(epochs, val_acc, "b", label="Validation acc")
-    plt.title("ACCURACY - ")
+    plt.title("ACCURACY - " + name)
     plt.xlabel("Epochs")
     plt.ylabel("Accuracy")
     plt.legend()
