@@ -92,7 +92,6 @@ def get_model_cnn2d_lstm(complete_x_list):
     model.add(Dropout(0.2))
     model.add(TimeDistributed(Flatten()))
     model.add(LSTM(32))
-    model.add(Flatten())
     model.add(Dense(1, activation='linear'))
     model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
     return model
