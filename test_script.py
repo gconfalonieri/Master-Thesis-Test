@@ -1,3 +1,5 @@
+import os
+
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
@@ -5,6 +7,8 @@ import models.utilities
 import models.deep_learning_models
 from sklearn.model_selection import train_test_split
 import numpy as np
+
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 loss_list = []
 accuracy_list = []
