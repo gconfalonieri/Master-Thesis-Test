@@ -69,6 +69,7 @@ for i in range(1, 53):
         if config['preprocessing']['sync_normalization']:
             fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
             fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
+            fpogv_list = normalize_in_range(fpogv_list, min_norm_value, max_norm_value)
             rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
             lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
 
