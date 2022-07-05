@@ -115,7 +115,7 @@ for label_array in config['path']['labels_arrays']:
                                                        loss_type, optimizer_type, dense_input,
                                                        '',
                                                        '',
-                                                       dense_output_activation, 'NULL',
+                                                       dense_output_activation, '',
                                                        n_cnn_filters,
                                                        cnn_kernel_size, cnn_pool_size, 1,
                                                        dropout_value)
