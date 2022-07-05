@@ -19,6 +19,17 @@ def normalize_in_range(arr, t_min, t_max):
     return norm_arr
 
 
+def normalize_in_range_int(arr, t_min, t_max):
+    norm_arr = []
+    diff = t_max - t_min
+    diff_arr = max(arr) - min(arr)
+    for i in arr:
+        temp = (((i - min(arr)) * diff) / diff_arr) + t_min
+        # temp = (i - min(arr)) / diff_arr
+        norm_arr.append(int(temp))
+    return norm_arr
+
+
 def get_dict_start_seconds(user_id, data_type):
     path = ""
 
@@ -54,7 +65,7 @@ def undersample_gaze_df():
 for i in range(1, 53):
     user_id = 'USER_' + str(i)
     if i not in config['general']['excluded_users']:
-        df_gaze = pd.read_csv('datasets/sync_datasets/undersampled_gaze/User ' + str(i) + '_all_gaze_undersampled.csv')
+        df_gaze = pd.read_csv('./datasets/sync_datasets/undersampled/undersampled_gaze/User ' + str(i) + '_all_gaze_undersampled.csv')
         df_eeg = pd.read_csv('datasets/eeg/eeg_user_' + str(i) + '.csv')
         start_eye = get_dict_start_seconds(user_id, 'eye')
         start_eeg = get_dict_start_seconds(user_id, 'eeg')
@@ -69,7 +80,7 @@ for i in range(1, 53):
         if config['preprocessing']['sync_normalization']:
             fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
             fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
-            fpogv_list = normalize_in_range(fpogv_list, min_norm_value, max_norm_value)
+            fpogv_list = normalize_in_range_int(fpogv_list, min_norm_value, max_norm_value)
             rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
             lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
 

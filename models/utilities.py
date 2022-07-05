@@ -187,8 +187,9 @@ def get_questions_array():
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for f in config['algorithm']['eeg_features']:
-                    question_list.append(np.asarray(reduced_df[f]).astype('float32'))
+                for f in config['algorithm']['gaze_features']:
+                    arr = np.asarray(reduced_df[f]).astype('float32')
+                    question_list.append(arr)
                 complete_x_list.append(question_list)
 
     return np.array(complete_x_list, dtype=np.ndarray)

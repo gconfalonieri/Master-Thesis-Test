@@ -28,12 +28,11 @@ def get_model_ccn1d():
     return model
 
 
-def get_model_lstm(complete_x_list):
+def get_model_lstm(n_lstm_units, dense_activation, loss_type, optimizer_type):
     model = Sequential()
-    model.add(InputLayer(input_shape=complete_x_list[0].shape))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    model.add(LSTM(n_lstm_units))
+    model.add(Dense(1, activation=dense_activation))
+    model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
 

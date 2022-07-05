@@ -144,3 +144,4 @@ data1d.npy
 labels1d.npy
 testx.npy
 testy.npy
+datasets/arrays/undersampled/*
