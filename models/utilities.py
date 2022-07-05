@@ -213,8 +213,8 @@ def get_questions_padded_array():
                 for f in config['algorithm']['gaze_features']:
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     pad_len = max_len - len(arr)
-                    # padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
-                    padded_array = np.pad(arr, pad_width=(0, pad_len), mode='constant', constant_values=0)
+                    padded_array = np.pad(arr, pad_width=(pad_len, 0), mode='constant', constant_values=0)
+                    # padded_array = np.pad(arr, pad_width=(0, pad_len), mode='constant', constant_values=0)
                     question_list.append(padded_array)
                 complete_x_list.append(question_list)
 
