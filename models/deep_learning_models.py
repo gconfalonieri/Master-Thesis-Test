@@ -8,12 +8,14 @@ from keras.layers import Conv1D, MaxPooling1D, Dense, LSTM, BatchNormalization, 
 # filters = 32 / altri valori
 # In tutti i casi dense a inizio e fine
 
-def get_model_ccn1d(dense_input, dense_input_activation, dense_output_activation,
-                    n_cnn_filters, cnn_kernel_size, loss_type, optimizer_type, dropout, dropout_value):
+def get_model_ccn1d(dense_input, dense_input_dim, dense_input_activation, dense_output_activation,
+                    n_cnn_filters, cnn_kernel_size, cnn_pool_size, loss_type, optimizer_type,
+                    dropout, dropout_value):
     model = Sequential()
-    model.add(Dense(dense_input, activation=dense_input_activation))
+    if dense_input:
+        model.add(Dense(dense_input_dim, activation=dense_input_activation))
     model.add(Conv1D(filters=n_cnn_filters, kernel_size=cnn_kernel_size, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
-    model.add(MaxPooling1D(pool_size=4, padding='same'))
+    model.add(MaxPooling1D(pool_size=cnn_pool_size, padding='same'))
     if dropout:
         model.add(Dropout(dropout_value))
     model.add(Dense(1, dense_output_activation))
@@ -21,10 +23,11 @@ def get_model_ccn1d(dense_input, dense_input_activation, dense_output_activation
     return model
 
 
-def get_model_lstm(dense_input, dense_input_activation, dense_output_activation, n_lstm_units,
+def get_model_lstm(dense_input, dense_input_dim, dense_input_activation, dense_output_activation, n_lstm_units,
                    loss_type, optimizer_type, dropout, dropout_value):
     model = Sequential()
-    model.add(Dense(dense_input, activation=dense_input_activation))
+    if dense_input:
+        model.add(Dense(dense_input_dim, activation=dense_input_activation))
     model.add(LSTM(n_lstm_units))
     if dropout:
         model.add(Dropout(dropout_value))
@@ -33,14 +36,19 @@ def get_model_lstm(dense_input, dense_input_activation, dense_output_activation,
     return model
 
 
-def get_model_cnn1d_lstm(complete_x_list):
+def get_model_cnn1d_lstm(dense_input, dense_input_dim,
+                         dense_input_activation, dense_output_activation, n_cnn_filters, cnn_kernel_size,
+                         cnn_pool_size, n_lstm_units, loss_type, optimizer_type, dropout, dropout_value):
     model = Sequential()
-    model.add(InputLayer(input_shape=complete_x_list[0].shape))
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
-    model.add(MaxPooling1D(pool_size=4, padding='same'))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    if dense_input:
+        model.add(Dense(dense_input_dim, activation=dense_input_activation))
+    model.add(Conv1D(filters=n_cnn_filters, kernel_size=cnn_kernel_size, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
+    model.add(MaxPooling1D(pool_size=cnn_pool_size, padding='same'))
+    if dropout:
+        model.add(Dropout(dropout_value))
+    model.add(LSTM(n_lstm_units))
+    model.add(Dense(1, activation=dense_output_activation))
+    model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
 
@@ -69,23 +77,31 @@ def get_model_cnn1d_lstm_3x_dense():
     return model
 
 
-def get_model_cnn2d():
+def get_model_cnn2d(dense_input, dense_input_dim, dense_input_activation, dense_output_activation,
+                    n_cnn_filters, cnn_kernel_size, cnn_pool_size, loss_type, optimizer_type, dropout, dropout_value):
     model = Sequential()
-    model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
-    model.add(MaxPooling2D(pool_size=3, padding='same'))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    if dense_input:
+        model.add(Dense(dense_input_dim, activation=dense_input_activation))
+    model.add(Conv2D(filters=n_cnn_filters, kernel_size=cnn_kernel_size, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
+    model.add(MaxPooling2D(pool_size=cnn_pool_size, padding='same'))
+    if dropout:
+        model.add(Dropout(dropout_value))
+    model.add(Dense(1, activation=dense_output_activation))
+    model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
 
-def get_model_cnn2d_lstm():
+def get_model_cnn2d_lstm(dense_input, dense_input_dim, dense_input_activation, dense_output_activation,
+                         n_cnn_filters, cnn_kernel_size, cnn_pool_size, n_lstm_units, loss_type, optimizer_type, dropout_value):
     model = Sequential()
-    model.add(Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
-    model.add(MaxPooling2D(pool_size=3, padding='same'))
-    model.add(Dropout(0.2))
+    if dense_input:
+        model.add(Dense(dense_input_dim, activation=dense_input_activation))
+    model.add(Conv2D(filters=n_cnn_filters, kernel_size=cnn_kernel_size, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
+    model.add(MaxPooling2D(pool_size=cnn_pool_size, padding='same'))
+    model.add(Dropout(dropout_value))
     model.add(TimeDistributed(Flatten()))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    model.add(LSTM(n_lstm_units))
+    model.add(Dense(1, activation=dense_output_activation))
+    model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
