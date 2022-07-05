@@ -8,30 +8,27 @@ from keras.layers import Conv1D, MaxPooling1D, Dense, LSTM, BatchNormalization, 
 # filters = 32 / altri valori
 # In tutti i casi dense a inizio e fine
 
-def get_model_dense_cnn1d_lstm():
+def get_model_ccn1d(dense_input, dense_input_activation, dense_output_activation,
+                    n_cnn_filters, cnn_kernel_size, loss_type, optimizer_type, dropout, dropout_value):
     model = Sequential()
-    model.add(Dense(1, activation='relu'))
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))
+    model.add(Dense(dense_input, activation=dense_input_activation))
+    model.add(Conv1D(filters=n_cnn_filters, kernel_size=cnn_kernel_size, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
     model.add(MaxPooling1D(pool_size=4, padding='same'))
-    model.add(LSTM(32))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
-    return model
-
-def get_model_ccn1d():
-    model = Sequential()
-    # Dense da mettere
-    model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu', kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01)))
-    model.add(MaxPooling1D(pool_size=4, padding='same'))
-    model.add(Dense(1, activation='linear'))
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    if dropout:
+        model.add(Dropout(dropout_value))
+    model.add(Dense(1, dense_output_activation))
+    model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
 
-def get_model_lstm(n_lstm_units, dense_activation, loss_type, optimizer_type):
+def get_model_lstm(dense_input, dense_input_activation, dense_output_activation, n_lstm_units,
+                   loss_type, optimizer_type, dropout, dropout_value):
     model = Sequential()
+    model.add(Dense(dense_input, activation=dense_input_activation))
     model.add(LSTM(n_lstm_units))
-    model.add(Dense(1, activation=dense_activation))
+    if dropout:
+        model.add(Dropout(dropout_value))
+    model.add(Dense(1, activation=dense_output_activation))
     model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model
 
