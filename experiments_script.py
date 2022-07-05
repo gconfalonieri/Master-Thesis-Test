@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import toml
+from sklearn.model_selection import train_test_split
+
 import models.deep_learning_models as dl_models
 
 import models.deep_learning_models
@@ -13,7 +15,7 @@ f.write('index,model,label,input,loss_type,optimizer_type,dense_input,dense_inpu
 f.close()
 
 f1 = open('performaces.csv', 'w')
-f1.write('index,acc,val_acc,loss,val_loss')
+f1.write('index,acc,val_acc,loss,val_loss\n')
 f1.close()
 
 def write_line(c, model, label_name, input_name, loss_type, optimizer_type, dense_input, dense_input_dim,
@@ -56,6 +58,15 @@ for label_array in config['path']['labels_arrays']:
             for optimizer_type in config['algorithm']['optimizer_types']:
 
                 # CNN 1D
+
+                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                    complete_y_list,
+                                                                    test_size=0.2,
+                                                                    shuffle=True)
+
+                X_train = np.array(X_train).astype(np.float32)
+                X_test = np.asarray(X_test).astype(np.float32)
+
                 for dense_output_activation in config['algorithm']['activation_types']:
                     for n_cnn_filters in config['algorithm']['n_cnn_filters']:
                         for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
@@ -65,6 +76,7 @@ for label_array in config['path']['labels_arrays']:
                                         if dense_input:
                                             for dense_input_dim in config['algorithm']['dense_input_dim']:
                                                 for dense_input_activation in config['algorithm']['activation_types']:
+
                                                     model = dl_models.get_model_ccn1d(dense_input, dense_input_dim,
                                                                                       dense_input_activation,
                                                                                       dense_output_activation,
@@ -82,6 +94,16 @@ for label_array in config['path']['labels_arrays']:
                                                                cnn_kernel_size, cnn_pool_size, 1,
                                                                dropout_value)
 
+                                                    history = model.fit(X_train, y_train, epochs=100,
+                                                                        validation_data=(X_test, y_test))
+
+                                                    history_dict = history.history
+
+                                                    write_line_2(c, history_dict['accuracy'][-1],
+                                                               history_dict['val_accuracy'][-1],
+                                                               history_dict['loss'][-1],
+                                                               history_dict['val_loss'][-1])
+
                                                     c += 1
                                         else:
                                             model = dl_models.get_model_ccn1d(dense_input, 0, '',
@@ -98,9 +120,28 @@ for label_array in config['path']['labels_arrays']:
                                                        cnn_kernel_size, cnn_pool_size, 1,
                                                        dropout_value)
 
+                                            history = model.fit(X_train, y_train, epochs=100,
+                                                                validation_data=(X_test, y_test))
+
+                                            history_dict = history.history
+
+                                            write_line_2(c, history_dict['accuracy'][-1],
+                                                       history_dict['val_accuracy'][-1],
+                                                       history_dict['loss'][-1],
+                                                       history_dict['val_loss'][-1])
+
                                             c += 1
 
                 # LSTM
+
+                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                    complete_y_list,
+                                                                    test_size=0.2,
+                                                                    shuffle=True)
+
+                X_train = np.array(X_train).astype(np.float32)
+                X_test = np.asarray(X_test).astype(np.float32)
+
                 for dense_output_activation in config['algorithm']['activation_types']:
                     for n_lstm_units in config['algorithm']['n_lstm_units']:
                         for dropout_value in config['algorithm']['dropout_value']:
@@ -123,6 +164,16 @@ for label_array in config['path']['labels_arrays']:
                                                        '', '', 1,
                                                        dropout_value)
 
+                                            history = model.fit(X_train, y_train, epochs=100,
+                                                                validation_data=(X_test, y_test))
+
+                                            history_dict = history.history
+
+                                            write_line_2(c, history_dict['accuracy'][-1],
+                                                       history_dict['val_accuracy'][-1],
+                                                       history_dict['loss'][-1],
+                                                       history_dict['val_loss'][-1])
+
                                             c += 1
                                 else:
                                     model = dl_models.get_model_lstm(dense_input, 0, '',
@@ -135,9 +186,28 @@ for label_array in config['path']['labels_arrays']:
                                                dense_output_activation, n_lstm_units, '', '', '',
                                                1, dropout_value)
 
+                                    history = model.fit(X_train, y_train, epochs=100,
+                                                        validation_data=(X_test, y_test))
+
+                                    history_dict = history.history
+
+                                    write_line_2(c, history_dict['accuracy'][-1],
+                                               history_dict['val_accuracy'][-1],
+                                               history_dict['loss'][-1],
+                                               history_dict['val_loss'][-1])
+
                                     c += 1
 
                 # CNN1D + LSTM
+
+                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                    complete_y_list,
+                                                                    test_size=0.2,
+                                                                    shuffle=True)
+
+                X_train = np.array(X_train).astype(np.float32)
+                X_test = np.asarray(X_test).astype(np.float32)
+
                 for dense_output_activation in config['algorithm']['activation_types']:
                     for n_cnn_filters in config['algorithm']['n_cnn_filters']:
                         for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
@@ -172,6 +242,16 @@ for label_array in config['path']['labels_arrays']:
                                                                    cnn_kernel_size, cnn_pool_size,
                                                                    1, dropout_value)
 
+                                                        history = model.fit(X_train, y_train, epochs=100,
+                                                                            validation_data=(X_test, y_test))
+
+                                                        history_dict = history.history
+
+                                                        write_line_2(c, history_dict['accuracy'][-1],
+                                                                   history_dict['val_accuracy'][-1],
+                                                                   history_dict['loss'][-1],
+                                                                   history_dict['val_loss'][-1])
+
                                                         c += 1
                                             else:
                                                 model = dl_models.get_model_cnn1d_lstm(dense_input, 0, '',
@@ -195,9 +275,31 @@ for label_array in config['path']['labels_arrays']:
                                                            1,
                                                            dropout_value)
 
+                                                history = model.fit(X_train, y_train, epochs=100,
+                                                                    validation_data=(X_test, y_test))
+
+                                                history_dict = history.history
+
+                                                write_line_2(c, history_dict['accuracy'][-1],
+                                                           history_dict['val_accuracy'][-1],
+                                                           history_dict['loss'][-1],
+                                                           history_dict['val_loss'][-1])
+
                                                 c += 1
 
                 # CNN2D
+
+                complete_x_list = np.expand_dims(complete_x_list, 2)
+                complete_y_list = np.expand_dims(complete_y_list, 2)
+
+                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                    complete_y_list,
+                                                                    test_size=0.2,
+                                                                    shuffle=True)
+
+                X_train = np.array(X_train).astype(np.float32)
+                X_test = np.asarray(X_test).astype(np.float32)
+
                 for dense_output_activation in config['algorithm']['activation_types']:
                     for n_cnn_filters in config['algorithm']['n_cnn_filters']:
                         for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
@@ -227,6 +329,16 @@ for label_array in config['path']['labels_arrays']:
                                                                cnn_kernel_size, cnn_pool_size, 1,
                                                                dropout_value)
 
+                                                    history = model.fit(X_train, y_train, epochs=100,
+                                                                        validation_data=(X_test, y_test))
+
+                                                    history_dict = history.history
+
+                                                    write_line_2(c, history_dict['accuracy'][-1],
+                                                               history_dict['val_accuracy'][-1],
+                                                               history_dict['loss'][-1],
+                                                               history_dict['val_loss'][-1])
+
                                                     c += 1
                                         else:
                                             model = dl_models.get_model_cnn2d(dense_input,
@@ -242,7 +354,26 @@ for label_array in config['path']['labels_arrays']:
                                                        cnn_kernel_size, cnn_pool_size, 1,
                                                        dropout_value)
 
+                                            history = model.fit(X_train, y_train, epochs=100,
+                                                                validation_data=(X_test, y_test))
+
+                                            history_dict = history.history
+
+                                            write_line_2(c, history_dict['accuracy'][-1],
+                                                       history_dict['val_accuracy'][-1],
+                                                       history_dict['loss'][-1],
+                                                       history_dict['val_loss'][-1])
+
                 # CNN2D + LSTM
+
+                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                    complete_y_list,
+                                                                    test_size=0.2,
+                                                                    shuffle=True)
+
+                X_train = np.array(X_train).astype(np.float32)
+                X_test = np.asarray(X_test).astype(np.float32)
+
                 for dense_output_activation in config['algorithm']['activation_types']:
                     for n_cnn_filters in config['algorithm']['n_cnn_filters']:
                         for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
@@ -277,6 +408,16 @@ for label_array in config['path']['labels_arrays']:
                                                                    cnn_kernel_size, cnn_pool_size, 1,
                                                                    dropout_value)
 
+                                                        history = model.fit(X_train, y_train, epochs=100,
+                                                                            validation_data=(X_test, y_test))
+
+                                                        history_dict = history.history
+
+                                                        write_line_2(c, history_dict['accuracy'][-1],
+                                                                   history_dict['val_accuracy'][-1],
+                                                                   history_dict['loss'][-1],
+                                                                   history_dict['val_loss'][-1])
+
                                                         c += 1
                                             else:
                                                 model = dl_models.get_model_cnn2d_lstm(dense_input, 0, '',
@@ -293,5 +434,15 @@ for label_array in config['path']['labels_arrays']:
                                                             dense_output_activation, '', n_cnn_filters,
                                                             cnn_kernel_size, cnn_pool_size, 1,
                                                             dropout_value)
+
+                                                history = model.fit(X_train, y_train, epochs=100,
+                                                                    validation_data=(X_test, y_test))
+
+                                                history_dict = history.history
+
+                                                write_line_2(c, history_dict['accuracy'][-1],
+                                                           history_dict['val_accuracy'][-1],
+                                                           history_dict['loss'][-1],
+                                                           history_dict['val_loss'][-1])
 
                                                 c += 1
