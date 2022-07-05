@@ -15,7 +15,7 @@ brainwaves_folder = './datasets/eeg'
 solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
-sync_prefix = 'datasets/sync_datasets/undersampled/norm_0_1/'
+sync_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
 input_arrays = ['datasets/arrays/undersampled/input_1_1_padded_begin.npy',
     'datasets/arrays/undersampled/input_1_1_padded_end.npy',
     'datasets/arrays/undersampled/input_1_1_oversampled.npy',
