@@ -9,19 +9,19 @@ import models.deep_learning_models
 from experiments.utilities import get_input_array_string, get_labels_array_string
 import csv
 
-f = open('results_v2.csv', 'w')
+f = open('results.csv', 'w')
 f.write('index,model,label,input,loss_type,optimizer_type,dense_input,dense_input_dim,dense_input_activation,'
         'dense_output_activation,lstm_units,cnn_fiters,cnn_kernel,cnn_pool_size,dropout,dropout_value\n')
 f.close()
 
-f1 = open('performaces_v2.csv', 'w')
+f1 = open('performances.csv', 'w')
 f1.write('index,acc,val_acc,loss,val_loss\n')
 f1.close()
 
 def write_line(c, model, label_name, input_name, loss_type, optimizer_type, dense_input, dense_input_dim,
                dense_input_activation, dense_output_activation, lstm_cells, n_cnn_filters, cnn_kernel_size,
                cnn_pool_size, dropout, dropout_value):
-    f = open('results_v2.csv', 'a')
+    f = open('results.csv', 'a')
     line = str(c) + ',' + model + ',' + label_name + ',' + input_name \
            + ',' + loss_type + ',' + optimizer_type + ',' + str(dense_input) \
            + ',' + str(dense_input_dim) + ',' + dense_input_activation + ',' \
@@ -33,16 +33,12 @@ def write_line(c, model, label_name, input_name, loss_type, optimizer_type, dens
 
 
 def write_line_2(c, acc, val_acc, loss, val_loss):
-    f1 = open('performaces_v2.csv', 'a')
+    f1 = open('performances.csv', 'a')
     line = str(c) + ',' + str(acc) + ',' + str(val_acc) + ',' + str(loss) + ',' + str(val_loss) + '\n'
     f1.write(line)
     f1.close()
 
 def iterate_cnn1d(c, complete_x_list, complete_y_list):
-    X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.2, shuffle=True)
-
-    X_train = np.array(X_train).astype(np.float32)
-    X_test = np.asarray(X_test).astype(np.float32)
 
     for dense_output_activation in config['algorithm']['activation_types']:
         for n_cnn_filters in config['algorithm']['n_cnn_filters']:
@@ -53,6 +49,14 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                             if dense_input:
                                 for dense_input_dim in config['algorithm']['dense_input_dim']:
                                     for dense_input_activation in config['algorithm']['activation_types']:
+
+                                        X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                            complete_y_list,
+                                                                                            test_size=0.2, shuffle=True)
+
+                                        X_train = np.array(X_train).astype(np.float32)
+                                        X_test = np.asarray(X_test).astype(np.float32)
+
                                         model = dl_models.get_model_ccn1d(dense_input, dense_input_dim,
                                                                           dense_input_activation,
                                                                           dense_output_activation,
@@ -82,6 +86,13 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
 
                                         c += 1
                             else:
+
+                                X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list,
+                                                                                    test_size=0.2, shuffle=True)
+
+                                X_train = np.array(X_train).astype(np.float32)
+                                X_test = np.asarray(X_test).astype(np.float32)
+
                                 model = dl_models.get_model_ccn1d(dense_input, 0, '',
                                                                   dense_output_activation, n_cnn_filters,
                                                                   cnn_kernel_size, cnn_pool_size, loss_type,
@@ -112,14 +123,6 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
 
 def iterate_lstm(c, complete_x_list, complete_y_list):
 
-    X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
-                                                        complete_y_list,
-                                                        test_size=0.2,
-                                                        shuffle=True)
-
-    X_train = np.array(X_train).astype(np.float32)
-    X_test = np.asarray(X_test).astype(np.float32)
-
     for dense_output_activation in config['algorithm']['activation_types']:
         for n_lstm_units in config['algorithm']['n_lstm_units']:
             for dropout_value in config['algorithm']['dropout_value']:
@@ -128,6 +131,14 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                     if dense_input:
                         for dense_input_dim in config['algorithm']['dense_input_dim']:
                             for dense_input_activation in config['algorithm']['activation_types']:
+                                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                    complete_y_list,
+                                                                                    test_size=0.2,
+                                                                                    shuffle=True)
+
+                                X_train = np.array(X_train).astype(np.float32)
+                                X_test = np.asarray(X_test).astype(np.float32)
+
                                 model = dl_models.get_model_lstm(dense_input, dense_input_dim,
                                                                  dense_input_activation,
                                                                  dense_output_activation,
@@ -154,6 +165,15 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
 
                                 c += 1
                     else:
+
+                        X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                            complete_y_list,
+                                                                            test_size=0.2,
+                                                                            shuffle=True)
+
+                        X_train = np.array(X_train).astype(np.float32)
+                        X_test = np.asarray(X_test).astype(np.float32)
+
                         model = dl_models.get_model_lstm(dense_input, 0, '',
                                                          dense_output_activation,
                                                          n_lstm_units, loss_type, optimizer_type, 1,
@@ -180,13 +200,6 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
 
 
 def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
-    X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
-                                                        complete_y_list,
-                                                        test_size=0.2,
-                                                        shuffle=True)
-
-    X_train = np.array(X_train).astype(np.float32)
-    X_test = np.asarray(X_test).astype(np.float32)
 
     for dense_output_activation in config['algorithm']['activation_types']:
         for n_cnn_filters in config['algorithm']['n_cnn_filters']:
@@ -200,6 +213,15 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                     for dense_input_dim in config['algorithm']['dense_input_dim']:
                                         for dense_input_activation in config['algorithm'][
                                             'activation_types']:
+
+                                            X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                                complete_y_list,
+                                                                                                test_size=0.2,
+                                                                                                shuffle=True)
+
+                                            X_train = np.array(X_train).astype(np.float32)
+                                            X_test = np.asarray(X_test).astype(np.float32)
+
                                             model = dl_models.get_model_cnn1d_lstm(dense_input,
                                                                                    dense_input_dim,
                                                                                    dense_input_activation,
@@ -234,6 +256,15 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                             c += 1
                                 else:
+
+                                    X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                        complete_y_list,
+                                                                                        test_size=0.2,
+                                                                                        shuffle=True)
+
+                                    X_train = np.array(X_train).astype(np.float32)
+                                    X_test = np.asarray(X_test).astype(np.float32)
+
                                     model = dl_models.get_model_cnn1d_lstm(dense_input, 0, '',
                                                                            dense_output_activation,
                                                                            n_cnn_filters,
@@ -273,14 +304,6 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
     complete_x_list = np.expand_dims(complete_x_list, 2)
     complete_y_list = np.expand_dims(complete_y_list, 2)
 
-    X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
-                                                        complete_y_list,
-                                                        test_size=0.2,
-                                                        shuffle=True)
-
-    X_train = np.array(X_train).astype(np.float32)
-    X_test = np.asarray(X_test).astype(np.float32)
-
     for dense_output_activation in config['algorithm']['activation_types']:
         for n_cnn_filters in config['algorithm']['n_cnn_filters']:
             for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
@@ -291,6 +314,15 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                             if dense_input:
                                 for dense_input_dim in config['algorithm']['dense_input_dim']:
                                     for dense_input_activation in config['algorithm']['activation_types']:
+
+                                        X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                            complete_y_list,
+                                                                                            test_size=0.2,
+                                                                                            shuffle=True)
+
+                                        X_train = np.array(X_train).astype(np.float32)
+                                        X_test = np.asarray(X_test).astype(np.float32)
+
                                         model = dl_models.get_model_cnn2d(dense_input,
                                                                           dense_input_dim,
                                                                           dense_input_activation,
@@ -322,6 +354,15 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
 
                                         c += 1
                             else:
+
+                                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                    complete_y_list,
+                                                                                    test_size=0.2,
+                                                                                    shuffle=True)
+
+                                X_train = np.array(X_train).astype(np.float32)
+                                X_test = np.asarray(X_test).astype(np.float32)
+
                                 model = dl_models.get_model_cnn2d(dense_input,
                                                                   0, '',
                                                                   dense_output_activation, n_cnn_filters,
@@ -465,15 +506,8 @@ for label_array in config['path']['labels_arrays']:
         for loss_type in config['algorithm']['loss_types']:
             for optimizer_type in config['algorithm']['optimizer_types']:
 
-                # CNN 1D
-
                 c = iterate_cnn2d_lstm(c, complete_x_list, complete_y_list)
-
-                # LSTM
-
-                # CNN1D + LSTM
-
-
-                # CNN2D
-
-                # CNN2D + LSTM
+                c = iterate_cnn1d_lstm(c, complete_x_list, complete_y_list)
+                c = iterate_cnn2d(c, complete_x_list, complete_y_list)
+                c = iterate_lstm(c, complete_x_list, complete_y_list)
+                c = iterate_cnn1d(c, complete_x_list, complete_y_list)

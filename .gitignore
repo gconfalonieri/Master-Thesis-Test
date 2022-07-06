@@ -146,3 +146,4 @@ testx.npy
 testy.npy
 datasets/arrays/undersampled/*
 results.csv
+performances.csv
