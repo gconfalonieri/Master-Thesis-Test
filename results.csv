@@ -1,2 +1,0 @@
-index,model,label,input,loss_type,optimizer_type,dense_input,dense_input_dim,dense_input_activation,dense_output_activation,lstm_units,cnn_fiters,cnn_kernel,cnn_pool_size,dropout,dropout_value0,CNN1D,TIMES_ONLY_V2,-1_1_OVERSAMPLED,mean_squared_error,adam,0,,,relu,NULL,128,4,2,1,0.1
-1,CNN1D,TIMES_ONLY_V2,-1_1_OVERSAMPLED,mean_squared_error,adam,1,1000,relu,relu,,128,4,2,1,0.1

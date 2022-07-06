@@ -20,20 +20,21 @@ sync_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
 input_arrays = ['datasets/arrays/undersampled/input_1_1_oversampled.npy',
     'datasets/arrays/undersampled/input_0_1_oversampled.npy'
 ]
-labels_arrays = ['datasets/arrays/labels/labels_v2.npy',
-    'datasets/arrays/labels/labels_v2_2F.npy'
+labels_arrays = ['datasets/arrays/labels/labels_v2.npy'
 ]
+
+# 'datasets/arrays/labels/labels_v2_2F.npy'
 
 
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
 gaze_features = ['FPOGX', 'FPOGY', 'FPOGV', 'RPD', 'LPD']
-n_cnn_filters = [128, 256, 512]
+n_cnn_filters = [128, 512]
 cnn_kernel_size = [4, 8, 10]
-cnn_pool_size = [2, 4, 8, 10]
+cnn_pool_size = [2, 4, 8]
 n_lstm_units = [32, 64, 128]
 dropout_value = [0.1, 0.2, 0.5]
-dense_input_dim = [1000, 2645]
+dense_input_dim = [2645]
 activation_types = ['relu']
 loss_types = ['mean_squared_error']
 optimizer_types = ['adam']
