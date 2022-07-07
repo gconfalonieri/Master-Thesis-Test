@@ -141,6 +141,49 @@ def iterate_cnn1d_lstm(c):
     return c
 
 
+def iterate_cnn1d_lstm_3dense(c):
+
+    for dense_output_activation in config['algorithm']['activation_types']:
+        for n_cnn_filters in config['algorithm']['n_cnn_filters']:
+            for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
+                for cnn_pool_size in config['algorithm']['cnn_pool_size']:
+                    for n_lstm_units in config['algorithm']['n_lstm_units']:
+                        for dropout_value in config['algorithm']['dropout_value']:
+                            for dense_input in config['general']['binary_value']:
+
+                                if dense_input:
+                                    for dense_input_dim in config['algorithm']['dense_input_dim']:
+                                        for dense_input_activation in config['algorithm']['activation_types']:
+
+                                            write_line(c, 'CNN1D_LSTM_3DENSE', label_name,
+                                                       input_name,
+                                                       loss_type,
+                                                       optimizer_type, dense_input,
+                                                       dense_input_dim,
+                                                       dense_input_activation,
+                                                       dense_output_activation, n_lstm_units,
+                                                       n_cnn_filters,
+                                                       cnn_kernel_size, cnn_pool_size,
+                                                       1, dropout_value)
+
+                                            c += 1
+                                else:
+
+                                    write_line(c, 'CNN1D_LSTM_3DENSE', label_name,
+                                               input_name,
+                                               loss_type,
+                                               optimizer_type, dense_input,
+                                               '', '',
+                                               dense_output_activation, n_lstm_units,
+                                               n_cnn_filters,
+                                               cnn_kernel_size, cnn_pool_size,
+                                               1,
+                                               dropout_value)
+
+                                    c += 1
+    return c
+
+
 def iterate_cnn2d(c):
 
     for dense_output_activation in config['algorithm']['activation_types']:
@@ -238,3 +281,4 @@ for label_array in config['path']['labels_arrays']:
                 c = iterate_cnn2d(c)
                 c = iterate_lstm(c)
                 c = iterate_cnn1d(c)
+                c = iterate_cnn1d_lstm_3dense(c)

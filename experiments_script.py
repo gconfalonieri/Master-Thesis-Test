@@ -300,6 +300,106 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
     return c
 
 
+def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
+
+    for dense_output_activation in config['algorithm']['activation_types']:
+        for n_cnn_filters in config['algorithm']['n_cnn_filters']:
+            for cnn_kernel_size in config['algorithm']['cnn_kernel_size']:
+                for cnn_pool_size in config['algorithm']['cnn_pool_size']:
+                    for n_lstm_units in config['algorithm']['n_lstm_units']:
+                        for dropout_value in config['algorithm']['dropout_value']:
+                            for dense_input in config['general']['binary_value']:
+
+                                if dense_input:
+                                    for dense_input_dim in config['algorithm']['dense_input_dim']:
+                                        for dense_input_activation in config['algorithm']['activation_types']:
+
+                                            X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                                complete_y_list,
+                                                                                                test_size=0.2,
+                                                                                                shuffle=True)
+
+                                            X_train = np.array(X_train).astype(np.float32)
+                                            X_test = np.asarray(X_test).astype(np.float32)
+
+                                            model = dl_models.get_model_cnn1d_lstm_3x_dense(dense_input,
+                                                                                   dense_input_dim,
+                                                                                   dense_input_activation,
+                                                                                   dense_output_activation,
+                                                                                   n_cnn_filters,
+                                                                                   cnn_kernel_size,
+                                                                                   cnn_pool_size,
+                                                                                   n_lstm_units, loss_type,
+                                                                                   optimizer_type, 1,
+                                                                                   dropout_value)
+
+                                            write_line(c, 'CNN1D_LSTM_3DENSE', label_name,
+                                                       input_name,
+                                                       loss_type,
+                                                       optimizer_type, dense_input,
+                                                       dense_input_dim,
+                                                       dense_input_activation,
+                                                       dense_output_activation, n_lstm_units,
+                                                       n_cnn_filters,
+                                                       cnn_kernel_size, cnn_pool_size,
+                                                       1, dropout_value)
+
+                                            history = model.fit(X_train, y_train, epochs=100,
+                                                                validation_data=(X_test, y_test))
+
+                                            history_dict = history.history
+
+                                            write_line_2(c, history_dict['accuracy'][-1],
+                                                         history_dict['val_accuracy'][-1],
+                                                         history_dict['loss'][-1],
+                                                         history_dict['val_loss'][-1])
+
+                                            c += 1
+                                else:
+
+                                    X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
+                                                                                        complete_y_list,
+                                                                                        test_size=0.2,
+                                                                                        shuffle=True)
+
+                                    X_train = np.array(X_train).astype(np.float32)
+                                    X_test = np.asarray(X_test).astype(np.float32)
+
+                                    model = dl_models.get_model_cnn1d_lstm_3x_dense(dense_input, 0, '',
+                                                                           dense_output_activation,
+                                                                           n_cnn_filters,
+                                                                           cnn_kernel_size,
+                                                                           cnn_pool_size,
+                                                                           n_lstm_units,
+                                                                           loss_type,
+                                                                           optimizer_type, 1,
+                                                                           dropout_value)
+
+                                    write_line(c, 'CNN1D_LSTM_3DENSE', label_name,
+                                               input_name,
+                                               loss_type,
+                                               optimizer_type, dense_input,
+                                               '', '',
+                                               dense_output_activation, n_lstm_units,
+                                               n_cnn_filters,
+                                               cnn_kernel_size, cnn_pool_size,
+                                               1,
+                                               dropout_value)
+
+                                    history = model.fit(X_train, y_train, epochs=100,
+                                                        validation_data=(X_test, y_test))
+
+                                    history_dict = history.history
+
+                                    write_line_2(c, history_dict['accuracy'][-1],
+                                                 history_dict['val_accuracy'][-1],
+                                                 history_dict['loss'][-1],
+                                                 history_dict['val_loss'][-1])
+
+                                    c += 1
+    return c
+
+
 def iterate_cnn2d(c, complete_x_list, complete_y_list):
     complete_x_list = np.expand_dims(complete_x_list, 2)
     complete_y_list = np.expand_dims(complete_y_list, 2)
