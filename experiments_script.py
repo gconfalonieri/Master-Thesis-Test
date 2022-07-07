@@ -239,7 +239,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                                        optimizer_type, dense_input,
                                                        dense_input_dim,
                                                        dense_input_activation,
-                                                       dense_output_activation, '',
+                                                       dense_output_activation, n_lstm_units,
                                                        n_cnn_filters,
                                                        cnn_kernel_size, cnn_pool_size,
                                                        1, dropout_value)
@@ -280,7 +280,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                                loss_type,
                                                optimizer_type, dense_input,
                                                '', '',
-                                               dense_output_activation, '',
+                                               dense_output_activation, n_lstm_units,
                                                n_cnn_filters,
                                                cnn_kernel_size, cnn_pool_size,
                                                1,
@@ -355,29 +355,21 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                                         c += 1
                             else:
 
-                                X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
-                                                                                    complete_y_list,
-                                                                                    test_size=0.2,
-                                                                                    shuffle=True)
+                                X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list,
+                                                                                    test_size=0.2, shuffle=True)
 
                                 X_train = np.array(X_train).astype(np.float32)
                                 X_test = np.asarray(X_test).astype(np.float32)
 
-                                model = dl_models.get_model_cnn2d(dense_input,
-                                                                  0, '',
-                                                                  dense_output_activation, n_cnn_filters,
-                                                                  cnn_kernel_size, cnn_pool_size, loss_type,
-                                                                  optimizer_type, 1, dropout_value)
+                                model = dl_models.get_model_cnn2d(dense_input, 0, '', dense_output_activation,
+                                                                  n_cnn_filters, cnn_kernel_size, cnn_pool_size,
+                                                                  loss_type, optimizer_type, 1, dropout_value)
 
-                                write_line(c, 'CNN2D', label_name, input_name,
-                                           loss_type,
-                                           optimizer_type, dense_input, '', '',
-                                           dense_output_activation, '', n_cnn_filters,
-                                           cnn_kernel_size, cnn_pool_size, 1,
-                                           dropout_value)
+                                write_line(c, 'CNN2D', label_name, input_name, loss_type, optimizer_type, dense_input,
+                                           '', '', dense_output_activation, '', n_cnn_filters, cnn_kernel_size,
+                                           cnn_pool_size, 1, dropout_value)
 
-                                history = model.fit(X_train, y_train, epochs=100,
-                                                    validation_data=(X_test, y_test))
+                                history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
                                 history_dict = history.history
 
@@ -432,7 +424,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                                        optimizer_type, dense_input,
                                                        dense_input_dim,
                                                        dense_input_activation,
-                                                       dense_output_activation, '',
+                                                       dense_output_activation, n_lstm_units,
                                                        n_cnn_filters,
                                                        cnn_kernel_size, cnn_pool_size, 1,
                                                        dropout_value)
@@ -458,7 +450,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                     X_train = np.array(X_train).astype(np.float32)
                                     X_test = np.asarray(X_test).astype(np.float32)
 
-                                    model = dl_models.get_model_cnn2d_lstm(dense_input, 0, '',
+                                    model = dl_models.get_model_cnn2d_lstm(dense_input, 0, n_lstm_units,
                                                                            dense_output_activation,
                                                                            n_cnn_filters, cnn_kernel_size,
                                                                            cnn_pool_size,
@@ -469,7 +461,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                                loss_type,
                                                optimizer_type, dense_input,
                                                '', '',
-                                               dense_output_activation, '', n_cnn_filters,
+                                               dense_output_activation, n_lstm_units, n_cnn_filters,
                                                cnn_kernel_size, cnn_pool_size, 1,
                                                dropout_value)
 

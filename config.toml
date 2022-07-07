@@ -28,11 +28,11 @@ labels_arrays = ['datasets/arrays/labels/labels_v2.npy',
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
 gaze_features = ['FPOGX', 'FPOGY', 'FPOGV', 'RPD', 'LPD']
-n_cnn_filters = [256, 512]
-cnn_kernel_size = [4, 8]
-cnn_pool_size = [2, 4, 8]
-n_lstm_units = [32, 64]
-dropout_value = [0.1, 0.2, 0.5]
+n_cnn_filters = [256] # 512
+cnn_kernel_size = [8] # 4, 8
+cnn_pool_size = [4] # 2, 4, 8
+n_lstm_units = [64] # 32, 64
+dropout_value = [0.2] # 0.1, 0.2, 0.5
 dense_input_dim = [2645]
 activation_types = ['relu']
 loss_types = ['mean_squared_error']
