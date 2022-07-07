@@ -282,3 +282,4 @@ for label_array in config['path']['labels_arrays']:
                 c = iterate_lstm(c)
                 c = iterate_cnn1d(c)
                 c = iterate_cnn1d_lstm_3dense(c)
+                c = iterate_cnn1d_lstm_3dense(c) # to simulate temporarily the 2xcnn1d
