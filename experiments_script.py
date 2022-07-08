@@ -698,10 +698,10 @@ for label_array in config['path']['labels_arrays']:
         for loss_type in config['algorithm']['loss_types']:
             for optimizer_type in config['algorithm']['optimizer_types']:
 
-                c = iterate_cnn1d_lstm(c, complete_x_list, complete_y_list)
-                c = iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list)
-                c = iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list)
-                c = iterate_lstm(c, complete_x_list, complete_y_list)
-                c = iterate_cnn1d(c, complete_x_list, complete_y_list)
+                # c = iterate_cnn1d_lstm(c, complete_x_list, complete_y_list)
+                # c = iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list)
+                # c = iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list)
+                # c = iterate_lstm(c, complete_x_list, complete_y_list)
+                # c = iterate_cnn1d(c, complete_x_list, complete_y_list)
                 c = iterate_cnn2d_lstm(c, complete_x_list, complete_y_list)
-                c = iterate_cnn2d(c, complete_x_list, complete_y_list)
+                # c = iterate_cnn2d(c, complete_x_list, complete_y_list)
