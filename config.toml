@@ -18,8 +18,10 @@ labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
 sync_prefix = 'datasets/sync_datasets/complete/norm_0_1/'
 
 input_arrays = ['datasets/arrays/undersampled/input_1_1_oversampled.npy',
-    'datasets/arrays/undersampled/input_0_1_oversampled.npy'
 ]
+
+# 'datasets/arrays/undersampled/input_0_1_oversampled.npy'
+
 labels_arrays = ['datasets/arrays/labels/labels_v2.npy'
 ] # 'datasets/arrays/labels/labels_v2_2F.npy'
 
