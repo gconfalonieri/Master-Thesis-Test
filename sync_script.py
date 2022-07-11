@@ -70,28 +70,53 @@ for i in range(1, 53):
         start_eye = get_dict_start_seconds(user_id, 'eye')
         start_eeg = get_dict_start_seconds(user_id, 'eeg')
 
-        media_list = df_gaze['MEDIA_NAME']
+        # media_list = df_gaze['MEDIA_NAME']
         fpogx_list = df_gaze['FPOGX']
         fpogy_list = df_gaze['FPOGY']
         fpogv_list = df_gaze['FPOGV']
         rpd_list = df_gaze['RPD']
         lpd_list = df_gaze['LPD']
 
+        alpha1_list = df_eeg[' Alpha1']
+        alpha2_list = df_eeg[' Alpha2']
+        beta1_list = df_eeg[' Beta1']
+        beta2_list = df_eeg[' Beta2']
+        gamma1_list = df_eeg[' Gamma1']
+        gamma2_list = df_eeg[' Gamma2']
+        theta_list = df_eeg[' Theta']
+        delta_list = df_eeg[' Delta']
+
         if config['preprocessing']['sync_normalization']:
-            fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
-            fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
+            # fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
+            # fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
             # fpogv_list = normalize_in_range_int(fpogv_list, min_norm_value, max_norm_value)
-            rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
-            lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
+            # rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
+            # lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
+            alpha1_list = normalize_in_range(alpha1_list, min_norm_value, max_norm_value)
+            alpha2_list = normalize_in_range(alpha2_list, min_norm_value, max_norm_value)
+            beta1_list = normalize_in_range(beta1_list, min_norm_value, max_norm_value)
+            beta2_list = normalize_in_range(beta2_list, min_norm_value, max_norm_value)
+            gamma1_list = normalize_in_range(gamma1_list, min_norm_value, max_norm_value)
+            gamma2_list = normalize_in_range(gamma2_list, min_norm_value, max_norm_value)
+            theta_list = normalize_in_range(theta_list, min_norm_value, max_norm_value)
+            delta_list = normalize_in_range(theta_list, min_norm_value, max_norm_value)
 
         sync_dataframe = pd.DataFrame()
 
-        sync_dataframe['media_name'] = media_list
-        sync_dataframe['FPOGX'] = fpogx_list
-        sync_dataframe['FPOGY'] = fpogy_list
-        sync_dataframe['FPOGV'] = fpogv_list
-        sync_dataframe['RPD'] = rpd_list
-        sync_dataframe['LPD'] = lpd_list
+        # sync_dataframe['media_name'] = media_list
+        # sync_dataframe['FPOGX'] = fpogx_list
+        # sync_dataframe['FPOGY'] = fpogy_list
+        # sync_dataframe['FPOGV'] = fpogv_list
+        # sync_dataframe['RPD'] = rpd_list
+        # sync_dataframe['LPD'] = lpd_list
+        sync_dataframe['alpha1'] = alpha1_list
+        sync_dataframe['alpha2'] = alpha2_list
+        sync_dataframe['beta1'] = beta1_list
+        sync_dataframe['beta2'] = beta2_list
+        sync_dataframe['gamma1'] = gamma1_list
+        sync_dataframe['gamma2'] = gamma2_list
+        sync_dataframe['theta'] = theta_list
+        sync_dataframe['delta'] = delta_list
 
         sync_dataframe.to_csv(config['path']['sync_prefix'] + 'sync_dataset_user_' + str(i) + '.csv', index=False)
 

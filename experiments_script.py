@@ -596,8 +596,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
 
                                 if dense_input:
                                     for dense_input_dim in config['algorithm']['dense_input_dim']:
-                                        for dense_input_activation in config['algorithm'][
-                                            'activation_types']:
+                                        for dense_input_activation in config['algorithm']['activation_types']:
 
                                             X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                                 complete_y_list,

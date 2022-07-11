@@ -15,7 +15,7 @@ brainwaves_folder = './datasets/eeg'
 solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
-sync_prefix = 'datasets/sync_datasets/complete/norm_0_1/'
+sync_prefix = 'datasets/sync_datasets/complete/norm_1_1/'
 
 input_arrays = ['datasets/arrays/undersampled/input_1_1_oversampled.npy',
 ]
@@ -42,7 +42,7 @@ optimizer_types = ['adam', 'SGD', 'Ftrl', 'Adadmax']
 # optimizer_types = ['adam', 'SGD', 'RMSprop', 'Adadelta', 'Adagrad', 'Adamax', 'Nadam', 'Ftrl']
 
 [preprocessing]
-min_normalization = 0
+min_normalization = -1
 max_normalization  = 1
 interpolation_kind = 'linear'
 sync_normalization = true
