@@ -16,11 +16,12 @@ accuracy_list = []
 # complete_y_list = numpy.load('datasets/numpy_arrays/all_windowed_array_labels.npy', allow_pickle=True)
 
 # complete_x_list = models.utilities.get_questions_padded_array()
-complete_y_list = models.utilities.get_labels_questions_array()
+# complete_y_list = models.utilities.get_labels_questions_array()
 # np.save('interpolation_x_1d.npy', complete_x_list)
-np.save('datasets/arrays/labels/labels_v2.npy', complete_y_list)
+# np.save('datasets/arrays/labels/labels_v2.npy', complete_y_list)
 
-complete_x_list = np.load('datasets/arrays/undersampled/input_0_1_padded_end.npy', allow_pickle=True)
+complete_x_list = np.load('datasets/arrays/undersampled/input_1_1_padded_end.npy', allow_pickle=True)
+complete_y_list = np.load('datasets/arrays/labels/labels_v2_2F.npy', allow_pickle=True)
 
 print(complete_y_list)
 
@@ -42,22 +43,22 @@ X_test = np.asarray(X_test).astype(np.float32)
 # y_train = to_categorical(y_train)
 # y_test = to_categorical(y_test)
 
+# 7,CNN2D_LSTM,TIMES_ONLY_V2,-1_1_OVERSAMPLED,mean_squared_error,adam,1,1323,linear,relu,32,256,2,2,1,0.2
+# 13,CNN2D_LSTM,TIMES_ONLY_V2,-1_1_OVERSAMPLED,mean_squared_error,adam,1,2645,relu,relu,32,256,2,2,1,0.5
+# # 56,CNN2D_LSTM,TIMES_ONLY_V2,-1_1_OVERSAMPLED,mean_squared_error,adam,1,1323,relu,relu,32,256,2,4,1,0.5
 
-model = models.deep_learning_models.get_model_cnn2d_lstm(1, 1000, 'relu', 'linear', 2, 2, 10, 10, 'mean_squared_error',
-                                                         'adam',
-                                                    0.5)
-
-history = model.fit(X_train, y_train, epochs=1, validation_data=(X_test, y_test))
+model = models.deep_learning_models.get_model_cnn2d_lstm(1, 2645, 'relu', 'relu', 256, 2, 2, 32, 'mean_squared_error',
+                                                         'adam', 0.5)
+name = 'CNN2D_LSTM - 13'
+history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
 
 model.summary()
 
 history_dict = history.history
 
-print(history_dict['val_loss'][-1])
-
-# models.plots.plot_model_loss(history_dict, name)
-# plt.clf()
-# models.plots.plot_model_accuracy(history_dict, name)
+models.plots.plot_model_loss(history_dict, name)
+plt.clf()
+models.plots.plot_model_accuracy(history_dict, name)
 
 # results = model.evaluate(X_test, y_test)
 

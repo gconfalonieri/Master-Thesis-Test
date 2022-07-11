@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('Agg')
+# matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 def plot_model_loss(history_dict, name):
@@ -14,12 +14,12 @@ def plot_model_loss(history_dict, name):
     plt.ylabel("Loss")
     plt.legend()
     plt.savefig('loss_' + name + '.png')
-    plt.show()
+    # plt.show()
 
 
 def plot_model_accuracy(history_dict, name):
-    acc = history_dict["acc"]
-    val_acc = history_dict["val_acc"]
+    acc = history_dict["accuracy"]
+    val_acc = history_dict["val_accuracy"]
     epochs = range(1, len(val_acc) + 1)
     plt.plot(epochs, acc, "ro", label="Training acc")
     plt.plot(epochs, val_acc, "b", label="Validation acc")
@@ -28,4 +28,4 @@ def plot_model_accuracy(history_dict, name):
     plt.ylabel("Accuracy")
     plt.legend()
     plt.savefig('accuracy_' + name + '.png')
-    plt.show()
+    # plt.show()
