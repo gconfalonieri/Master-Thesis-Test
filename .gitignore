@@ -137,3 +137,4 @@ datasets/arrays/undersampled/*
 results.csv
 performances.csv
 iterations.py
+plots/results/*
