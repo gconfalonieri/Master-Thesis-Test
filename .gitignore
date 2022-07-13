@@ -134,6 +134,7 @@ dmypy.json
 # Project Folders
 example-test
 datasets/arrays/undersampled/*
+datasets/sync_datasets/complete/*
 results.csv
 performances.csv
 iterations.py
