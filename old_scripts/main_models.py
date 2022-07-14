@@ -14,7 +14,7 @@ import numpy as np
 import toml
 
 
-config = toml.load('config.toml')
+config = toml.load('../config.toml')
 
 features = ['beta1', 'beta2']
 
