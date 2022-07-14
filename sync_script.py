@@ -8,16 +8,39 @@ min_norm_value = config['preprocessing']['min_normalization']
 max_norm_value = config['preprocessing']['max_normalization']
 
 
-def normalize_in_range(arr, t_min, t_max):
-    norm_arr = []
-    diff = t_max - t_min
-    diff_arr = max(arr) - min(arr)
-    for i in arr:
-        temp = (((i - min(arr)) * diff) / diff_arr) + t_min
-        # temp = (i - min(arr)) / diff_arr
-        norm_arr.append(temp)
-    return norm_arr
+def normalize_gaze_in_range(f, df_gaze):
 
+    diff = max_norm_value - min_norm_value
+
+    min_fpogx = min(df_gaze['FPOGX'])
+    max_fpogx = max(df_gaze['FPOGX'])
+    min_fpogy = min(df_gaze['FPOGY'])
+    max_fpogy = max(df_gaze['FPOGY'])
+    # min_fpogv = min(df_gaze['FPOGV'])
+    # max_fpogv = max(df_gaze['FPOGV'])
+    min_rpd = min(df_gaze['RPD'])
+    max_rpd = max(df_gaze['RPD'])
+    min_lpd = min(df_gaze['LPD'])
+    max_lpd = max(df_gaze['LPD'])
+
+    diff_fpogx = max_fpogx - min_fpogx
+    diff_fpogy = max_fpogy - min_fpogy
+    # diff_fpogv = max_fpogv - min_fpogv
+    diff_rpd = max_rpd - min_rpd
+    diff_lpd = max_lpd - min_lpd
+
+    for i in df_gaze.index:
+
+        norm_fpogx = (((df_gaze['FPOGX'][i] - min_fpogx) * diff) / diff_fpogx) + min_norm_value
+        norm_fpogy = (((df_gaze['FPOGY'][i] - min_fpogy) * diff) / diff_fpogy) + min_norm_value
+        # norm_fpogv = int((((df_gaze['FPOGV'][i] - min_fpogv) * diff) / diff_fpogv) + min_norm_value)
+        norm_rpd = (((df_gaze['RPD'][i] - min_rpd) * diff) / diff_rpd) + min_norm_value
+        norm_lpd = (((df_gaze['LPD'][i] - min_lpd) * diff) / diff_lpd) + min_norm_value
+
+        line = df_gaze['MEDIA_NAME'][i] + ',' + str(norm_fpogx) + ',' + str(norm_fpogy) + ',' + str(df_gaze['FPOGV'][i]) \
+               + ',' + str(norm_rpd) + ',' + str(norm_lpd) + '\n'
+
+        f.write(line)
 
 def normalize_in_range_int(arr, t_min, t_max):
     norm_arr = []
@@ -70,14 +93,10 @@ for i in range(1, 53):
         start_eye = get_dict_start_seconds(user_id, 'eye')
         start_eeg = get_dict_start_seconds(user_id, 'eeg')
 
-        print('# # # - ' + user_id + " START - # # #")
-
-        media_list = df_gaze['MEDIA_NAME']
-        fpogx_list = df_gaze['FPOGX']
-        fpogy_list = df_gaze['FPOGY']
-        fpogv_list = df_gaze['FPOGV']
-        rpd_list = df_gaze['RPD']
-        lpd_list = df_gaze['LPD']
+        f = open(config['path']['sync_prefix'] + 'sync_dataset_user_' + str(i) + '.csv', 'w')
+        f.write('media_name,FPOGX,FPOGY,FPOGV,RPD,LPD\n')
+        normalize_gaze_in_range(f, df_gaze)
+        f.close()
 
         # alpha1_list = df_eeg[' Alpha1']
         # alpha2_list = df_eeg[' Alpha2']
@@ -87,44 +106,5 @@ for i in range(1, 53):
         # gamma2_list = df_eeg[' Gamma2']
         # theta_list = df_eeg[' Theta']
         # delta_list = df_eeg[' Delta']
-
-        if config['preprocessing']['sync_normalization']:
-            fpogx_list = normalize_in_range(fpogx_list, min_norm_value, max_norm_value)
-            print("1 - COLUMN FPOGX DONE")
-            fpogy_list = normalize_in_range(fpogy_list, min_norm_value, max_norm_value)
-            print("2 - COLUMN FPOGY DONE")
-            fpogv_list = normalize_in_range_int(fpogv_list, min_norm_value, max_norm_value)
-            print("3 - COLUMN FPOGV DONE")
-            rpd_list = normalize_in_range(rpd_list, min_norm_value, max_norm_value)
-            print("4 - COLUMN RPD DONE")
-            lpd_list = normalize_in_range(lpd_list, min_norm_value, max_norm_value)
-            print("5 - COLUMN LPD DONE")
-            # alpha1_list = normalize_in_range(alpha1_list, min_norm_value, max_norm_value)
-            # alpha2_list = normalize_in_range(alpha2_list, min_norm_value, max_norm_value)
-            # beta1_list = normalize_in_range(beta1_list, min_norm_value, max_norm_value)
-            # beta2_list = normalize_in_range(beta2_list, min_norm_value, max_norm_value)
-            # gamma1_list = normalize_in_range(gamma1_list, min_norm_value, max_norm_value)
-            # gamma2_list = normalize_in_range(gamma2_list, min_norm_value, max_norm_value)
-            # theta_list = normalize_in_range(theta_list, min_norm_value, max_norm_value)
-            # delta_list = normalize_in_range(theta_list, min_norm_value, max_norm_value)
-
-        sync_dataframe = pd.DataFrame()
-
-        sync_dataframe['media_name'] = media_list
-        sync_dataframe['FPOGX'] = fpogx_list
-        sync_dataframe['FPOGY'] = fpogy_list
-        sync_dataframe['FPOGV'] = fpogv_list
-        sync_dataframe['RPD'] = rpd_list
-        sync_dataframe['LPD'] = lpd_list
-        # sync_dataframe['alpha1'] = alpha1_list
-        # sync_dataframe['alpha2'] = alpha2_list
-        # sync_dataframe['beta1'] = beta1_list
-        # sync_dataframe['beta2'] = beta2_list
-        # sync_dataframe['gamma1'] = gamma1_list
-        # sync_dataframe['gamma2'] = gamma2_list
-        # sync_dataframe['theta'] = theta_list
-        # sync_dataframe['delta'] = delta_list
-
-        sync_dataframe.to_csv(config['path']['sync_prefix'] + 'sync_dataset_user_' + str(i) + '.csv', index=False)
 
         print('# # # - ' + user_id + " DONE - # # #")
