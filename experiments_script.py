@@ -75,7 +75,7 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                                                    dropout_value)
 
                                         history = model.fit(X_train, y_train, epochs=100,
-                                                            validation_data=(X_test, y_test))
+                                                            validation_data=(X_test, y_test), shuffle=True)
 
                                         history_dict = history.history
 
@@ -108,7 +108,7 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                                            dropout_value)
 
                                 history = model.fit(X_train, y_train, epochs=100,
-                                                    validation_data=(X_test, y_test))
+                                                    validation_data=(X_test, y_test), shuffle=True)
 
                                 history_dict = history.history
 
@@ -154,7 +154,7 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                                            dropout_value)
 
                                 history = model.fit(X_train, y_train, epochs=100,
-                                                    validation_data=(X_test, y_test))
+                                                    validation_data=(X_test, y_test), shuffle=True)
 
                                 history_dict = history.history
 
@@ -185,7 +185,7 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                                    1, dropout_value)
 
                         history = model.fit(X_train, y_train, epochs=100,
-                                            validation_data=(X_test, y_test))
+                                            validation_data=(X_test, y_test), shuffle=True)
 
                         history_dict = history.history
 
@@ -245,7 +245,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                                        1, dropout_value)
 
                                             history = model.fit(X_train, y_train, epochs=100,
-                                                                validation_data=(X_test, y_test))
+                                                                validation_data=(X_test, y_test), shuffle=True)
 
                                             history_dict = history.history
 
@@ -287,7 +287,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                                dropout_value)
 
                                     history = model.fit(X_train, y_train, epochs=100,
-                                                        validation_data=(X_test, y_test))
+                                                        validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
 
@@ -345,7 +345,7 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
                                                        1, dropout_value)
 
                                             history = model.fit(X_train, y_train, epochs=100,
-                                                                validation_data=(X_test, y_test))
+                                                                validation_data=(X_test, y_test), shuffle=True)
 
                                             history_dict = history.history
 
@@ -387,7 +387,7 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
                                                dropout_value)
 
                                     history = model.fit(X_train, y_train, epochs=100,
-                                                        validation_data=(X_test, y_test))
+                                                        validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
 
@@ -445,7 +445,7 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
                                                        1, dropout_value)
 
                                             history = model.fit(X_train, y_train, epochs=100,
-                                                                validation_data=(X_test, y_test))
+                                                                validation_data=(X_test, y_test), shuffle=True)
 
                                             history_dict = history.history
 
@@ -487,7 +487,7 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
                                                dropout_value)
 
                                     history = model.fit(X_train, y_train, epochs=100,
-                                                        validation_data=(X_test, y_test))
+                                                        validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
 
@@ -543,7 +543,7 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                                                    dropout_value)
 
                                         history = model.fit(X_train, y_train, epochs=100,
-                                                            validation_data=(X_test, y_test))
+                                                            validation_data=(X_test, y_test), shuffle=True)
 
                                         history_dict = history.history
 
@@ -569,7 +569,8 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                                            '', '', dense_output_activation, '', n_cnn_filters, cnn_kernel_size,
                                            cnn_pool_size, 1, dropout_value)
 
-                                history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test))
+                                history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test),
+                                                    shuffle=True)
 
                                 history_dict = history.history
 
@@ -629,7 +630,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                                        dropout_value)
 
                                             history = model.fit(X_train, y_train, epochs=100,
-                                                                validation_data=(X_test, y_test))
+                                                                validation_data=(X_test, y_test), shuffle=True)
 
                                             history_dict = history.history
 
@@ -665,7 +666,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                                dropout_value)
 
                                     history = model.fit(X_train, y_train, epochs=100,
-                                                        validation_data=(X_test, y_test))
+                                                        validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
 

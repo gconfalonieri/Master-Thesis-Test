@@ -17,8 +17,7 @@ answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
 sync_prefix = 'datasets/sync_datasets/complete/norm_1_1/'
 
-input_arrays = ['datasets/arrays/undersampled/input_1_1_oversampled.npy',
-]
+input_arrays = ['datasets/arrays/complete/input_1_1_complete_no_fpogv.npy']
 
 labels_arrays = ['datasets/arrays/labels/labels_v2.npy'
 ] # 'datasets/arrays/labels/labels_v2_2F.npy'
