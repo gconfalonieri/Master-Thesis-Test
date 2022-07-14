@@ -25,7 +25,7 @@ labels_arrays = ['datasets/arrays/labels/labels_v2.npy'
 
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
-gaze_features = ['FPOGX', 'FPOGY', 'RPD', 'LPD'] # 'FPOGV' (test come maschera)
+gaze_features = ['FPOGX', 'FPOGY', 'FPOGV', 'RPD', 'LPD'] # 'FPOGV' (test come maschera)
 n_cnn_filters = [256, 512, 1024] # 512
 cnn_kernel_size = [2, 4, 8, 10] # 4, 8
 cnn_pool_size = [2, 4, 8] # 2, 4, 8
