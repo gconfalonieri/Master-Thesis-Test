@@ -8,7 +8,7 @@ n_valid_testers = 46
 n_questions = 24
 reduced_test_users = [25, 26, 30]
 excluded_users = [5, 23, 25, 26, 30, 50]
-binary_value = [0, 1]
+binary_value = [0] # 0, 1
 
 [path]
 brainwaves_folder = './datasets/eeg'
