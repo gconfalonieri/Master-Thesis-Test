@@ -12,13 +12,13 @@ import numpy as np
 loss_list = []
 accuracy_list = []
 
-# complete_x_list = models.utilities.get_questions_padded_array()
-# complete_y_list = models.utilities.get_labels_questions_array()
+complete_x_list = models.utilities.get_questions_oversampled_array()
+complete_y_list = models.utilities.get_labels_questions_array()
 # np.save('interpolation_x_1d.npy', complete_x_list)
 # np.save('datasets/arrays/labels/labels_v2.npy', complete_y_list)
 
-complete_x_list = np.load('datasets/arrays/undersampled/input_1_1_oversampled.npy', allow_pickle=True)
-complete_y_list = np.load('datasets/arrays/labels/labels_v2.npy', allow_pickle=True)
+# complete_x_list = np.load('datasets/arrays/undersampled/input_1_1_oversampled.npy', allow_pickle=True)
+# complete_y_list = np.load('datasets/arrays/labels/labels_v2.npy', allow_pickle=True)
 
 complete_x_list = np.expand_dims(complete_x_list, 2)
 complete_y_list = np.expand_dims(complete_y_list, 2)
