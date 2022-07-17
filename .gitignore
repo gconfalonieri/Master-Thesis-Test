@@ -135,6 +135,7 @@ dmypy.json
 example-test
 datasets/arrays/undersampled/*
 datasets/arrays/complete/*
+datasets/arrays/labels/*
 datasets/arrays/undersampled_shifted/*
 datasets/sync_datasets/complete/*
 results.csv
