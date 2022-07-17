@@ -1,6 +1,6 @@
 def get_input_array_string(input_array):
     name = ''
-    if input_array == 'datasets/arrays/undersampled/input_1_1_oversampled.npy':
+    if input_array == 'datasets/arrays/undersampled/input_1_1_oversampled.npy' or input_array == 'datasets/arrays/undersampled_shifted/input_1_1_oversampled.npy':
         name = '-1_1_OVERSAMPLED'
     elif input_array == 'datasets/arrays/undersampled/input_1_1_padded_begin.npy':
         name = '-1_1_PADDED_BEGIN'
