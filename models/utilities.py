@@ -165,7 +165,27 @@ def get_fpogv_mask_array():
                         question_list.append(x)
                     complete_x_list.append(np.array(question_list, dtype=np.ndarray))
 
-    return np.array(complete_x_list, dtype=np.ndarray)
+    return np.asarray(complete_x_list).astype(int)
+
+
+def split_mask_array(numpy_array):
+
+    data_array = []
+    mask_array = []
+    channels_arr = []
+    bit_arr = []
+
+    for questions in numpy_array:
+        for channels in questions:
+            channels_arr.append(channels[0])
+            channels_arr.append(channels[1])
+            channels_arr.append(channels[2])
+            channels_arr.append(channels[3])
+            bit_arr.append(channels[4])
+        data_array.append(channels_arr)
+        mask_array.append(bit_arr)
+
+    return np.array(data_array, dtype=np.ndarray), np.asarray(mask_array).astype('int')
 
 
 def get_labels_questions_array():
