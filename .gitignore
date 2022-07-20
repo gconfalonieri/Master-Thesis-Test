@@ -133,6 +133,7 @@ dmypy.json
 
 # Project Folders
 example-test
+plots/experiments/*
 datasets/arrays/undersampled/*
 datasets/arrays/complete/*
 datasets/arrays/labels/*

@@ -13,7 +13,7 @@ def plot_model_loss(history_dict, name):
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.legend()
-    plt.savefig('plots/results/loss_' + name + '.png')
+    plt.savefig('plots/experiments/loss_' + name + '.png')
     # plt.show()
 
 
@@ -27,5 +27,5 @@ def plot_model_accuracy(history_dict, name):
     plt.xlabel("Epochs")
     plt.ylabel("Accuracy")
     plt.legend()
-    plt.savefig('plots/results/accuracy_' + name + '.png')
+    plt.savefig('plots/experiments/accuracy_' + name + '.png')
     # plt.show()
