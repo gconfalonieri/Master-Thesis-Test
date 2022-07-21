@@ -21,6 +21,25 @@ def get_max_series_len():
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
+                curr_len = len(reduced_df.iloc[:, 0])
+                if curr_len > max_len:
+                    max_len = curr_len
+
+    return max_len
+
+
+def get_max_series_len_shifted():
+
+    max_len = 0
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                reduced_df = df_sync[df_sync['media_name'] == name]
                 for j in range(0, 14):
                     shifted = reduced_df.iloc[j::15, :]
                     curr_len = len(shifted.iloc[:, 0])
@@ -116,7 +135,7 @@ def get_questions_padded_array():
     return np.array(complete_x_list, dtype=np.ndarray)
 
 
-def get_questions_oversampled_array():
+def get_questions_oversampled_array_shifted():
 
     complete_x_list = []
 
@@ -142,6 +161,35 @@ def get_questions_oversampled_array():
                             oversampled_array = scipy.signal.resample(arr, max_len)
                         question_list.append(oversampled_array)
                     complete_x_list.append(question_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray)
+
+
+def get_questions_oversampled_array():
+
+    complete_x_list = []
+
+    max_len = get_max_series_len()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                question_list = []
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                for f in config['algorithm']['gaze_features']:
+
+                    arr = np.asarray(reduced_df[f]).astype('float32')
+                    oversampled_array = numpy.array(0)
+                    if config['preprocessing']['resample_library'] == 'sklearn':
+                        oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                    elif config['preprocessing']['resample_library'] == 'scipy':
+                        oversampled_array = scipy.signal.resample(arr, max_len)
+                    question_list.append(oversampled_array)
+                complete_x_list.append(question_list)
 
     return np.array(complete_x_list, dtype=np.ndarray)
 
@@ -189,6 +237,20 @@ def split_mask_array(numpy_array):
 
 
 def get_labels_questions_array():
+
+    complete_y_list = []
+
+    path_labelled_df = config['path']['labelled_dataset']
+    df_labelled = pd.read_csv(path_labelled_df)
+
+    for i in df_labelled.index:
+        arr = np.array(df_labelled['LABEL'][i])
+        complete_y_list.append(np.expand_dims(arr, axis=(0)))
+
+    return np.asarray(complete_y_list).astype('int')
+
+
+def get_labels_questions_array_shifted():
 
     complete_y_list = []
 

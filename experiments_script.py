@@ -159,8 +159,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                                 history_dict = history.history
 
                                 name = 'LSTM - ' + str(c)
-                                models.plots.plot_model_loss(history_dict, name)
-                                models.plots.plot_model_accuracy(history_dict, name)
+                                # models.plots.plot_model_loss(history_dict, name)
+                                # models.plots.plot_model_accuracy(history_dict, name)
 
                                 write_line_2(c, history_dict['accuracy'][-1],
                                              history_dict['val_accuracy'][-1],
@@ -194,8 +194,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                         history_dict = history.history
 
                         name = 'LSTM - ' + str(c)
-                        models.plots.plot_model_loss(history_dict, name)
-                        models.plots.plot_model_accuracy(history_dict, name)
+                        # models.plots.plot_model_loss(history_dict, name)
+                        # models.plots.plot_model_accuracy(history_dict, name)
 
                         write_line_2(c, history_dict['accuracy'][-1],
                                      history_dict['val_accuracy'][-1],
@@ -706,10 +706,10 @@ for label_array in config['path']['labels_arrays']:
         for loss_type in config['algorithm']['loss_types']:
             for optimizer_type in config['algorithm']['optimizer_types']:
 
-                # c = iterate_cnn1d_lstm(c, complete_x_list, complete_y_list)
-                # c = iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list)
-                # c = iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list)
+                c = iterate_cnn1d_lstm(c, complete_x_list, complete_y_list)
+                c = iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list)
+                c = iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list)
                 c = iterate_lstm(c, complete_x_list, complete_y_list)
-                # c = iterate_cnn1d(c, complete_x_list, complete_y_list)
-                # c = iterate_cnn2d_lstm(c, complete_x_list, complete_y_list)
-                # c = iterate_cnn2d(c, complete_x_list, complete_y_list)
+                c = iterate_cnn1d(c, complete_x_list, complete_y_list)
+                c = iterate_cnn2d_lstm(c, complete_x_list, complete_y_list)
+                c = iterate_cnn2d(c, complete_x_list, complete_y_list)
