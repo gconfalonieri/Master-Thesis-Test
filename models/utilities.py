@@ -54,7 +54,7 @@ def get_max_validation_len_shifted():
 
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
-        if i not in config['general']['validation_users']:
+        if i in config['general']['validation_users']:
             path = config['path']['sync_validation_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
@@ -147,7 +147,7 @@ def get_questions_oversampled_validation_shifted():
 
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
-        if i not in config['general']['validation_users']:
+        if i in config['general']['validation_users']:
             path = config['path']['sync_validation_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']

@@ -17,7 +17,7 @@ solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
 labelled_dataset = './datasets/results/labels/labelled_dataset.csv'
 sync_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
-sync_validation_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
+sync_validation_prefix = 'datasets/sync_datasets/undersampled/norm_1_1_validation/'
 
 input_arrays = ['datasets/arrays/undersampled_shifted/input_1_1_oversampled.npy']
 

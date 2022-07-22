@@ -15,4 +15,4 @@ import numpy as np
 # np.save('datasets/arrays/labels/labels_v2.npy', complete_y_list)
 # print(complete_y_list.shape)
 
-models.utilities.get_labels_questions_array_shifted()
+models.utilities.get_questions_oversampled_validation_shifted()
