@@ -17,7 +17,8 @@ def evaluate_model():
     new_model = tf.keras.models.load_model('models/test_model')
     complete_x_validation = np.load('datasets/arrays/undersampled_shifted/input_1_1_validation.npy', allow_pickle=True)
     complete_y_validation = np.load('datasets/arrays/labels/labels_validaton_v2.npy', allow_pickle=True)
-    loss, acc = new_model.evaluate(complete_x_validation, complete_y_validation)
+    X_train = np.array(complete_x_validation).astype(np.float32)
+    loss, acc = new_model.evaluate(X_train, complete_y_validation)
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
