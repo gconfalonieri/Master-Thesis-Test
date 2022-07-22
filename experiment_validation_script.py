@@ -1,5 +1,6 @@
 from sklearn.model_selection import train_test_split
 import models.deep_learning_models as dl_models
+import tensorflow as tf
 import numpy as np
 
 def train_model():
@@ -12,4 +13,12 @@ def train_model():
     history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), shuffle=True)
     model.save('models/test_model')
 
-train_model()
+def evaluate_model():
+    new_model = tf.keras.models.load_model('models/test_model')
+    complete_x_validation = np.load('datasets/arrays/undersampled_shifted/input_1_1_validation.npy', allow_pickle=True)
+    complete_y_validation = np.load('datasets/arrays/labels/labels_validaton_v2.npy', allow_pickle=True)
+    loss, acc = new_model.evaluate(complete_x_validation, complete_y_validation)
+    print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
+
+
+evaluate_model()
