@@ -77,6 +77,8 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                                         history = model.fit(X_train, y_train, epochs=100,
                                                             validation_data=(X_test, y_test), shuffle=True)
 
+                                        model.save('tf_models/test_model_' + str(c))
+
                                         history_dict = history.history
 
                                         name = 'CNN1D - ' + str(c)
@@ -113,6 +115,8 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
 
                                 history = model.fit(X_train, y_train, epochs=100,
                                                     validation_data=(X_test, y_test), shuffle=True)
+
+                                model.save('tf_models/test_model_' + str(c))
 
                                 history_dict = history.history
 
@@ -164,6 +168,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                                 history = model.fit(X_train, y_train, epochs=100,
                                                     validation_data=(X_test, y_test), shuffle=True)
 
+                                model.save('tf_models/test_model_' + str(c))
+
                                 history_dict = history.history
 
                                 name = 'LSTM - ' + str(c)
@@ -198,6 +204,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
 
                         history = model.fit(X_train, y_train, epochs=100,
                                             validation_data=(X_test, y_test), shuffle=True)
+
+                        model.save('tf_models/test_model_' + str(c))
 
                         history_dict = history.history
 
@@ -263,6 +271,8 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                             history = model.fit(X_train, y_train, epochs=100,
                                                                 validation_data=(X_test, y_test), shuffle=True)
 
+                                            model.save('tf_models/test_model_' + str(c))
+
                                             history_dict = history.history
 
                                             name = 'CNN1D LSTM - ' + str(c)
@@ -308,6 +318,8 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                     history = model.fit(X_train, y_train, epochs=100,
                                                         validation_data=(X_test, y_test), shuffle=True)
+
+                                    model.save('tf_models/test_model_' + str(c))
 
                                     history_dict = history.history
 
@@ -371,6 +383,8 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
                                             history = model.fit(X_train, y_train, epochs=100,
                                                                 validation_data=(X_test, y_test), shuffle=True)
 
+                                            model.save('tf_models/test_model_' + str(c))
+
                                             history_dict = history.history
 
                                             name = 'CNN1D LSTM 3DENSE - ' + str(c)
@@ -416,6 +430,8 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
 
                                     history = model.fit(X_train, y_train, epochs=100,
                                                         validation_data=(X_test, y_test), shuffle=True)
+
+                                    model.save('tf_models/test_model_' + str(c))
 
                                     history_dict = history.history
 
@@ -479,6 +495,8 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
                                             history = model.fit(X_train, y_train, epochs=100,
                                                                 validation_data=(X_test, y_test), shuffle=True)
 
+                                            model.save('tf_models/test_model_' + str(c))
+
                                             history_dict = history.history
 
                                             name = '2CNN1D LSTM - ' + str(c)
@@ -524,6 +542,8 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                     history = model.fit(X_train, y_train, epochs=100,
                                                         validation_data=(X_test, y_test), shuffle=True)
+
+                                    model.save('tf_models/test_model_' + str(c))
 
                                     history_dict = history.history
 
@@ -585,6 +605,8 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                                         history = model.fit(X_train, y_train, epochs=100,
                                                             validation_data=(X_test, y_test), shuffle=True)
 
+                                        model.save('tf_models/test_model_' + str(c))
+
                                         history_dict = history.history
 
                                         name = 'CNN2D - ' + str(c)
@@ -615,6 +637,8 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
 
                                 history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test),
                                                     shuffle=True)
+
+                                model.save('tf_models/test_model_' + str(c))
 
                                 history_dict = history.history
 
@@ -680,6 +704,8 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                             history = model.fit(X_train, y_train, epochs=100,
                                                                 validation_data=(X_test, y_test), shuffle=True)
 
+                                            model.save('tf_models/test_model_' + str(c))
+
                                             history_dict = history.history
 
                                             name = 'CNN2D LSTM - ' + str(c)
@@ -719,6 +745,8 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
 
                                     history = model.fit(X_train, y_train, epochs=100,
                                                         validation_data=(X_test, y_test), shuffle=True)
+
+                                    model.save('tf_models/test_model_' + str(c))
 
                                     history_dict = history.history
 
