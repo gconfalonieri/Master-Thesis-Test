@@ -9,7 +9,7 @@ import models.deep_learning_models
 from experiments.utilities import get_input_array_string, get_labels_array_string
 import csv
 
-f = open('iterations.csv', 'w')
+f = open('../iterations.csv', 'w')
 f.write('index,model,label,input,loss_type,optimizer_type,dense_input,dense_input_dim,dense_input_activation,'
         'dense_output_activation,lstm_units,cnn_fiters,cnn_kernel,cnn_pool_size,dropout,dropout_value\n')
 f.close()
@@ -18,7 +18,7 @@ f.close()
 def write_line(c, model, label_name, input_name, loss_type, optimizer_type, dense_input, dense_input_dim,
                dense_input_activation, dense_output_activation, lstm_cells, n_cnn_filters, cnn_kernel_size,
                cnn_pool_size, dropout, dropout_value):
-    f = open('iterations.csv', 'a')
+    f = open('../iterations.csv', 'a')
     line = str(c) + ',' + model + ',' + label_name + ',' + input_name \
            + ',' + loss_type + ',' + optimizer_type + ',' + str(dense_input) \
            + ',' + str(dense_input_dim) + ',' + dense_input_activation + ',' \
@@ -257,7 +257,7 @@ def iterate_cnn2d_lstm(c):
 
     return c
 
-config = toml.load('config.toml')
+config = toml.load('../config.toml')
 
 performances_df = pd.DataFrame(columns=['index', 'acc', 'val_acc', 'loss', 'val_loss'])
 
