@@ -11,10 +11,10 @@ def train_model():
     X_test = np.asarray(X_test).astype(np.float32)
     model = dl_models.get_model_lstm(0, 0, '', 'relu', 32, 'mse', 'adam', 1, 0.1)
     history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), shuffle=True)
-    model.save('models/test_model')
+    model.save('tf_models/test_model')
 
 def evaluate_model():
-    new_model = tf.keras.models.load_model('models/test_model')
+    new_model = tf.keras.models.load_model('tf_models/test_model')
     complete_x_validation = np.load('datasets/arrays/undersampled_shifted/input_1_1_validation.npy', allow_pickle=True)
     complete_y_validation = np.load('datasets/arrays/labels/labels_validaton_v2.npy', allow_pickle=True)
     X_train = np.array(complete_x_validation).astype(np.float32)
@@ -22,4 +22,4 @@ def evaluate_model():
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
-evaluate_model()
+train_model()

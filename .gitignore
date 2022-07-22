@@ -141,3 +141,4 @@ performances.csv
 iterations.py
 plots/results/*
 models/test_model/*
+tf_models/*
