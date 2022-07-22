@@ -10,5 +10,6 @@ def train_model():
     X_test = np.asarray(X_test).astype(np.float32)
     model = dl_models.get_model_lstm(0, 0, '', 'relu', 32, 'mse', 'adam', 1, 0.1)
     history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), shuffle=True)
+    model.save('models/test_model')
 
 train_model()
