@@ -113,7 +113,7 @@ def get_questions_oversampled_array_shifted():
 
     complete_x_list = []
 
-    max_len = config['computed']['shifted_max_len']
+    max_len = get_max_series_len_shifted()
 
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
