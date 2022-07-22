@@ -79,6 +79,10 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
 
                                         history_dict = history.history
 
+                                        name = 'CNN1D - ' + str(c)
+                                        models.plots.plot_model_loss(history_dict, name)
+                                        models.plots.plot_model_accuracy(history_dict, name)
+
                                         write_line_2(c, history_dict['accuracy'][-1],
                                                      history_dict['val_accuracy'][-1],
                                                      history_dict['loss'][-1],
@@ -111,6 +115,10 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                                                     validation_data=(X_test, y_test), shuffle=True)
 
                                 history_dict = history.history
+
+                                name = 'CNN1D - ' + str(c)
+                                models.plots.plot_model_loss(history_dict, name)
+                                models.plots.plot_model_accuracy(history_dict, name)
 
                                 write_line_2(c, history_dict['accuracy'][-1],
                                              history_dict['val_accuracy'][-1],
@@ -159,8 +167,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                                 history_dict = history.history
 
                                 name = 'LSTM - ' + str(c)
-                                # models.plots.plot_model_loss(history_dict, name)
-                                # models.plots.plot_model_accuracy(history_dict, name)
+                                models.plots.plot_model_loss(history_dict, name)
+                                models.plots.plot_model_accuracy(history_dict, name)
 
                                 write_line_2(c, history_dict['accuracy'][-1],
                                              history_dict['val_accuracy'][-1],
@@ -194,8 +202,8 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                         history_dict = history.history
 
                         name = 'LSTM - ' + str(c)
-                        # models.plots.plot_model_loss(history_dict, name)
-                        # models.plots.plot_model_accuracy(history_dict, name)
+                        models.plots.plot_model_loss(history_dict, name)
+                        models.plots.plot_model_accuracy(history_dict, name)
 
                         write_line_2(c, history_dict['accuracy'][-1],
                                      history_dict['val_accuracy'][-1],
@@ -257,6 +265,10 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                             history_dict = history.history
 
+                                            name = 'CNN1D LSTM - ' + str(c)
+                                            models.plots.plot_model_loss(history_dict, name)
+                                            models.plots.plot_model_accuracy(history_dict, name)
+
                                             write_line_2(c, history_dict['accuracy'][-1],
                                                          history_dict['val_accuracy'][-1],
                                                          history_dict['loss'][-1],
@@ -298,6 +310,10 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
                                                         validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
+
+                                    name = 'CNN1D LSTM - ' + str(c)
+                                    models.plots.plot_model_loss(history_dict, name)
+                                    models.plots.plot_model_accuracy(history_dict, name)
 
                                     write_line_2(c, history_dict['accuracy'][-1],
                                                  history_dict['val_accuracy'][-1],
@@ -357,6 +373,10 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
 
                                             history_dict = history.history
 
+                                            name = 'CNN1D LSTM 3DENSE - ' + str(c)
+                                            models.plots.plot_model_loss(history_dict, name)
+                                            models.plots.plot_model_accuracy(history_dict, name)
+
                                             write_line_2(c, history_dict['accuracy'][-1],
                                                          history_dict['val_accuracy'][-1],
                                                          history_dict['loss'][-1],
@@ -398,6 +418,10 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
                                                         validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
+
+                                    name = 'CNN1D LSTM 3DENSE - ' + str(c)
+                                    models.plots.plot_model_loss(history_dict, name)
+                                    models.plots.plot_model_accuracy(history_dict, name)
 
                                     write_line_2(c, history_dict['accuracy'][-1],
                                                  history_dict['val_accuracy'][-1],
@@ -457,6 +481,10 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                             history_dict = history.history
 
+                                            name = '2CNN1D LSTM - ' + str(c)
+                                            models.plots.plot_model_loss(history_dict, name)
+                                            models.plots.plot_model_accuracy(history_dict, name)
+
                                             write_line_2(c, history_dict['accuracy'][-1],
                                                          history_dict['val_accuracy'][-1],
                                                          history_dict['loss'][-1],
@@ -498,6 +526,10 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
                                                         validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
+
+                                    name = '2CNN1D LSTM - ' + str(c)
+                                    models.plots.plot_model_loss(history_dict, name)
+                                    models.plots.plot_model_accuracy(history_dict, name)
 
                                     write_line_2(c, history_dict['accuracy'][-1],
                                                  history_dict['val_accuracy'][-1],
@@ -555,6 +587,10 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
 
                                         history_dict = history.history
 
+                                        name = 'CNN2D - ' + str(c)
+                                        models.plots.plot_model_loss(history_dict, name)
+                                        models.plots.plot_model_accuracy(history_dict, name)
+
                                         write_line_2(c, history_dict['accuracy'][-1],
                                                      history_dict['val_accuracy'][-1],
                                                      history_dict['loss'][-1],
@@ -581,6 +617,10 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                                                     shuffle=True)
 
                                 history_dict = history.history
+
+                                name = 'CNN2D - ' + str(c)
+                                models.plots.plot_model_loss(history_dict, name)
+                                models.plots.plot_model_accuracy(history_dict, name)
 
                                 write_line_2(c, history_dict['accuracy'][-1],
                                              history_dict['val_accuracy'][-1],
@@ -642,6 +682,10 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
 
                                             history_dict = history.history
 
+                                            name = 'CNN2D LSTM - ' + str(c)
+                                            models.plots.plot_model_loss(history_dict, name)
+                                            models.plots.plot_model_accuracy(history_dict, name)
+
                                             write_line_2(c, history_dict['accuracy'][-1],
                                                          history_dict['val_accuracy'][-1],
                                                          history_dict['loss'][-1],
@@ -677,6 +721,10 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                                         validation_data=(X_test, y_test), shuffle=True)
 
                                     history_dict = history.history
+
+                                    name = 'CNN2D LSTM - ' + str(c)
+                                    models.plots.plot_model_loss(history_dict, name)
+                                    models.plots.plot_model_accuracy(history_dict, name)
 
                                     write_line_2(c, history_dict['accuracy'][-1],
                                                  history_dict['val_accuracy'][-1],
