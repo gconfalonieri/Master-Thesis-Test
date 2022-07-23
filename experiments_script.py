@@ -9,6 +9,10 @@ import models.deep_learning_models
 from experiments.utilities import get_input_array_string, get_labels_array_string
 import csv
 
+config = toml.load('config.toml')
+
+test_size_value = config['algorithm']['test_size']
+
 f = open('results.csv', 'w')
 f.write('index,model,label,input,loss_type,optimizer_type,dense_input,dense_input_dim,dense_input_activation,'
         'dense_output_activation,lstm_units,cnn_fiters,cnn_kernel,cnn_pool_size,dropout,dropout_value\n')
@@ -52,7 +56,8 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
 
                                         X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                             complete_y_list,
-                                                                                            test_size=0.2, shuffle=True)
+                                                                                            test_size=test_size_value,
+                                                                                            shuffle=True)
 
                                         X_train = np.array(X_train).astype(np.float32)
                                         X_test = np.asarray(X_test).astype(np.float32)
@@ -94,7 +99,8 @@ def iterate_cnn1d(c, complete_x_list, complete_y_list):
                             else:
 
                                 X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list,
-                                                                                    test_size=0.2, shuffle=True)
+                                                                                    test_size=test_size_value,
+                                                                                    shuffle=True)
 
                                 X_train = np.array(X_train).astype(np.float32)
                                 X_test = np.asarray(X_test).astype(np.float32)
@@ -145,7 +151,7 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
                             for dense_input_activation in config['algorithm']['activation_types']:
                                 X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                     complete_y_list,
-                                                                                    test_size=0.2,
+                                                                                    test_size=test_size_value,
                                                                                     shuffle=True)
 
                                 X_train = np.array(X_train).astype(np.float32)
@@ -186,7 +192,7 @@ def iterate_lstm(c, complete_x_list, complete_y_list):
 
                         X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                             complete_y_list,
-                                                                            test_size=0.2,
+                                                                            test_size=test_size_value,
                                                                             shuffle=True)
 
                         X_train = np.array(X_train).astype(np.float32)
@@ -240,7 +246,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                             X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                                 complete_y_list,
-                                                                                                test_size=0.2,
+                                                                                                test_size=test_size_value,
                                                                                                 shuffle=True)
 
                                             X_train = np.array(X_train).astype(np.float32)
@@ -289,7 +295,7 @@ def iterate_cnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                     X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                         complete_y_list,
-                                                                                        test_size=0.2,
+                                                                                        test_size=test_size_value,
                                                                                         shuffle=True)
 
                                     X_train = np.array(X_train).astype(np.float32)
@@ -352,7 +358,7 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
 
                                             X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                                 complete_y_list,
-                                                                                                test_size=0.2,
+                                                                                                test_size=test_size_value,
                                                                                                 shuffle=True)
 
                                             X_train = np.array(X_train).astype(np.float32)
@@ -401,7 +407,7 @@ def iterate_cnn1d_lstm_3dense(c, complete_x_list, complete_y_list):
 
                                     X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                         complete_y_list,
-                                                                                        test_size=0.2,
+                                                                                        test_size=test_size_value,
                                                                                         shuffle=True)
 
                                     X_train = np.array(X_train).astype(np.float32)
@@ -464,7 +470,7 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                             X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                                 complete_y_list,
-                                                                                                test_size=0.2,
+                                                                                                test_size=test_size_value,
                                                                                                 shuffle=True)
 
                                             X_train = np.array(X_train).astype(np.float32)
@@ -513,7 +519,7 @@ def iterate_2xcnn1d_lstm(c, complete_x_list, complete_y_list):
 
                                     X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                         complete_y_list,
-                                                                                        test_size=0.2,
+                                                                                        test_size=test_size_value,
                                                                                         shuffle=True)
 
                                     X_train = np.array(X_train).astype(np.float32)
@@ -577,7 +583,7 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
 
                                         X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                             complete_y_list,
-                                                                                            test_size=0.2,
+                                                                                            test_size=test_size_value,
                                                                                             shuffle=True)
 
                                         X_train = np.array(X_train).astype(np.float32)
@@ -622,7 +628,7 @@ def iterate_cnn2d(c, complete_x_list, complete_y_list):
                             else:
 
                                 X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list,
-                                                                                    test_size=0.2, shuffle=True)
+                                                                                    test_size=test_size_value, shuffle=True)
 
                                 X_train = np.array(X_train).astype(np.float32)
                                 X_test = np.asarray(X_test).astype(np.float32)
@@ -673,7 +679,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
 
                                             X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                                 complete_y_list,
-                                                                                                test_size=0.2,
+                                                                                                test_size=test_size_value,
                                                                                                 shuffle=True)
 
                                             X_train = np.array(X_train).astype(np.float32)
@@ -722,7 +728,7 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
 
                                     X_train, X_test, y_train, y_test = train_test_split(complete_x_list,
                                                                                         complete_y_list,
-                                                                                        test_size=0.2,
+                                                                                        test_size=test_size_value,
                                                                                         shuffle=True)
 
                                     X_train = np.array(X_train).astype(np.float32)
@@ -762,8 +768,6 @@ def iterate_cnn2d_lstm(c, complete_x_list, complete_y_list):
                                     c += 1
 
     return c
-
-config = toml.load('config.toml')
 
 performances_df = pd.DataFrame(columns=['index', 'acc', 'val_acc', 'loss', 'val_loss'])
 

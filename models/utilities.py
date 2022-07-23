@@ -113,7 +113,8 @@ def get_questions_oversampled_array_shifted():
 
     complete_x_list = []
 
-    max_len = get_max_series_len_shifted()
+    # max_len = get_max_series_len_shifted()
+    max_len = config['computed']['shifted_max_len']
 
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
@@ -143,7 +144,8 @@ def get_questions_oversampled_validation_shifted():
 
     complete_x_list = []
 
-    max_len = get_max_series_len_shifted()
+    # max_len = get_max_series_len_shifted()
+    max_len = config['computed']['shifted_max_len']
 
     for i in range(1, 53):
         user_id = 'USER_' + str(i)
