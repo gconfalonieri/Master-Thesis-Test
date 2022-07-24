@@ -29,4 +29,4 @@ def evaluate_model():
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
-evaluate_model()
+train_model()
