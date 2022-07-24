@@ -7,6 +7,8 @@ import numpy as np
 def train_model():
     complete_x_list = np.load('datasets/arrays/undersampled_shifted/input_1_1.npy', allow_pickle=True)
     complete_y_list = np.load('datasets/arrays/labels/labels_v2.npy', allow_pickle=True)
+    print(complete_x_list.shape)
+    print(complete_y_list.shape)
     X_train, X_test, y_train, y_test = train_test_split(complete_x_list, complete_y_list, test_size=0.13, shuffle=True)
     X_train = np.array(X_train).astype(np.float32)
     X_test = np.asarray(X_test).astype(np.float32)
