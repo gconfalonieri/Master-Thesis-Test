@@ -15,8 +15,6 @@ import numpy as np
 # np.save('datasets/arrays/labels/labels_v2.npy', complete_y_list)
 # print(complete_y_list.shape)
 
-print(models.utilities.get_max_series_len())
-
 complete_x_list = models.utilities.get_questions_oversampled_array_shifted()
 np.save('datasets/arrays/undersampled_shifted/input_1_1.npy', complete_x_list)
 complete_y_list = models.utilities.get_labels_questions_array_shifted()

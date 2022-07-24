@@ -29,4 +29,5 @@ def evaluate_model():
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
-evaluate_model()
+complete_x_list = np.load('datasets/arrays/undersampled_shifted/input_1_1.npy', allow_pickle=True)
+print(complete_x_list.shape)
