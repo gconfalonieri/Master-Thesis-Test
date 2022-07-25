@@ -601,6 +601,9 @@ def iterate_cnn2d(c):
                                              history_dict['loss'][-1],
                                              history_dict['val_loss'][-1])
 
+                                c += 1
+
+
     return c
 
 
