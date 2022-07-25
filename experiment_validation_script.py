@@ -25,8 +25,8 @@ def evaluate_model():
     complete_x_validation = np.load('datasets/arrays/undersampled_shifted/input_1_1_validation.npy', allow_pickle=True)
     complete_y_validation = np.load('datasets/arrays/labels/labels_validaton_v2.npy', allow_pickle=True)
     X_train = np.array(complete_x_validation).astype(np.float32)
-    print(X_train.shape)
-    print(complete_y_validation.shape)
+    X_train = np.expand_dims(X_train, 2)
+    complete_y_validation = np.expand_dims(complete_y_validation, 2)
     loss, acc = new_model.evaluate(X_train, complete_y_validation)
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
