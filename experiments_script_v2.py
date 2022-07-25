@@ -46,7 +46,7 @@ def write_line_2(c, acc, val_acc, loss, val_loss):
 
 def iterate_cnn1d(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = total_arr[0]
     X_test = total_arr[1]
     y_train = total_arr[2]
@@ -134,7 +134,7 @@ def iterate_cnn1d(c):
 
 def iterate_lstm(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = total_arr[0]
     X_test = total_arr[1]
     y_train = total_arr[2]
@@ -215,7 +215,7 @@ def iterate_lstm(c):
 
 def iterate_cnn1d_lstm(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = total_arr[0]
     X_test = total_arr[1]
     y_train = total_arr[2]
@@ -318,7 +318,7 @@ def iterate_cnn1d_lstm(c):
 
 def iterate_cnn1d_lstm_3dense(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = total_arr[0]
     X_test = total_arr[1]
     y_train = total_arr[2]
@@ -420,7 +420,7 @@ def iterate_cnn1d_lstm_3dense(c):
 
 def iterate_2xcnn1d_lstm(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = total_arr[0]
     X_test = total_arr[1]
     y_train = total_arr[2]
@@ -522,7 +522,7 @@ def iterate_2xcnn1d_lstm(c):
 
 def iterate_cnn2d(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = np.expand_dims(total_arr[0], 2)
     X_test = np.expand_dims(total_arr[1], 2)
     y_train = np.expand_dims(total_arr[2], 2)
@@ -609,7 +609,7 @@ def iterate_cnn2d(c):
 
 def iterate_cnn2d_lstm(c):
 
-    total_arr = get_arrays_shuffled_shifted_thr(test_size_value)
+    total_arr = get_arrays_shuffled_shifted(test_size_value)
     X_train = np.expand_dims(total_arr[0], 2)
     X_test = np.expand_dims(total_arr[1], 2)
     y_train = np.expand_dims(total_arr[2], 2)
