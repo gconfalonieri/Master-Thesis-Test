@@ -29,4 +29,4 @@ def evaluate_model():
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
-print(models.utilities.get_max_series_len_shifted())
+train_model()
