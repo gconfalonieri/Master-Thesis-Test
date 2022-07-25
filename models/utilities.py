@@ -209,7 +209,6 @@ def get_questions_oversampled_array():
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 for f in config['algorithm']['gaze_features']:
-
                     arr = np.asarray(reduced_df[f]).astype('float32')
                     oversampled_array = numpy.array(0)
                     if config['preprocessing']['resample_library'] == 'sklearn':

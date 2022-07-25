@@ -21,7 +21,7 @@ def train_model():
     model.save('tf_models/best_model_test')
 
 def evaluate_model():
-    new_model = tf.keras.models.load_model('tf_models/best_model_test')
+    new_model = tf.keras.models.load_model('tf_models/AAA_test_model_40')
     complete_x_validation = np.load('datasets/arrays/undersampled_shifted/input_1_1_validation.npy', allow_pickle=True)
     complete_y_validation = np.load('datasets/arrays/labels/labels_validaton_v2.npy', allow_pickle=True)
     X_train = np.array(complete_x_validation).astype(np.float32)
@@ -29,4 +29,4 @@ def evaluate_model():
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
-train_model()
+evaluate_model()
