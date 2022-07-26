@@ -15,7 +15,7 @@ binary_value = [0, 1] # 0, 1
 brainwaves_folder = './datasets/eeg'
 solutions_complete_dataset = './datasets/questions/solutions_complete.csv'
 answers_complete_dataset = './datasets/questions/answers_complete.csv'
-labelled_dataset = './datasets/results/labels/labelled_dataset_v2.csv'
+labelled_dataset = './datasets/results/labels/labelled_dataset_v2_2F.csv'
 sync_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
 sync_validation_prefix = 'datasets/sync_datasets/undersampled/norm_1_1_validation/'
 
