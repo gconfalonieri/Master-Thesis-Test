@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
 
 import models.utilities
 from sklearn import svm
@@ -72,8 +73,9 @@ labels_array = get_labels_array()
 X_train, X_test, y_train, y_test = train_test_split(complete_array, labels_array, test_size=0.3, shuffle=True)
 
 # clf = make_pipeline(StandardScaler(), svm.SVC(gamma='auto'))
-clf = svm.SVC(kernel='poly', degree=4, gamma='auto', C=2) # Linear Kernel
+clf = svm.SVC(kernel='linear', gamma='auto', C=2) # Linear Kernel
 # clf = RandomForestClassifier(n_estimators=100, max_features='sqrt', max_depth=10, random_state=18)
+# clf = KMeans( n_clusters=2, init='random', n_init=10, max_iter=10000,  tol=1e-02, random_state=0)
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 
