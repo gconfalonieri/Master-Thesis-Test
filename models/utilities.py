@@ -272,7 +272,7 @@ def get_labels_questions_validation_shifted():
     return np.asarray(complete_y_list).astype('int')
 
 
-def get_arrays_shuffled_shifted(test_size_value):
+def get_questions_arrays_shifted():
 
     complete_x = []
     complete_y = []
@@ -305,34 +305,35 @@ def get_arrays_shuffled_shifted(test_size_value):
                     question_list.append(feature_list)
                 red_df = df_labelled.loc[(df_labelled['USER_ID'] == user_id) & (df_labelled['MEDIA_NAME'] == name)]
                 arr = np.array(red_df['LABEL'].values[0])
-                complete_y.append(np.expand_dims(arr, axis=(0)))
+                question_label_list = []
+                for i in range(0, 14):
+                    question_label_list.append(np.expand_dims(arr, axis=(0)))
                 complete_x.append(question_list)
+                complete_y.append(question_label_list)
 
-    array_x = np.array(complete_x, dtype=np.ndarray)
-    array_y = np.asarray(complete_y).astype('int')
+    return np.array(complete_x, dtype=np.ndarray), np.asarray(complete_y).astype('int')
 
-    train_array, validation_array, train_labels, validation_labels = train_test_split(array_x, array_y, test_size=test_size_value, shuffle=True)
 
-    new_train = []
-    new_validation = []
-    new_label_train = []
-    new_label_validation = []
+def aggregate_questions(old_array):
 
-    for x in train_array:
+    new_array = []
+
+    for x in old_array:
         for y in x:
-            new_train.append(y)
-    for x in validation_array:
-        for y in x:
-            new_validation.append(y)
-    for x in train_labels:
-        for i in range(0, 14):
-            new_label_train.append(x)
-    for x in validation_labels:
-        for i in range(0, 14):
-            new_label_validation.append(x)
+            new_array.append(y)
 
-    return np.array(new_train).astype(np.float32), np.asarray(new_validation).astype(np.float32), \
-           np.asarray(new_label_train).astype('int'), np.asarray(new_label_validation).astype('int')
+    return np.array(new_array).astype(np.float32)
+
+
+def aggregate_labels(old_array):
+
+    new_array = []
+
+    for x in old_array:
+        for y in x:
+            new_array.append(y)
+
+    return np.asarray(new_array).astype('int')
 
 
 def get_arrays_shuffled_shifted_thr(test_size_value):
