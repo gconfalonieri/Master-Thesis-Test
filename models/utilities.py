@@ -221,48 +221,6 @@ def get_questions_oversampled_array():
     return np.array(complete_x_list, dtype=np.ndarray)
 
 
-def get_fpogv_mask_array():
-
-    complete_x_list = []
-
-    for i in range(1, 53):
-        user_id = 'USER_' + str(i)
-        if i not in config['general']['excluded_users']:
-            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
-            df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
-            for name in media_names:
-                reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
-                    shifted = reduced_df.iloc[j::15, :]
-                    question_list = []
-                    for x in shifted['FPOGV']:
-                        question_list.append(x)
-                    complete_x_list.append(np.array(question_list, dtype=np.ndarray))
-
-    return np.asarray(complete_x_list).astype(int)
-
-
-def split_mask_array(numpy_array):
-
-    data_array = []
-    mask_array = []
-    channels_arr = []
-    bit_arr = []
-
-    for questions in numpy_array:
-        for channels in questions:
-            channels_arr.append(channels[0])
-            channels_arr.append(channels[1])
-            channels_arr.append(channels[2])
-            channels_arr.append(channels[3])
-            bit_arr.append(channels[4])
-        data_array.append(channels_arr)
-        mask_array.append(bit_arr)
-
-    return np.array(data_array, dtype=np.ndarray), np.asarray(mask_array).astype('int')
-
-
 def get_labels_questions_array():
 
     complete_y_list = []
@@ -442,3 +400,36 @@ def get_arrays_shuffled_shifted_thr(test_size_value):
     return np.array(new_train).astype(np.float32), np.asarray(new_validation).astype(np.float32), \
            np.asarray(new_label_train).astype('int'), np.asarray(new_label_validation).astype('int')
 
+
+def get_users_array_shifted():
+
+    complete_x = []
+
+    max_len = get_max_series_len_shifted()
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            user_list = []
+            for name in media_names:
+                question_list = []
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                for j in range(0, 14):
+                    shifted = reduced_df.iloc[j::15, :]
+                    feature_list = []
+                    for f in config['algorithm']['gaze_features']:
+                        arr = np.asarray(shifted[f]).astype('float32')
+                        oversampled_array = numpy.array(0)
+                        if config['preprocessing']['resample_library'] == 'sklearn':
+                            oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                        elif config['preprocessing']['resample_library'] == 'scipy':
+                            oversampled_array = scipy.signal.resample(arr, max_len)
+                        feature_list.append(oversampled_array)
+                    question_list.append(feature_list)
+                user_list.append(question_list)
+            complete_x.append(user_list)
+
+    return np.array(complete_x, dtype=np.ndarray)

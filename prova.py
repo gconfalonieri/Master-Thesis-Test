@@ -7,10 +7,11 @@ import numpy as np
 import scipy.signal
 import sklearn.utils
 from scipy.interpolate import interp1d
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 
 import models
-from models.utilities import get_min_series_len_shifted
+from models.utilities import get_min_series_len_shifted, get_users_array_shifted, \
+    get_arrays_shuffled_shifted
 
 config = toml.load('config.toml')
 
@@ -83,11 +84,9 @@ def get_questions_oversampled_validation_shifted(test_size_value):
 
 # total_arr2 = models.utilities.get_arrays_shuffled_shifted(0.12)
 
-total_arr = get_questions_oversampled_validation_shifted(0.12)
-X_train = total_arr[0]
-X_test = total_arr[1]
-y_train = total_arr[2]
-y_test = total_arr[3]
+array_x = get_users_array_shifted()
+# total_label = get_labels_users_array_shifted()
 
-model = models.deep_learning_models.get_model_lstm(0, 0, '', 'relu', 32, 'mse', 'adam', 1, 0.1)
-history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), shuffle=True)
+print(array_x.shape)
+
+# history = model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), shuffle=True)

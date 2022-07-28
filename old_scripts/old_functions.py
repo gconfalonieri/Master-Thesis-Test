@@ -81,6 +81,48 @@ def get_all_windowed_array():
     return np.array(complete_x_list, dtype=np.ndarray), np.asarray(complete_y_list).astype('int')
 
 
+def split_mask_array(numpy_array):
+
+    data_array = []
+    mask_array = []
+    channels_arr = []
+    bit_arr = []
+
+    for questions in numpy_array:
+        for channels in questions:
+            channels_arr.append(channels[0])
+            channels_arr.append(channels[1])
+            channels_arr.append(channels[2])
+            channels_arr.append(channels[3])
+            bit_arr.append(channels[4])
+        data_array.append(channels_arr)
+        mask_array.append(bit_arr)
+
+    return np.array(data_array, dtype=np.ndarray), np.asarray(mask_array).astype('int')
+
+
+def get_fpogv_mask_array():
+
+    complete_x_list = []
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i not in config['general']['excluded_users']:
+            path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                reduced_df = df_sync[df_sync['media_name'] == name]
+                for j in range(0, 14):
+                    shifted = reduced_df.iloc[j::15, :]
+                    question_list = []
+                    for x in shifted['FPOGV']:
+                        question_list.append(x)
+                    complete_x_list.append(np.array(question_list, dtype=np.ndarray))
+
+    return np.asarray(complete_x_list).astype(int)
+
+
 def get_user_windowed_array(i):
 
     complete_x_list = []

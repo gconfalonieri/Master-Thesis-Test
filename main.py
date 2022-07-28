@@ -2,6 +2,7 @@ import labelling.set_labels
 import statistics.utilities
 import toml
 import pandas as pd
+import os
 
 config = toml.load('config.toml')
 

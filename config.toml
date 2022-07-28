@@ -20,9 +20,14 @@ sync_prefix = 'datasets/sync_datasets/undersampled/norm_1_1/'
 sync_validation_prefix = 'datasets/sync_datasets/undersampled/norm_1_1_validation/'
 
 input_arrays = ['datasets/arrays/undersampled_shifted/input_1_1.npy']
+labels_arrays = ['datasets/arrays/labels/labels_v2.npy']
 
-labels_arrays = ['datasets/arrays/labels/labels_v2.npy'
-] # 'datasets/arrays/labels/labels_v2_2F.npy'
+[random_seed]
+pythonhashseed = 2022
+python_seed = 2022
+numpy_seed = 2022 # same as scipy seed
+tf_seed = 2022
+keras_seed = 2022
 
 [algorithm]
 eeg_features = ['alpha1', 'alpha2', 'beta1', 'beta2', 'delta']
