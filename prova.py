@@ -11,7 +11,8 @@ from sklearn.model_selection import train_test_split, KFold, cross_val_score
 import models.deep_learning_models as dl_models
 
 import models
-from models.utilities import get_min_series_len_shifted, get_users_array_shifted, get_questions_arrays_shifted
+from models.utilities import get_min_series_len_shifted, get_questions_arrays_shifted, get_users_arrays_shifted
+
 config = toml.load('config.toml')
 
 
@@ -83,7 +84,7 @@ def get_questions_oversampled_validation_shifted(test_size_value):
 
 # total_arr2 = models.utilities.get_arrays_shuffled_shifted(0.12)
 
-array_total = get_questions_arrays_shifted()
+array_total = get_users_arrays_shifted()
 # total_label = get_labels_users_array_shifted()
 
 complete_x = array_total[0]
@@ -99,7 +100,7 @@ from sklearn.model_selection import KFold
 n_split=3
 
 for train_index,test_index in KFold(n_split).split(complete_x):
-    x_train, x_test =  models.utilities.aggregate_questions(complete_x[train_index]), models.utilities.aggregate_questions(complete_x[test_index])
-    y_train, y_test = models.utilities.aggregate_labels(complete_y[train_index]), models.utilities.aggregate_labels(complete_y[test_index])
+    x_train, x_test =  models.utilities.aggregate_users(complete_x[train_index]), models.utilities.aggregate_users(complete_x[test_index])
+    y_train, y_test = models.utilities.aggregate_users_labels(complete_y[train_index]), models.utilities.aggregate_users_labels(complete_y[test_index])
     model = dl_models.get_model_lstm(0, 0, '', 'relu', 32, 'mse', 'adam', 1, 0.1)
     history = model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test), shuffle=True)
