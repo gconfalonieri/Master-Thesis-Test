@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import scipy.signal
 import sklearn.utils
-from scipy.interpolate import interp1d
 from sklearn.model_selection import train_test_split
 
 import experiments
@@ -44,7 +43,7 @@ def get_max_series_len_shifted():
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
+                for j in range(0, 15):
                     shifted = reduced_df.iloc[j::15, :]
                     curr_len = len(shifted.iloc[:, 0])
                     if curr_len > max_len:
@@ -109,7 +108,7 @@ def get_questions_oversampled_array_shifted():
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
+                for j in range(0, 15):
                     shifted = reduced_df.iloc[j::15, :]
                     question_list = []
                     for f in config['algorithm']['gaze_features']:
@@ -139,19 +138,21 @@ def get_questions_oversampled_validation_shifted():
             df_sync = pd.read_csv(path)
             media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
-                reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
-                    shifted = reduced_df.iloc[j::15, :]
-                    question_list = []
-                    for f in config['algorithm']['gaze_features']:
-                        arr = np.asarray(shifted[f]).astype('float32')
-                        oversampled_array = numpy.array(0)
-                        if config['preprocessing']['resample_library'] == 'sklearn':
-                            oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
-                        elif config['preprocessing']['resample_library'] == 'scipy':
-                            oversampled_array = scipy.signal.resample(arr, max_len)
-                        question_list.append(oversampled_array)
-                    complete_x_list.append(question_list)
+                if name not in config['general']['excluded_media']:
+                    reduced_df = df_sync[df_sync['media_name'] == name]
+                    for j in range(0, 15):
+                        shifted = reduced_df.iloc[j::15, :]
+                        print(shifted)
+                        question_list = []
+                        for f in config['algorithm']['gaze_features']:
+                            arr = np.asarray(shifted[f]).astype('float32')
+                            oversampled_array = numpy.array(0)
+                            if config['preprocessing']['resample_library'] == 'sklearn':
+                                oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                            elif config['preprocessing']['resample_library'] == 'scipy':
+                                oversampled_array = scipy.signal.resample(arr, max_len)
+                            question_list.append(oversampled_array)
+                        complete_x_list.append(question_list)
 
     return np.array(complete_x_list, dtype=np.ndarray)
 
@@ -211,7 +212,7 @@ def get_labels_questions_array_shifted():
         if id not in config['general']['excluded_users']:
             print(id)
             arr = np.array(df_labelled['LABEL'][i])
-            for j in range(0,14):
+            for j in range(0,15):
                 complete_y_list.append(np.expand_dims(arr, axis=(0)))
 
     return np.asarray(complete_y_list).astype('int')
@@ -229,7 +230,7 @@ def get_labels_questions_validation_shifted():
         id = int((user_id.split('_'))[1])
         if id in config['general']['validation_users']:
             arr = np.array(df_labelled['LABEL'][i])
-            for j in range(0,14):
+            for j in range(0, 15):
                 complete_y_list.append(np.expand_dims(arr, axis=(0)))
 
     return np.asarray(complete_y_list).astype('int')
@@ -254,7 +255,7 @@ def get_questions_arrays_shifted():
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
+                for j in range(0, 15):
                     shifted = reduced_df.iloc[j::15, :]
                     feature_list = []
                     for f in config['algorithm']['gaze_features']:
@@ -269,7 +270,7 @@ def get_questions_arrays_shifted():
                 red_df = df_labelled.loc[(df_labelled['USER_ID'] == user_id) & (df_labelled['MEDIA_NAME'] == name)]
                 arr = np.array(red_df['LABEL'].values[0])
                 question_label_list = []
-                for i in range(0, 14):
+                for i in range(0, 15):
                     question_label_list.append(np.expand_dims(arr, axis=(0)))
                 complete_x.append(question_list)
                 complete_y.append(question_label_list)
@@ -342,7 +343,7 @@ def get_arrays_shuffled_shifted_thr(test_size_value):
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
-                for j in range(0, 14):
+                for j in range(0, 15):
                     shifted = reduced_df.iloc[j::15, :]
                     feature_list = []
                     counter = 0
@@ -413,7 +414,7 @@ def get_users_arrays_shifted():
                 reduced_df = df_sync[df_sync['media_name'] == name]
                 red_df = df_labelled.loc[(df_labelled['USER_ID'] == user_id) & (df_labelled['MEDIA_NAME'] == name)]
                 arr_label = np.array(red_df['LABEL'].values[0])
-                for j in range(0, 14):
+                for j in range(0, 15):
                     shifted = reduced_df.iloc[j::15, :]
                     feature_list = []
                     for f in config['algorithm']['gaze_features']:
