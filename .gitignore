@@ -132,13 +132,11 @@ dmypy.json
 .idea/*
 
 # Project Folders
-example-test
 plots/experiments/*
 datasets/arrays/*
 datasets/sync_datasets/complete/*
 results.csv
-performances.csv
-iterations.py
+performances_cross.csv
+performances_aggr.csv
 plots/results/*
-models/test_model/*
 tf_models/*

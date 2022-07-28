@@ -1,15 +1,13 @@
-import os
-
 import toml
 from keras import Sequential
-from keras.regularizers import l1, l2, l1_l2
+from keras.regularizers import l2
 from keras.layers import Conv1D, MaxPooling1D, Dense, LSTM, BatchNormalization, Conv2D, MaxPooling2D, Dropout, \
     TimeDistributed, Flatten
-
 import experiments
 
 config = toml.load('config.toml')
 experiments.utilities.fix_seeds()
+
 
 def get_model_ccn1d(dense_input, dense_input_dim, dense_input_activation, dense_output_activation,
                     n_cnn_filters, cnn_kernel_size, cnn_pool_size, loss_type, optimizer_type,

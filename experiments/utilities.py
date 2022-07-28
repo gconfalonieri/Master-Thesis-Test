@@ -39,7 +39,7 @@ def get_labels_array_string(labels_array):
 
 
 def fix_seeds():
-    os.environ['PYTHONHASHSEED'] = config['random_seed']['pythonhashseed']
+    os.environ['PYTHONHASHSEED'] = str(config['random_seed']['pythonhashseed'])
     random.seed(config['random_seed']['python_seed'])
     np.random.seed(config['random_seed']['numpy_seed'])
     tf.random.set_seed(config['random_seed']['tf_seed'])
