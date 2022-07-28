@@ -1,8 +1,11 @@
-import numpy as np
-
+import toml
+import experiments
 import labelling.set_labels
 import statistics.utilities
 import pandas as pd
+
+config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 df_complete = pd.read_csv('datasets/results/answers_complete_all_info.csv')
 

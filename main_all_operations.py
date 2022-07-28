@@ -1,9 +1,11 @@
+import experiments
 import labelling.set_labels
 import statistics.utilities
 import toml
 import pandas as pd
 
 config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 n_users = statistics.utilities.get_n_testers() + 1
 

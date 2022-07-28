@@ -1,8 +1,10 @@
+import experiments
 import statistics.utilities
 import pandas as pd
 import toml
 
 config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 def get_user_answers_df(i):
 

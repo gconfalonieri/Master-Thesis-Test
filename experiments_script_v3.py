@@ -14,6 +14,9 @@ from models.utilities import get_users_arrays_shifted
 
 config = toml.load('config.toml')
 
+experiments.utilities.init_files()
+experiments.utilities.fix_seeds()
+
 c = 0
 
 for label_array in config['path']['labels_arrays']:

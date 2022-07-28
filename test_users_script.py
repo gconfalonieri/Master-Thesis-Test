@@ -1,7 +1,6 @@
 import os
-
-from matplotlib import pyplot as plt
-
+import toml
+import experiments
 import models.plots
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -10,6 +9,9 @@ from keras import Sequential
 from keras.layers import LSTM, Dense, Conv1D, MaxPooling1D
 from sklearn.model_selection import train_test_split
 import numpy as np
+
+config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 model = Sequential()
 model.add(Conv1D(filters=256, kernel_size=5, padding='same', activation='relu'))

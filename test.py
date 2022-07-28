@@ -1,9 +1,4 @@
-import os
-
-import matplotlib
-
 from matplotlib import pyplot as plt
-import models.utilities
 import models.deep_learning_models
 from sklearn.model_selection import train_test_split
 import numpy as np

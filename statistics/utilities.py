@@ -1,4 +1,6 @@
 import os
+
+import experiments
 import statistics
 from numpy import median, mean, percentile
 
@@ -6,6 +8,7 @@ import pandas as pd
 import toml
 
 config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 
 def get_n_testers():

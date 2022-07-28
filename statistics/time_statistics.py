@@ -1,8 +1,10 @@
 from numpy import mean, std, zeros
 import pandas as pd
 import toml
+import experiments
 
 config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 
 def get_times_for_question_df(df_correct_answer, n_users):

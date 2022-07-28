@@ -1,9 +1,12 @@
-from pprint import pprint
-
 import matplotlib.pyplot as plt
 import numpy
 import numpy as np
-from sklearn import preprocessing
+import toml
+
+import experiments
+
+config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 def get_error_bar_plot_time_questions(df_questions_statistics, cunks, type):
 

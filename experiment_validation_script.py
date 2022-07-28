@@ -1,8 +1,14 @@
+import toml
 from sklearn.model_selection import train_test_split
+
+import experiments
 import models.deep_learning_models as dl_models
 import models.plots
 import tensorflow as tf
 import numpy as np
+
+config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 def train_model():
     complete_x_list = np.load('datasets/arrays/undersampled_shifted/input_1_1.npy', allow_pickle=True)

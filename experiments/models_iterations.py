@@ -7,13 +7,13 @@ import models.deep_learning_models as dl_models
 
 config = toml.load('config.toml')
 
+experiments.utilities.fix_seeds()
+
 filename_results = config['path']['filename_results']
 filename_performances_cross_corr = config['path']['filename_performances_cross_corr']
 filename_performances_aggregate = config['path']['filename_performances_aggregate']
 
-experiments.utilities.fix_seeds()
-
-n_split = 3
+n_split = config['algorithm']['n_kfold_splits']
 
 
 def cross_validation_users(c, model, array_x, array_y, model_name):

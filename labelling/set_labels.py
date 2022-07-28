@@ -1,10 +1,12 @@
 import pandas as pd
 
-import labelling.utilities
+import experiments
 import statistics.utilities
 import toml
 
 config = toml.load('config.toml')
+
+experiments.utilities.fix_seeds()
 
 pd.options.mode.chained_assignment = None
 

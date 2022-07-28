@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split, KFold, cross_val_score
 import models.deep_learning_models as dl_models
 
 import models
-from models.utilities import get_min_series_len_shifted, get_questions_arrays_shifted, get_users_arrays_shifted
+from models.utilities import get_questions_arrays_shifted, get_users_arrays_shifted, get_max_series_len_shifted
 
 config = toml.load('config.toml')
 
@@ -86,6 +86,8 @@ def get_questions_oversampled_validation_shifted(test_size_value):
 
 # array_total = get_users_arrays_shifted()
 # total_label = get_labels_users_array_shifted()
+
+print(get_max_series_len_shifted())
 
 # complete_x = array_total[0]
 # complete_y = array_total[1]

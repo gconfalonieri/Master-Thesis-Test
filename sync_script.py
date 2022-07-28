@@ -2,7 +2,10 @@ import toml
 import pandas as pd
 from datetime import datetime
 
+import experiments
+
 config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 min_norm_value = config['preprocessing']['min_normalization']
 max_norm_value = config['preprocessing']['max_normalization']

@@ -1,6 +1,12 @@
 import matplotlib
 # matplotlib.use('Agg')
+import toml
 from matplotlib import pyplot as plt
+
+import experiments
+
+config = toml.load('config.toml')
+experiments.utilities.fix_seeds()
 
 def plot_model_loss(history_dict, name):
 
