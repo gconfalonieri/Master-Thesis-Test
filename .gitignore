@@ -136,7 +136,7 @@ plots/experiments/*
 datasets/arrays/*
 datasets/sync_datasets/complete/*
 results.csv
-performances_cross.csv
+perfomances_cross.csv
 performances_aggr.csv
 plots/results/*
 tf_models/*
