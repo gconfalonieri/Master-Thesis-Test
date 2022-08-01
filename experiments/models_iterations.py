@@ -25,12 +25,8 @@ def cross_validation_users(c, model, array_x, array_y, model_name):
     for train_index, test_index in KFold(n_split).split(array_x):
         x_train, x_test = models.utilities.aggregate_users(array_x[train_index]), models.utilities.aggregate_users(
             array_x[test_index])
-        print(x_train.shape)
-        print(x_test.shape)
         y_train, y_test = models.utilities.aggregate_users_labels(
             array_y[train_index]), models.utilities.aggregate_users_labels(array_y[test_index])
-        print(x_train.shape)
-        print(x_test.shape)
         history = model.fit(x_train, y_train, epochs=100, validation_data=(x_test, y_test), shuffle=True)
         history_dict = history.history
         experiments.utilities.write_line_performances_cross_correlation(filename_performances_cross_corr, c,
