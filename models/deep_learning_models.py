@@ -104,6 +104,7 @@ def get_model_cnn2d(dense_input, dense_input_dim, dense_input_activation, dense_
     model.add(MaxPooling2D(pool_size=cnn_pool_size, padding='same'))
     if dropout:
         model.add(Dropout(dropout_value))
+    model.add(Flatten())
     model.add(Dense(1, activation=dense_output_activation))
     model.compile(loss=loss_type, optimizer=optimizer_type, metrics=['accuracy'])
     return model

@@ -9,8 +9,6 @@ import models.deep_learning_models
 from experiments.utilities import get_input_array_string, get_labels_array_string
 import csv
 
-from models.utilities import get_arrays_shuffled_shifted_thr
-
 config = toml.load('config.toml')
 
 test_size_value = config['algorithm']['test_size']
