@@ -9,7 +9,7 @@ config = toml.load('config.toml')
 experiments.utilities.init_files()
 experiments.utilities.fix_seeds()
 
-c = 0
+c = 36
 
 for label_array in config['path']['labels_arrays']:
 
@@ -28,10 +28,10 @@ for label_array in config['path']['labels_arrays']:
 
             for optimizer_type in config['algorithm']['optimizer_types']:
 
-                c = experiments.models_iterations.iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
-                c = experiments.models_iterations.iterate_cnn1d_lstm_3dense(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
-                c = experiments.models_iterations.iterate_2xcnn1d_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
-                c = experiments.models_iterations.iterate_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
-                c = experiments.models_iterations.iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
-                c = experiments.models_iterations.iterate_cnn2d_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_cnn1d_lstm_3dense(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_2xcnn1d_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
+                # c = experiments.models_iterations.iterate_cnn2d_lstm(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)
                 c = experiments.models_iterations.iterate_cnn2d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name)

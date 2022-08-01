@@ -9,7 +9,7 @@ n_questions = 24
 excluded_media = []
 reduced_test_users = [25, 26, 30]
 not_valid_users = [5, 23, 25, 26, 30, 50]
-excluded_users = [5, 23, 25, 26, 30, 50]
+excluded_users = [5, 23, 25, 26, 30, 50, 1, 10, 20, 35, 40]
 validation_users = [1, 10, 20, 35, 40]
 binary_value = [0, 1]
 
