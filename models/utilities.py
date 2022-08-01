@@ -142,7 +142,6 @@ def get_questions_oversampled_validation_shifted():
                     reduced_df = df_sync[df_sync['media_name'] == name]
                     for j in range(0, 15):
                         shifted = reduced_df.iloc[j::15, :]
-                        print(shifted)
                         question_list = []
                         for f in config['algorithm']['gaze_features']:
                             arr = np.asarray(shifted[f]).astype('float32')
@@ -228,7 +227,8 @@ def get_labels_questions_validation_shifted():
     for i in df_labelled.index:
         user_id = df_labelled['USER_ID'][i]
         id = int((user_id.split('_'))[1])
-        if id in config['general']['validation_users']:
+        if id in config['general']['validation_users'] and df_labelled['MEDIA_NAME'][i] not in config['general'][
+            'excluded_media']:
             arr = np.array(df_labelled['LABEL'][i])
             for j in range(0, 15):
                 complete_y_list.append(np.expand_dims(arr, axis=(0)))
