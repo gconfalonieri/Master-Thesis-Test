@@ -3,18 +3,21 @@ import toml
 from sklearn.model_selection import train_test_split
 
 import models.utilities
-from models.utilities import get_questions_arrays_shifted_validation_thr
+from models.utilities import get_questions_arrays_shifted_validation_thr, get_users_arrays_shifted_thr
 
 config = toml.load('config.toml')
 
-total_arr = get_questions_arrays_shifted_validation_thr()
+total_arr = get_users_arrays_shifted_thr()
+
+print(total_arr[0].shape)
+print(total_arr[1].shape)
 
 X_train, X_test, y_train, y_test = train_test_split(total_arr[0], total_arr[1], test_size=0.2, shuffle=True)
 
-X_train = models.utilities.aggregate_questions(X_train)
-X_test = models.utilities.aggregate_questions(X_test)
-y_train = models.utilities.aggregate_questions_labels(y_train)
-y_test = models.utilities.aggregate_questions_labels(y_test)
+X_train = models.utilities.aggregate_users(X_train)
+X_test = models.utilities.aggregate_users(X_test)
+y_train = models.utilities.aggregate_users_labels(y_train)
+y_test = models.utilities.aggregate_users_labels(y_test)
 
 print(X_train.shape)
 print(X_test.shape)
