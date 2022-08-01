@@ -40,8 +40,9 @@ def normalize_gaze_in_range(f, df_gaze):
         norm_rpd = (((df_gaze['RPD'][i] - min_rpd) * diff) / diff_rpd) + min_norm_value
         norm_lpd = (((df_gaze['LPD'][i] - min_lpd) * diff) / diff_lpd) + min_norm_value
 
-        line = df_gaze['MEDIA_NAME'][i] + ',' + str(norm_fpogx) + ',' + str(norm_fpogy) + ',' + str(df_gaze['FPOGV'][i]) \
-               + ',' + str(norm_rpd) + ',' + str(norm_lpd) + '\n'
+        line = df_gaze['MEDIA_NAME'][i] + ',' + str(df_gaze['CNT'][i]) + ',' + \
+               str(norm_fpogx) + ',' + str(norm_fpogy) + ',' + str(df_gaze['FPOGV'][i]) + \
+               ',' + str(norm_rpd) + ',' + str(norm_lpd) + '\n'
 
         f.write(line)
 
@@ -97,7 +98,7 @@ for i in range(1, 53):
         start_eeg = get_dict_start_seconds(user_id, 'eeg')
 
         f = open(config['path']['sync_prefix'] + 'sync_dataset_user_' + str(i) + '.csv', 'w')
-        f.write('media_name,FPOGX,FPOGY,FPOGV,RPD,LPD\n')
+        f.write('media_name,CNT,FPOGX,FPOGY,FPOGV,RPD,LPD\n')
         normalize_gaze_in_range(f, df_gaze)
         f.close()
 

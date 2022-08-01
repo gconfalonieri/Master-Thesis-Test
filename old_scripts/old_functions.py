@@ -666,3 +666,53 @@ def get_labels_questions_array_shifted():
     return np.asarray(complete_y_list).astype('int')
 
 
+def get_questions_array_shifted_validation():
+
+    complete_x_list = []
+
+    max_len = get_max_series_len_shifted()
+    # max_len = config['computed']['shifted_max_len']
+
+    for i in range(1, 53):
+        user_id = 'USER_' + str(i)
+        if i in config['general']['validation_users']:
+            path = config['path']['sync_validation_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
+            df_sync = pd.read_csv(path)
+            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            for name in media_names:
+                if name not in config['general']['excluded_media']:
+                    reduced_df = df_sync[df_sync['media_name'] == name]
+                    for j in range(0, 15):
+                        shifted = reduced_df.iloc[j::15, :]
+                        question_list = []
+                        for f in config['algorithm']['gaze_features']:
+                            arr = np.asarray(shifted[f]).astype('float32')
+                            oversampled_array = numpy.array(0)
+                            if config['preprocessing']['resample_library'] == 'sklearn':
+                                oversampled_array = sklearn.utils.resample(arr, n_samples=max_len, stratify=arr)
+                            elif config['preprocessing']['resample_library'] == 'scipy':
+                                oversampled_array = scipy.signal.resample(arr, max_len)
+                            question_list.append(oversampled_array)
+                        complete_x_list.append(question_list)
+
+    return np.array(complete_x_list, dtype=np.ndarray)
+
+
+def get_labels_questions_array_shifted_validation():
+
+    complete_y_list = []
+
+    path_labelled_df = config['path']['labelled_dataset']
+    df_labelled = pd.read_csv(path_labelled_df)
+
+    for i in df_labelled.index:
+        user_id = df_labelled['USER_ID'][i]
+        id = int((user_id.split('_'))[1])
+        if id in config['general']['validation_users'] and df_labelled['MEDIA_NAME'][i] not in config['general'][
+            'excluded_media']:
+            arr = np.array(df_labelled['LABEL'][i])
+            for j in range(0, 15):
+                complete_y_list.append(np.expand_dims(arr, axis=(0)))
+
+    return np.asarray(complete_y_list).astype('int')
+
