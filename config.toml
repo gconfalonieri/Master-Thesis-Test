@@ -3,10 +3,13 @@
 #
 
 [general]
+media_list = ['NewMedia1', 'NewMedia2', 'NewMedia3', 'NewMedia4', 'NewMedia5', 'NewMedia6', 'NewMedia7', 'NewMedia8',
+    'NewMedia9', 'NewMedia10', 'NewMedia11', 'NewMedia12', 'NewMedia13', 'NewMedia14', 'NewMedia15', 'NewMedia16',
+    'NewMedia17', 'NewMedia18', 'NewMedia19', 'NewMedia20', 'NewMedia21', 'NewMedia22', 'NewMedia23', 'NewMedia24']
 n_testers = 52
 n_valid_testers = 46
 n_questions = 24
-excluded_media = []
+excluded_media = [1, 10, 17]
 reduced_test_users = [25, 26, 30]
 not_valid_users = [5, 23, 25, 26, 30, 50]
 excluded_users = [5, 23, 25, 26, 30, 50, 1, 10, 20, 35, 40]

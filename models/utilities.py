@@ -125,14 +125,18 @@ def aggregate_questions(old_array):
     return np.array(new_array).astype(np.float32)
 
 
-def aggregate_users(old_array):
+def aggregate_users(old_array, filter):
 
     new_array = []
 
     for x in old_array:
+        cnt = 0
         for y in x:
-            for z in y:
-                new_array.append(z)
+            cnt += 1
+            if (filter and cnt not in config['general']['excluded_media']) or not filter:
+                print(cnt)
+                for z in y:
+                    new_array.append(z)
 
     return np.array(new_array).astype(np.float32)
 
@@ -148,19 +152,24 @@ def aggregate_questions_labels(old_array):
     return np.asarray(new_array).astype('int')
 
 
-def aggregate_users_labels(old_array):
+def aggregate_users_labels(old_array, filter):
 
     new_array = []
 
     for x in old_array:
+        print("#####")
+        cnt = 0
         for y in x:
-            for z in y:
-                new_array.append(z)
+            cnt += 1
+            if (filter and cnt not in config['general']['excluded_media']) or not filter:
+                print(cnt)
+                for z in y:
+                    new_array.append(z)
 
     return np.asarray(new_array).astype('int')
 
 
-def get_users_arrays_shifted():
+def get_users_arrays_shifted(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -175,7 +184,10 @@ def get_users_arrays_shifted():
         if i not in config['general']['excluded_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             user_list = []
             user_label_list = []
             for name in media_names:
@@ -205,7 +217,7 @@ def get_users_arrays_shifted():
     return np.array(complete_x, dtype=np.ndarray), np.asarray(complete_y).astype('int')
 
 
-def get_questions_arrays_shifted():
+def get_questions_arrays_shifted(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -220,7 +232,10 @@ def get_questions_arrays_shifted():
         if i not in config['general']['excluded_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
@@ -247,7 +262,7 @@ def get_questions_arrays_shifted():
     return np.array(complete_x, dtype=np.ndarray), np.asarray(complete_y).astype('int')
 
 
-def get_questions_arrays_shifted_thr():
+def get_questions_arrays_shifted_thr(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -262,7 +277,10 @@ def get_questions_arrays_shifted_thr():
         if i not in config['general']['excluded_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
@@ -377,7 +395,7 @@ def get_questions_arrays_shifted_validation_thr():
     return np.array(complete_x, dtype=np.ndarray), np.array(complete_y, dtype=np.ndarray)
 
 
-def get_users_arrays_shifted_thr():
+def get_users_arrays_shifted_thr(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -392,7 +410,10 @@ def get_users_arrays_shifted_thr():
         if i not in config['general']['excluded_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             user_list = []
             user_label_list = []
             for name in media_names:
