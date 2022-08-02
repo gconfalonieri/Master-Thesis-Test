@@ -318,7 +318,7 @@ def get_questions_arrays_shifted_thr(is_ordered):
     return np.array(complete_x, dtype=np.ndarray), np.array(complete_y, dtype=np.ndarray)
 
 
-def get_questions_arrays_shifted_validation():
+def get_questions_arrays_shifted_validation(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -333,7 +333,10 @@ def get_questions_arrays_shifted_validation():
         if i in config['general']['validation_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
@@ -360,7 +363,7 @@ def get_questions_arrays_shifted_validation():
     return np.array(complete_x, dtype=np.ndarray), np.asarray(complete_y).astype('int')
 
 
-def get_questions_arrays_shifted_validation_thr():
+def get_questions_arrays_shifted_validation_thr(is_ordered):
 
     complete_x = []
     complete_y = []
@@ -375,7 +378,10 @@ def get_questions_arrays_shifted_validation_thr():
         if i in config['general']['validation_users']:
             path = config['path']['sync_prefix'] + 'sync_dataset_' + user_id.lower() + '.csv'
             df_sync = pd.read_csv(path)
-            media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
+            if is_ordered:
+                media_names = config['general']['media_list']
+            else:
+                media_names = df_sync.drop_duplicates('media_name', keep='last')['media_name']
             for name in media_names:
                 question_list = []
                 reduced_df = df_sync[df_sync['media_name'] == name]
