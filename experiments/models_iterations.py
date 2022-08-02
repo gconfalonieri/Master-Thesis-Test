@@ -52,6 +52,12 @@ def validation_model(model, validation_array, validation_labels):
     print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
 
 
+def validation_2d_model(model, validation_array, validation_labels):
+    validation_array = np.expand_dims(validation_array, 2)
+    validation_labels = np.expand_dims(validation_labels, 2)
+    loss, acc = model.evaluate(validation_array, validation_labels)
+    print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
+
 def iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name):
     model_name = 'CNN1D'
 
