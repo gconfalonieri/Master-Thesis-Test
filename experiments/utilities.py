@@ -9,6 +9,7 @@ config = toml.load('config.toml')
 filename_results = config['path']['filename_results']
 filename_performances_cross_corr = config['path']['filename_performances_cross_corr']
 filename_performances_aggregate = config['path']['filename_performances_aggregate']
+filename_performances_validation = config['path']['filename_performances_validation']
 
 def get_input_array_string(input_array):
     name = ''
@@ -61,6 +62,13 @@ def init_files():
     f.close()
 
 
+def init_validation_file():
+
+    f = open(filename_performances_validation, 'w')
+    f.write('index,acc,loss\n')
+    f.close()
+
+
 def write_line_results(filename, c, model, label_name, input_name, loss_type, optimizer_type, dense_input, dense_input_dim,
                dense_input_activation, dense_output_activation, lstm_cells, n_cnn_filters, cnn_kernel_size,
                cnn_pool_size, dropout, dropout_value):
@@ -85,5 +93,12 @@ def write_line_performances(filename, c, acc, val_acc, loss, val_loss):
 def write_line_performances_cross_correlation(filename, c, cross_counter, acc, val_acc, loss, val_loss):
     f1 = open(filename, 'a')
     line = str(c) + ',' + str(cross_counter) + ',' + str(acc) + ',' + str(val_acc) + ',' + str(loss) + ',' + str(val_loss) + '\n'
+    f1.write(line)
+    f1.close()
+
+
+def write_line_validation(filename, c, acc, loss):
+    f1 = open(filename, 'a')
+    line = str(c) + ',' + str(acc) + ',' + str(loss) + '\n'
     f1.write(line)
     f1.close()
