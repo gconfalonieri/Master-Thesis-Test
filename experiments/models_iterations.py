@@ -47,6 +47,11 @@ def cross_validation_users(c, model, array_x, array_y, model_name):
                                                   np.mean(val_acc_list), np.mean(loss_list), np.mean(val_loss_list))
 
 
+def validation_model(model, validation_array, validation_labels):
+    loss, acc = model.evaluate(validation_array, validation_labels)
+    print('Restored model, accuracy: {:5.2f}%'.format(100 * acc))
+
+
 def iterate_cnn1d(c, x_array, y_array, loss_type, optimizer_type, label_name, input_name):
     model_name = 'CNN1D'
 
