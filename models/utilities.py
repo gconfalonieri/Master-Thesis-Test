@@ -114,13 +114,19 @@ def get_labels_questions_array():
     return np.asarray(complete_y_list).astype('int')
 
 
-def aggregate_questions(old_array):
+def aggregate_questions(old_array, filter):
 
     new_array = []
 
+    cnt = 0
+
     for x in old_array:
-        for y in x:
-            new_array.append(y)
+        cnt += 1
+        if (filter and cnt not in config['general']['excluded_media']) or not filter:
+            for y in x:
+                new_array.append(y)
+        if cnt == 24:
+            cnt = 0
 
     return np.array(new_array).astype(np.float32)
 
@@ -134,20 +140,25 @@ def aggregate_users(old_array, filter):
         for y in x:
             cnt += 1
             if (filter and cnt not in config['general']['excluded_media']) or not filter:
-                print(cnt)
                 for z in y:
                     new_array.append(z)
 
     return np.array(new_array).astype(np.float32)
 
 
-def aggregate_questions_labels(old_array):
+def aggregate_questions_labels(old_array, filter):
 
     new_array = []
 
+    cnt = 0
+
     for x in old_array:
-        for y in x:
-            new_array.append(y)
+        cnt += 1
+        if (filter and cnt not in config['general']['excluded_media']) or not filter:
+            for y in x:
+                new_array.append(y)
+        if cnt == 24:
+            cnt = 0
 
     return np.asarray(new_array).astype('int')
 
@@ -157,12 +168,10 @@ def aggregate_users_labels(old_array, filter):
     new_array = []
 
     for x in old_array:
-        print("#####")
         cnt = 0
         for y in x:
             cnt += 1
             if (filter and cnt not in config['general']['excluded_media']) or not filter:
-                print(cnt)
                 for z in y:
                     new_array.append(z)
 
